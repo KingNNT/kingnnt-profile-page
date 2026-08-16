@@ -163,7 +163,36 @@ nền hover). Bản light dùng accent tối hơn để giữ tương phản —
 ### Ảnh
 
 `assets/portrait.png` là ảnh gốc, cố ý nằm ngoài `public/`. Bản deploy là
-`public/images/portrait.jpg`. Icon trong `app/` sinh từ ảnh gốc bằng `sips`.
+`public/images/portrait.jpg`.
+
+### Logo and icons
+
+`assets/logo-mark.svg` is the vector original of the brand mark (a K inside a
+square frame), kept outside `public/` like the portrait. `components/logo.tsx`
+restates that same geometry as an inline path — svgr is not enabled, so a
+`.svg` cannot be imported directly; `tests/components/logo.test.tsx` keeps the
+two from drifting apart.
+
+The on-page mark uses `currentColor` so it follows both themes. The icons under
+`app/` are the opposite: a hard `#131313` plate with an `#EBEBEB` mark, because
+a browser tab strip offers no colour context at all — a transparent mark
+disappears on half of them. The "KINGNNT" wordmark from the source brand file
+is deliberately **not** in the icons: below 32px it degrades into noise.
+
+Regenerate the icons after editing `assets/logo-mark.svg` (mark fills 80% of
+the canvas):
+
+    sed 's/currentColor/#EBEBEB/' assets/logo-mark.svg > /tmp/mark.svg
+    magick -background none /tmp/mark.svg -resize 154x154 \
+      -background '#131313' -gravity center -extent 192x192 \
+      -colorspace Gray -depth 8 -strip -define png:color-type=0 app/icon.png
+    magick -background none /tmp/mark.svg -resize 410x410 \
+      -background '#131313' -gravity center -extent 512x512 \
+      -colorspace Gray -depth 8 -strip -define png:color-type=0 app/apple-icon.png
+
+Grayscale is deliberate — the logo holds only two greys, and forcing `-depth 8`
+keeps the file at ~1KB instead of the 33KB 16-bit truecolour PNG ImageMagick
+emits by default.
 
 ### Component
 
