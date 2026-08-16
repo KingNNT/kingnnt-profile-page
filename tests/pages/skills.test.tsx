@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { SKILL_GROUPS } from "@/lib/profile";
+import { PRACTICE_AREAS, SKILL_GROUPS } from "@/lib/profile";
 import en from "@/messages/en.json";
 import vi from "@/messages/vi.json";
 
@@ -31,6 +31,22 @@ describe("skills page wiring", () => {
   it("every group carries at least one skill", () => {
     for (const group of SKILL_GROUPS) {
       expect(group.skills.length).toBeGreaterThan(0);
+    }
+  });
+
+  it("renders all five practice areas", () => {
+    expect(PRACTICE_AREAS).toHaveLength(5);
+  });
+
+  it.each(
+    Object.entries(CATALOGS),
+  )("%s has a term and a detail for every practice area", (_locale, catalog) => {
+    const practice = (catalog as typeof en).skills.practice;
+    for (const area of PRACTICE_AREAS) {
+      const entry = (practice as Record<string, { term: string; detail: string }>)[area.id];
+      expect(entry, `missing skills.practice.${area.id}`).toBeTruthy();
+      expect(entry.term.length).toBeGreaterThan(0);
+      expect(entry.detail.length).toBeGreaterThan(0);
     }
   });
 });

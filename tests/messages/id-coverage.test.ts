@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { routing } from "@/i18n/routing";
-import { AWARDS, EXPERIENCE, PROJECTS, SKILL_GROUPS } from "@/lib/profile";
+import {
+  AWARDS,
+  EXPERIENCE,
+  PRACTICE_AREAS,
+  PROJECTS,
+  SKILL_GROUPS,
+  SPOKEN_LANGUAGES,
+} from "@/lib/profile";
 import { navRoutes, ROUTES } from "@/lib/routes";
 import en from "@/messages/en.json";
 import vi from "@/messages/vi.json";
@@ -89,6 +96,22 @@ describe("data id <-> catalog key coverage", () => {
       "SKILL_GROUPS",
       SKILL_GROUPS.map((group) => group.id),
       ["skills", "groups"],
+    );
+  });
+
+  it("covers every practice area id in skills.practice, both directions", () => {
+    assertIdsMatchCatalog(
+      "PRACTICE_AREAS",
+      PRACTICE_AREAS.map((area) => area.id),
+      ["skills", "practice"],
+    );
+  });
+
+  it("covers every spoken language id in about.languages, both directions", () => {
+    assertIdsMatchCatalog(
+      "SPOKEN_LANGUAGES",
+      SPOKEN_LANGUAGES.map((language) => language.id),
+      ["about", "languages"],
     );
   });
 
