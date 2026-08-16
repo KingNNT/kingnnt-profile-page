@@ -22,10 +22,64 @@ const REQUIRED = [
   "--radius",
 ];
 
+const AA_SMALL_TEXT_MIN_CONTRAST = 4.5;
+
 function blockOf(selector: string): string {
   const match = css.match(new RegExp(`${selector}\\s*\\{([\\s\\S]*?)\\n\\}`));
   if (!match) throw new Error(`no ${selector} block in app/globals.css`);
   return match[1];
+}
+
+/**
+ * `oklch(L C H)` -> sRGB, relative luminance, WCAG contrast ratio. Written inline
+ * rather than pulled from a package: this is the one place the site's own contrast
+ * claims get checked, so the math should be readable and self-contained here.
+ */
+function oklchOf(block: string, token: string): [number, number, number] {
+  const match = block.match(new RegExp(`${token}:\\s*oklch\\(([^)]+)\\)`));
+  if (!match) throw new Error(`${token} is not an oklch() value`);
+  const parts = match[1].trim().split(/\s+/).map(Number);
+  const [l, c, h] = parts;
+  return [l, c, h ?? 0];
+}
+
+function oklchToSrgb([L, C, Hdeg]: [number, number, number]): [number, number, number] {
+  const h = (Hdeg * Math.PI) / 180;
+  const a = C * Math.cos(h);
+  const b = C * Math.sin(h);
+
+  const l_ = L + 0.3963377774 * a + 0.2158037573 * b;
+  const m_ = L - 0.1055613458 * a - 0.0638541728 * b;
+  const s_ = L - 0.0894841775 * a - 1.291485548 * b;
+
+  const l = l_ ** 3;
+  const m = m_ ** 3;
+  const s = s_ ** 3;
+
+  const rLin = 4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s;
+  const gLin = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s;
+  const bLin = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s;
+
+  const toSrgb = (channel: number) => {
+    const clamped = Math.min(1, Math.max(0, channel));
+    return clamped <= 0.0031308 ? 12.92 * clamped : 1.055 * clamped ** (1 / 2.4) - 0.055;
+  };
+
+  return [toSrgb(rLin), toSrgb(gLin), toSrgb(bLin)];
+}
+
+function relativeLuminance([r, g, b]: [number, number, number]): number {
+  const linearize = (channel: number) =>
+    channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+  return 0.2126 * linearize(r) + 0.7152 * linearize(g) + 0.0722 * linearize(b);
+}
+
+/** WCAG 2.x contrast ratio between two OKLCH colors, order-independent. */
+function contrastRatio(a: [number, number, number], b: [number, number, number]): number {
+  const lumA = relativeLuminance(oklchToSrgb(a));
+  const lumB = relativeLuminance(oklchToSrgb(b));
+  const [lighter, darker] = lumA >= lumB ? [lumA, lumB] : [lumB, lumA];
+  return (lighter + 0.05) / (darker + 0.05);
 }
 
 describe("theme tokens", () => {
@@ -45,12 +99,21 @@ describe("theme tokens", () => {
     expect(dark).toContain(`${token}:`);
   });
 
-  it("uses a darker accent in the light theme so contrast holds on white", () => {
-    const lightness = (block: string) => {
-      const m = block.match(/--primary:\s*oklch\(([\d.]+)/);
-      if (!m) throw new Error("--primary is not an oklch() value");
-      return Number(m[1]);
-    };
-    expect(lightness(light)).toBeLessThan(lightness(dark));
+  /**
+   * Spec §6.1 requires >= 4.5:1 for `--primary`: it is used as small text in
+   * several places (hero job title, section index numerals, project role, the
+   * current nav link, `mailto:` links, NavIndex numerals), which puts it under
+   * the AA small-text floor, not the 3:1 large-text/UI-component one. This is
+   * the test that is supposed to catch a light accent that looks fine but
+   * fails the ratio the spec itself commits to.
+   */
+  it.each([
+    ["light", light],
+    ["dark", dark],
+  ])("keeps --primary at >= 4.5:1 against --background in the %s theme", (_label, block) => {
+    const primary = oklchOf(block, "--primary");
+    const background = oklchOf(block, "--background");
+    const ratio = contrastRatio(primary, background);
+    expect(ratio).toBeGreaterThanOrEqual(AA_SMALL_TEXT_MIN_CONTRAST);
   });
 });

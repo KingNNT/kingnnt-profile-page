@@ -48,4 +48,16 @@ describe("SkillTable", () => {
     renderTable();
     expect(screen.getAllByRole("row")).toHaveLength(SKILLS.length + 1);
   });
+
+  /**
+   * The table has no focusable content of its own, unlike site-header's nav
+   * whose links make scrolling a side effect of tabbing. On a narrow viewport
+   * a keyboard-only user must be able to reach the scroll container directly,
+   * and a tabbable region without a name is just an unlabelled tab stop.
+   */
+  it("exposes the scroll wrapper as a focusable, named region", () => {
+    renderTable();
+    const region = screen.getByRole("region", { name: "Languages" });
+    expect(region).toHaveAttribute("tabIndex", "0");
+  });
 });

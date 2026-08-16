@@ -4,7 +4,9 @@ import { cn } from "@/lib/utils";
 const WEIGHT: Record<Proficiency, string> = {
   expert: "text-foreground",
   intermediate: "text-muted-foreground",
-  basic: "text-muted-foreground/70",
+  // De-emphasised via style, not opacity: `/70` dropped this row below AA on a
+  // page whose whole point is that weak entries stay honestly legible.
+  basic: "text-muted-foreground italic",
 };
 
 export function SkillTable({
@@ -21,8 +23,12 @@ export function SkillTable({
   return (
     // A four-column mono table can still outgrow a 375px viewport (long skill
     // names, or a locale where the translated column headers run wider). It
-    // must scroll inside its own box, never widen the page.
-    <div className="overflow-x-auto">
+    // must scroll inside its own box, never widen the page. The table has no
+    // focusable content of its own (unlike site-header's nav, whose links make
+    // the scroll a side effect of tabbing), so the wrapper itself needs to be
+    // a named, focusable region or a keyboard-only user can never reach the
+    // `Years` / `Last used` columns on a narrow viewport.
+    <div className="overflow-x-auto" tabIndex={0} role="region" aria-label={caption}>
       <table className="w-full border-collapse text-left font-mono text-sm">
         <caption className="sr-only">{caption}</caption>
         <thead>
