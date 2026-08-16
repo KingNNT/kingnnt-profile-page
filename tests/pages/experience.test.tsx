@@ -7,12 +7,14 @@ const CATALOGS = { en, vi };
 
 /**
  * `/experience` builds its timeline by mapping over `EXPERIENCE` and reading
- * `experience.entries.${id}` from the active catalog. Neither TypeScript nor
- * the id-coverage test guards that the *page* still maps every entry — only
- * that ids and catalog keys agree. This asserts the page's own wiring: drop
- * an entry from the page's `.map` and this still passes unless the entry
- * itself vanishes from `EXPERIENCE`, so pair it with a manual check that the
- * mapping is unconditional (it is — no `.slice`, `.filter`, or index cap).
+ * `experience.entries.${id}` from the active catalog. This does NOT guard
+ * the page's own JSX — it is an async Server Component Testing Library
+ * cannot render, so a `.slice`/`.filter` added to the page's `.map` would
+ * not turn this red (checked manually instead: the mapping is unconditional,
+ * no `.slice`, `.filter`, or index cap). What this guards is the data it
+ * would read: that `EXPERIENCE` still has all six entries, each with a
+ * non-empty summary in both catalogs — coverage neither TypeScript nor
+ * id-coverage.test.ts provides on their own.
  */
 describe("experience page wiring", () => {
   it("renders all six roles", () => {

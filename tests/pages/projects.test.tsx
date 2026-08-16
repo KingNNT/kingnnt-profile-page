@@ -8,10 +8,12 @@ const CATALOGS = { en, vi };
 /**
  * `/projects` splits `PROJECTS` into two sections via `featuredProjects()`
  * and `earlierProjects()`, each mapped to a `ProjectCard` reading
- * `projects.entries.${id}`. This guards that the split still covers every
- * project — a project excluded from both partitions would silently vanish
- * from the page while every other test (id-coverage, anonymity) stayed
- * green.
+ * `projects.entries.${id}`. Unlike the experience/skills page tests, this
+ * one calls those two functions directly — real production code, not just
+ * the data array — so a project excluded from both partitions is actually
+ * caught, not just assumed unconditional. What it still can't see is the
+ * page's own JSX: the `.map(card)` calls on each list (checked manually
+ * instead: both are unconditional, no `.slice`/`.filter` on top).
  */
 describe("projects page wiring", () => {
   it("renders all nine projects across the two sections", () => {

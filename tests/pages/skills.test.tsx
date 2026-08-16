@@ -7,9 +7,12 @@ const CATALOGS = { en, vi };
 
 /**
  * `/skills` renders one `Section` per `SKILL_GROUPS` entry, labelled by
- * `skills.groups.${id}`. This guards the page's own composition — that it
- * still iterates the full group list — separately from id-coverage, which
- * only checks that ids and catalog keys agree with each other.
+ * `skills.groups.${id}`. This does NOT guard the page's own JSX — it is an
+ * async Server Component Testing Library cannot render, so there is no way
+ * to prove the page's `.map` stayed unconditional. What this guards is the
+ * data it would read: that `SKILL_GROUPS` still has all five groups, each
+ * with skills, and a non-empty label in both catalogs. A `.slice`/`.filter`
+ * added to the page's own mapping would not turn this red.
  */
 describe("skills page wiring", () => {
   it("renders all five skill groups", () => {

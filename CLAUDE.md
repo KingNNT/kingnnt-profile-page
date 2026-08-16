@@ -8,8 +8,10 @@ Trang cá nhân song ngữ EN/VI của Ninh Ngọc Tuấn (Jesse / KingNNT) tạ
 `kingnnt.org`. Next.js 16 App Router + React 19 + TypeScript strict, Tailwind v4,
 shadcn/ui. Năm route tĩnh: `/`, `/about`, `/experience`, `/skills`, `/projects`.
 
-165 test xanh, `pnpm lint` sạch cảnh báo và không có comment `eslint-disable`
-nào trong repo — cả hai là tính chất cố ý, không phải tình cờ.
+Bộ test xanh toàn bộ (`pnpm test` là nguồn sự thật cho số lượng — đừng chép
+con số vào đây, nó lệch ngay commit kế tiếp). `pnpm lint` sạch cảnh báo và
+không có comment `eslint-disable` nào trong repo — cả hai là tính chất cố ý,
+không phải tình cờ.
 
 ## Ràng buộc ẩn danh
 
@@ -127,14 +129,16 @@ Màu trong `app/[locale]/opengraph-image.tsx` viết hex thủ công vì Satori 
 hiểu biến CSS. Đổi accent trong `globals.css` thì đổi cả ở đó.
 
 Ảnh chân dung cho OG card được nạp qua fetch tới URL công khai của chính site,
-không đọc từ đĩa (bundler trace path không đáng tin trên Vercel). Card lùi về
-bản thuần chữ khi fetch lỗi mạng, status không phải 2xx, content-type không
-phải ảnh, hoặc bytes không mở đầu bằng magic number JPEG (`0xff 0xd8 0xff`).
-Có một lớp lỗi mà không kiểm nào ở trên bắt được: một body vượt qua cả bốn
-kiểm tra nhưng vẫn không giải mã được bên trong Satori — `ImageResponse` render
-trong callback `start` của một `ReadableStream`, sau khi response 200 đã
-commit, nên lỗi đó làm hỏng response stream chứ không ném ra để try/catch nào
-bắt được nữa.
+không đọc từ đĩa (bundler trace path không đáng tin trên Vercel). Lỗi mạng khi
+fetch là một exception xảy ra trước khi có response nào để kiểm — bắt bằng
+try/catch, không phải một trong các `if`. Sau khi đã có response, card lùi về
+bản thuần chữ nếu một trong ba kiểm tra trên body thất bại: status không phải
+2xx, content-type không phải ảnh, hoặc bytes không mở đầu bằng magic number
+JPEG (`0xff 0xd8 0xff`). Có một lớp lỗi mà không kiểm nào ở trên bắt được: một
+body vượt qua cả ba kiểm tra đó nhưng vẫn không giải mã được bên trong Satori —
+`ImageResponse` render trong callback `start` của một `ReadableStream`, sau khi
+response 200 đã commit, nên lỗi đó làm hỏng response stream chứ không ném ra để
+try/catch nào bắt được nữa.
 
 ### Nội dung phải server-render
 
@@ -161,10 +165,13 @@ nền hover). Bản light dùng accent tối hơn để giữ tương phản —
 ### Component
 
 `Section` (`components/section.tsx`) nhận props dạng discriminated union:
-`{ id, index, label }` đi cùng nhau hoặc không có cái nào — một section có
-`index`/`label` mà thiếu `id`, hay ngược lại, đỏ compile thay vì render sai
-lúc chạy. Chỉ section có nhãn mới nhận `aria-labelledby`/role landmark; một
-region không tên là tiếng ồn với screen reader.
+nhánh còn lại là `{ id?: string; index?: never; label?: never }`, nên `id`
+một mình (không `index`/`label`) vẫn hợp lệ — cái type ngăn là `index` hoặc
+`label` xuất hiện mà không đi kèm đủ cả ba (`id`, `index`, `label` cùng lúc,
+khớp nhánh đầu). Nói cách khác: không có section nào có nhãn mà thiếu `id`,
+nhưng có `id` không nhãn là bình thường. Chỉ section có nhãn mới nhận
+`aria-labelledby`/role landmark; một region không tên là tiếng ồn với screen
+reader.
 
 ## Testing
 
@@ -175,6 +182,10 @@ Trang `/experience`, `/skills`, `/projects` là async Server Component nên
 Testing Library không render được; test ở `tests/pages/*.test.tsx` theo mẫu
 `tests/pages/about.test.tsx` — khẳng định trực tiếp trên mảng dữ liệu
 (`EXPERIENCE`, `SKILL_GROUPS`, `PROJECTS`) và trên catalog, thay vì render
-cây component. Mục đích: xoá một mục khỏi mapping của trang phải làm CI đỏ,
-kể cả khi id đó vẫn còn khớp catalog (thứ `id-coverage.test.ts` không bắt
-được, vì nó chỉ so id với catalog, không so page với id).
+cây component. Những test này bảo vệ độ đầy đủ của dữ liệu và catalog (mỗi
+entry trong mảng nguồn có một bản dịch không rỗng), **không** bảo vệ chính
+JSX của trang: nếu ai đó thêm `.slice`/`.filter` vào `.map` của trang, các
+test cho `experience`/`skills` vẫn xanh vì chúng không đọc `page.tsx`.
+`projects.test.tsx` là ngoại lệ đáng kể — nó gọi thẳng `featuredProjects()`
+và `earlierProjects()`, hai hàm production mà trang dùng để chia section, nên
+một dự án bị loại khỏi cả hai partition sẽ bị bắt thật.
