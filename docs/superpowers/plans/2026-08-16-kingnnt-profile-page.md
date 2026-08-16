@@ -82,8 +82,10 @@ Ranh giới: `lib/profile/*` chỉ chứa dữ liệu, không import gì từ `c
 ## Task 1: Toolchain và bộ khung chạy được
 
 **Files:**
-- Create: `package.json`, `tsconfig.json`, `next.config.ts`, `postcss.config.mjs`, `biome.json`, `eslint.config.mjs`, `vitest.config.mts`, `vitest.setup.ts`, `.lintstagedrc.json`, `commitlint.config.ts`, `.gitignore`, `.husky/pre-commit`, `.husky/commit-msg`, `.github/workflows/ci.yml`
+- Create: `package.json`, `pnpm-workspace.yaml`, `tsconfig.json`, `next.config.ts`, `postcss.config.mjs`, `biome.json`, `eslint.config.mjs`, `vitest.config.mts`, `vitest.setup.ts`, `.lintstagedrc.json`, `commitlint.config.ts`, `.gitignore`, `.husky/pre-commit`, `.husky/commit-msg`, `.github/workflows/ci.yml`
 - Test: `tests/smoke.test.ts`
+
+`pnpm-workspace.yaml` chỉ chứa `allowBuilds` cho `@parcel/watcher`, `@swc/core`, `sharp`, `unrs-resolver`. pnpm 11.9 chặn build script của dependency trừ khi được allowlist và thoát với `ERR_PNPM_IGNORED_BUILDS`; `sharp` và `@swc/core` là thứ Next cần để tối ưu ảnh và biên dịch, nên thiếu file này thì cả `pnpm install` cục bộ lẫn bước `--frozen-lockfile` trong CI đều gãy.
 
 **Interfaces:**
 - Consumes: không có — task đầu tiên.
