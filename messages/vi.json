@@ -97,6 +97,30 @@
       "backend": "Back end",
       "devops": "Hạ tầng",
       "data": "Dữ liệu & messaging"
+    },
+    "practiceLabel": "Cách làm",
+    "practiceNote": "Những mục này không có mức thành thạo, vì không có gì trung thực để đo chúng — đây là cách công việc được làm, chứ không phải thứ dùng để dựng nên nó.",
+    "practice": {
+      "patterns": {
+        "term": "Mẫu thiết kế",
+        "detail": "Adapter, proxy, facade, singleton, factory, inversion of control, dependency injection — và những nguyên tắc quyết định khi nào không nên dùng tới chúng."
+      },
+      "architecture": {
+        "term": "Kiến trúc ứng dụng",
+        "detail": "Hướng đối tượng và hướng hàm, MVC, cùng những câu hỏi về phân tầng vốn đến trước cả hai."
+      },
+      "systems": {
+        "term": "Hệ thống",
+        "detail": "Linux là môi trường làm việc hằng ngày suốt sáu năm, song song với Windows và macOS."
+      },
+      "design": {
+        "term": "Thiết kế",
+        "detail": "Figma, Photoshop và Illustrator — đủ để dựng một bản mockup chạy được trước khi có gì để code — cùng DrawIO và UML cho những sơ đồ dùng để kết thúc tranh luận."
+      },
+      "delivery": {
+        "term": "Triển khai",
+        "detail": "Agile, Kanban hay Waterfall tuỳ khách hàng. Khoanh phạm vi, lên lịch, phân việc và theo dõi."
+      }
     }
   },
   "projects": {

@@ -4,7 +4,7 @@ import { Section } from "@/components/section";
 import { SkillTable } from "@/components/skill-table";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
-import { type Proficiency, SKILL_GROUPS } from "@/lib/profile";
+import { PRACTICE_AREAS, type Proficiency, SKILL_GROUPS } from "@/lib/profile";
 import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "skills";
@@ -69,6 +69,25 @@ export default async function SkillsPage({ params }: { params: Promise<{ locale:
           </Reveal>
         </Section>
       ))}
+      <Section id="practice" index={6} label={t("practiceLabel")}>
+        <Reveal>
+          <p className="mb-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
+            {t("practiceNote")}
+          </p>
+          <dl className="space-y-8">
+            {PRACTICE_AREAS.map((area) => (
+              <div key={area.id}>
+                <dt className="font-mono text-sm font-medium text-foreground">
+                  {t(dynamicMessageKey(`practice.${area.id}.term`))}
+                </dt>
+                <dd className="mt-2 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
+                  {t(dynamicMessageKey(`practice.${area.id}.detail`))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      </Section>
     </main>
   );
 }

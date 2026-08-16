@@ -97,6 +97,30 @@
       "backend": "Back end",
       "devops": "Infrastructure",
       "data": "Data & messaging"
+    },
+    "practiceLabel": "Practice",
+    "practiceNote": "These carry no proficiency rating, because there is nothing honest to measure them against — they are how the work gets done rather than what it is built with.",
+    "practice": {
+      "patterns": {
+        "term": "Design patterns",
+        "detail": "Adapter, proxy, facade, singleton, factory, inversion of control, dependency injection — and the principles that decide when not to reach for one."
+      },
+      "architecture": {
+        "term": "Application architecture",
+        "detail": "Object-oriented and functional styles, MVC, and the layering questions that come before either."
+      },
+      "systems": {
+        "term": "Systems",
+        "detail": "Linux as a daily driver for six years, with Windows and macOS alongside it."
+      },
+      "design": {
+        "term": "Design",
+        "detail": "Figma, Photoshop and Illustrator — enough to produce a working mockup before there is anything to build — plus DrawIO and UML for the diagrams that settle an argument."
+      },
+      "delivery": {
+        "term": "Delivery",
+        "detail": "Agile, Kanban or Waterfall depending on the client. Scoping, scheduling, assigning and tracking the work."
+      }
     }
   },
   "projects": {
