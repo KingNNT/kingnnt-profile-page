@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
@@ -73,8 +73,13 @@ const ROOTS: Record<string, string[]> = {
   messages: walk(join(ROOT, "messages")),
   components: walk(join(ROOT, "components")),
   app: walk(join(ROOT, "app")),
-  // `lib/profile` nằm bên trong `lib` — dedupe để không quét hai lần.
-  lib: walk(join(ROOT, "lib")).filter((file) => !file.startsWith(join(ROOT, "lib", "profile"))),
+  // `lib/profile` nằm bên trong `lib` — dedupe để không quét hai lần. So theo
+  // ranh giới thư mục (`+ sep`), không phải path-prefix suông: một thư mục anh
+  // em tên `lib/profile-legacy` có cùng tiền tố chuỗi với `lib/profile` nhưng
+  // không nằm trong nó, nên `startsWith` sẽ âm thầm loại nó khỏi cây `lib`.
+  lib: walk(join(ROOT, "lib")).filter(
+    (file) => !file.startsWith(join(ROOT, "lib", "profile") + sep),
+  ),
 };
 const FILES = [...new Set(Object.values(ROOTS).flat())];
 
