@@ -1,11 +1,13 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Hero } from "@/app/[locale]/(public)/_components/hero";
 import { NavIndex } from "@/app/[locale]/(public)/_components/nav-index";
+import { ContactBlock } from "@/components/contact-block";
 import { Prose } from "@/components/prose";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
+import { GENERAL_CONTACT_IDS } from "@/lib/profile";
 import { facetHubRoutes, HOME_PATH } from "@/lib/routes";
 import { dynamicMessageKey } from "@/lib/utils";
 
@@ -56,6 +58,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Section id="index" index={2} label={t("indexLabel")}>
         <Reveal>
           <NavIndex entries={indexEntries} />
+        </Reveal>
+      </Section>
+      <Section id="contact" index={3} label={t("contactLabel")}>
+        <Reveal>
+          <Prose>
+            <p>{t("contact")}</p>
+          </Prose>
+          <ContactBlock ids={GENERAL_CONTACT_IDS} className="mt-6" />
         </Reveal>
       </Section>
     </main>

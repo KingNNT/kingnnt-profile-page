@@ -28,7 +28,7 @@ export const HOME_PATH = "";
  * deploy: nếu lấy thời điểm build thì một trang không đụng tới hàng tháng vẫn
  * khai là vừa đổi vài phút trước, và đó là tín hiệu chỉ đáng có khi nó đúng.
  */
-export const CONTENT_LAST_MODIFIED = "2026-08-16";
+export const CONTENT_LAST_MODIFIED = "2026-08-17";
 
 export function routeLastModified(route: RouteDef): string {
   return route.lastModified ?? CONTENT_LAST_MODIFIED;

@@ -26,11 +26,13 @@
     "introLabel": "Intro",
     "intro1": "Six years of full-stack work across AI, banking, e-commerce, healthcare, education and hospitality, for clients in Vietnam, Japan, Malaysia, Australia and the EU. These days most of my work starts before the code does: discovery sessions, solution architecture, effort estimates, and the proof-of-concept that settles the argument.",
     "intro2": "I still write the systems I scope. That is deliberate — an estimate from someone who no longer builds is a guess with a confident tone.",
-    "indexLabel": "Index",
+    "indexLabel": "Lines of work",
     "index": {
       "dev": "Fifteen years building software — roles, skills and selected work.",
       "trading": "Six years across crypto, forex and equities — method, not performance."
-    }
+    },
+    "contactLabel": "Reach me",
+    "contact": "This address reaches me whatever the subject. Each line of work also has its own — see the contact page."
   },
   "dev": {
     "metaTitle": "Software engineering",

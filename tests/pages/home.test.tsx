@@ -10,16 +10,14 @@ vi.mock("@/i18n/navigation", () => ({
 import { NavIndex } from "@/app/[locale]/(public)/_components/nav-index";
 
 const entries = [
-  { path: "about", label: "About", blurb: "About blurb" },
-  { path: "experience", label: "Experience", blurb: "Experience blurb" },
-  { path: "skills", label: "Skills", blurb: "Skills blurb" },
-  { path: "projects", label: "Projects", blurb: "Projects blurb" },
+  { path: "dev", label: "Dev", blurb: "Dev blurb" },
+  { path: "trading", label: "Trading", blurb: "Trading blurb" },
 ];
 
 describe("NavIndex", () => {
   it("lists every entry as a numbered item", () => {
     render(<NavIndex entries={entries} />);
-    for (const index of ["01", "02", "03", "04"]) {
+    for (const index of ["01", "02"]) {
       expect(screen.getByText(index)).toBeInTheDocument();
     }
   });
@@ -27,12 +25,7 @@ describe("NavIndex", () => {
   it("links each entry to its own route, in order", () => {
     render(<NavIndex entries={entries} />);
     const links = screen.getAllByRole("link");
-    expect(links).toHaveLength(4);
-    expect(links.map((link) => link.getAttribute("href"))).toEqual([
-      "/about",
-      "/experience",
-      "/skills",
-      "/projects",
-    ]);
+    expect(links).toHaveLength(2);
+    expect(links.map((link) => link.getAttribute("href"))).toEqual(["/dev", "/trading"]);
   });
 });

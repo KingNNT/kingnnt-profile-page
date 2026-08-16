@@ -26,11 +26,13 @@
     "introLabel": "Giới thiệu",
     "intro1": "Sáu năm làm full-stack qua AI, ngân hàng, thương mại điện tử, y tế, giáo dục và khách sạn, cho khách hàng ở Việt Nam, Nhật, Malaysia, Úc và EU. Gần đây phần lớn công việc của tôi bắt đầu trước khi có dòng code nào: buổi discovery, kiến trúc giải pháp, ước lượng công sức, và bản proof-of-concept dùng để kết thúc tranh luận.",
     "intro2": "Tôi vẫn tự viết những hệ thống mình vạch ra. Đó là chủ ý — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
-    "indexLabel": "Mục lục",
+    "indexLabel": "Các mảng công việc",
     "index": {
       "dev": "Mười lăm năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc.",
       "trading": "Sáu năm qua crypto, forex và chứng khoán — phương pháp, không phải hiệu suất."
-    }
+    },
+    "contactLabel": "Liên hệ",
+    "contact": "Địa chỉ này đến được tôi dù là chuyện gì. Mỗi mảng còn có hộp thư riêng — xem trang liên hệ."
   },
   "dev": {
     "metaTitle": "Kỹ thuật phần mềm",
