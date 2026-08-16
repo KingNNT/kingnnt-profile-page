@@ -13,6 +13,12 @@
   "footer": {
     "email": "Email"
   },
+  "notFound": {
+    "label": "404",
+    "title": "Nothing here",
+    "description": "That page does not exist, or moved. Everything else on the site still does.",
+    "homeLink": "Back to the front page"
+  },
   "home": {
     "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
     "metaDescription": "Solutions consultant and full-stack engineer in Hà Nội. Six years across AI, banking, e-commerce, healthcare and education.",

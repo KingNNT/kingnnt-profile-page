@@ -13,6 +13,12 @@
   "footer": {
     "email": "Email"
   },
+  "notFound": {
+    "label": "404",
+    "title": "Không có gì ở đây",
+    "description": "Trang này không tồn tại, hoặc đã chuyển chỗ. Mọi trang khác trên site vẫn còn nguyên.",
+    "homeLink": "Về trang chủ"
+  },
   "home": {
     "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
     "metaDescription": "Solutions consultant, full-stack engineer tại Hà Nội. Sáu năm qua AI, ngân hàng, thương mại điện tử, y tế và giáo dục.",
