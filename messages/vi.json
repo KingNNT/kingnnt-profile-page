@@ -84,5 +84,26 @@
       "devops": "Hạ tầng",
       "data": "Dữ liệu & messaging"
     }
+  },
+  "projects": {
+    "metaTitle": "Dự án",
+    "metaDescription": "Các dự án kỹ thuật và kiến trúc chọn lọc, có link ở những sản phẩm đã public.",
+    "title": "Dự án",
+    "note": "Sản phẩm đã có trang công khai thì được nêu tên. Dự án của khách hàng thì không — thay vào đó là mô tả bài toán, vốn cũng là phần mang thông tin thật.",
+    "selectedLabel": "Chọn lọc",
+    "earlierLabel": "Trước đó",
+    "now": "nay",
+    "undisclosed": "Dự án khách hàng không nêu tên",
+    "entries": {
+      "intentsite": "Một lớp AI-native phủ lên sự hiện diện web của doanh nghiệp, dựng để các AI agent có thể đọc, tin và hành động trên thứ doanh nghiệp công bố thay vì đi cào một trang HTML. Tôi sở hữu phần kiến trúc và dẫn phát triển: quản lý tri thức theo intent cho cả câu trả lời được soạn lẫn được suy ra, phân phối đa kênh gồm WhatsApp, và các tích hợp cho phép agent hoàn tất một hành động thật thay mặt doanh nghiệp. Yêu cầu khó nhất không phải tốc độ mà là biết từ chối — một hệ thống trả lời sai thay mặt doanh nghiệp sẽ phá đúng thứ duy nhất nó bán.",
+      "bank-kpi": "Nền tảng quản lý KPI và hiệu suất cho một ngân hàng thương mại lớn tại Việt Nam, tích hợp với hệ thống lõi cũ. Tôi làm cả back end lẫn front end trên Next.js, kèm unit test, integration test và end-to-end, trên hạ tầng AWS tính toán theo tải đồng thời của toàn tổ chức.",
+      "mental-health-elearning": "Nền tảng học kiểu Duolingo về sức khoẻ tinh thần cho thị trường Úc — bài học ngắn, gamification, vòng lặp tạo thói quen. Tôi thiết kế kiến trúc backend và schema, dựng service trên NestJS, đồng thời mentor cho các thành viên trong đội.",
+      "orkestrators": "Nền tảng tạo AI agent cá nhân biết làm việc thật: tích hợp Gmail, Google Calendar, Outlook, Notion và Atlassian qua LangChain và MCP, trên kiến trúc multi-tenant kèm marketplace để chia sẻ và kiếm tiền từ agent. Tôi dẫn các quyết định kỹ thuật cùng nhà sáng lập, từ đánh giá khả thi tới hệ thống chạy thật.",
+      "semikong": "Mô hình ngôn ngữ lớn mã nguồn mở đầu tiên dựng riêng cho ngành bán dẫn, huấn luyện trên kho ngữ liệu chuyên ngành và đo trên các benchmark của ngành. Tôi dẫn đội và phần kiến trúc nền tảng — back end Django, front end Next.js, đánh giá thời gian thực — và hoàn thành trong cửa sổ hai tháng.",
+      "email-agent": "Hệ thống xử lý email thông minh, trích xuất và phân loại dữ liệu có cấu trúc từ luồng thư và tệp đính kèm khối lượng lớn. Microservices trên FastAPI với dashboard Next.js, dùng Azure OpenAI và Document Intelligence để trích xuất, Kubernetes để mở rộng. Tôi dẫn đội và viết bộ tài liệu thiết kế theo quy trình khách hàng yêu cầu.",
+      "livecall": "Nền tảng gọi video doanh nghiệp chạy trên trình duyệt: gọi, chia sẻ màn hình, ghi hình và hội thoại nhiều bên trên Twilio, kèm co-browsing, gói thuê bao Stripe và trạng thái thời gian thực qua WebSocket. Front end Vue 3 với TypeScript, phía sau là Django, trong đội từ mười lăm người trở lên.",
+      "restaurant-marketplace": "Sàn kết nối nhà hàng với thực khách cho ngành ẩm thực Nhật — quản lý nhiều nhà cung cấp, thực đơn và lịch trống, đặt bàn và đặt món, SSO qua mạng xã hội, và xử lý thanh toán. Back end Laravel, front end Nuxt, kèm một crawler tự động thu thập dữ liệu thị trường.",
+      "school-management": "Hệ thống quản lý trường học cho các cơ sở giáo dục Nhật, bao gồm tuyển sinh, xếp lịch, theo dõi điểm và liên lạc với phụ huynh, phân quyền cho học sinh, giáo viên, quản trị viên và người giám hộ. Laravel và Vue, dùng Redis cache để trụ qua các đợt cao điểm đăng ký."
+    }
   }
 }

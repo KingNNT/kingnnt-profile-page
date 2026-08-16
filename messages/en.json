@@ -84,5 +84,26 @@
       "devops": "Infrastructure",
       "data": "Data & messaging"
     }
+  },
+  "projects": {
+    "metaTitle": "Projects",
+    "metaDescription": "Selected engineering and architecture work, with links where the product is public.",
+    "title": "Projects",
+    "note": "Products with a public site are named. Client work is not — the problem is described instead, which is the part that carries the information anyway.",
+    "selectedLabel": "Selected",
+    "earlierLabel": "Earlier",
+    "now": "now",
+    "undisclosed": "Undisclosed client project",
+    "entries": {
+      "intentsite": "An AI-native layer over a company's web presence, built so AI agents can read, trust and act on what a business publishes rather than scraping a page. I own the architecture and lead development: intent-based knowledge management over both authored and inferred answers, multi-channel delivery including WhatsApp, and the integrations that let an agent complete a real action on the business's behalf. The hard requirement is not speed but refusal — a system that answers wrongly on a company's behalf destroys the only thing it sells.",
+      "bank-kpi": "An enterprise KPI and performance management platform for one of Vietnam's large commercial banks, integrated with legacy core systems. Built the back end and front end on Next.js, with unit, integration and end-to-end coverage, on AWS infrastructure sized for concurrent load across the organisation.",
+      "mental-health-elearning": "A Duolingo-style learning platform for mental health education in the Australian market — short lessons, gamification, habit loops. I designed the backend architecture and schema and built the services on NestJS, plus mentoring on the team.",
+      "orkestrators": "A platform for building personal AI agents that actually do things: Gmail, Google Calendar, Outlook, Notion and Atlassian integrations via LangChain and MCP, on a multi-tenant architecture with a marketplace for sharing and monetising agents. I led the technical decisions alongside the founder, from feasibility assessment through to the running system.",
+      "semikong": "The first open-source large language model built specifically for the semiconductor industry, trained on a domain corpus and benchmarked against general-purpose models. I led the team and the platform architecture — Django back end, Next.js front end, real-time evaluation — and delivered it inside a two-month window.",
+      "email-agent": "An intelligent email processing system that extracts and categorises structured data from high-volume inbound mail and attachments. Microservices on FastAPI with a Next.js dashboard, Azure OpenAI and Document Intelligence for extraction, Kubernetes for scale. I led the team and wrote the design documentation the client's process required.",
+      "livecall": "A browser-based enterprise video calling platform: calling, screen sharing, recording and multi-party conferencing on Twilio, with co-browsing, Stripe subscriptions and WebSocket presence. Vue 3 and TypeScript on the front end, Django behind it, on a team of fifteen or more.",
+      "restaurant-marketplace": "A restaurant marketplace for the Japanese food service industry connecting venues with diners — multi-tenant vendor management, menus and availability, reservations and ordering, social SSO, and payment processing. Laravel back end, Nuxt front end, plus an automated crawler for market data.",
+      "school-management": "A school management system for Japanese educational institutions covering enrolment, scheduling, grade tracking and parent communication, with role-based access for students, teachers, administrators and guardians. Laravel and Vue, with Redis caching to survive the registration-period peaks."
+    }
   }
 }
