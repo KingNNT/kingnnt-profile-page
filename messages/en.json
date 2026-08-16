@@ -10,9 +10,6 @@
     "skills": "Skills",
     "projects": "Projects"
   },
-  "footer": {
-    "email": "Email"
-  },
   "notFound": {
     "label": "404",
     "title": "Nothing here",

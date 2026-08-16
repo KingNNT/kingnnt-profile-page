@@ -5,6 +5,7 @@ import {
   EXPERIENCE,
   featuredProjects,
   IDENTITY,
+  profileChannels,
   PROJECTS,
   SKILL_GROUPS,
   TRADING,
@@ -62,7 +63,7 @@ describe("profile data", () => {
   });
 
   it("only links out over https", () => {
-    const urls = [...PROJECTS.map((p) => p.url), ...IDENTITY.socials.map((s) => s.url)];
+    const urls = [...PROJECTS.map((p) => p.url), ...profileChannels().map((c) => c.url)];
     for (const url of urls) {
       if (url === null) continue;
       expect(() => new URL(url)).not.toThrow();

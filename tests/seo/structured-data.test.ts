@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { LocaleSupport } from "@/enums";
-import { IDENTITY } from "@/lib/profile";
+import { FACETS, FACET_CONTACT_TYPE, LocaleSupport } from "@/enums";
+import { FACET_CONTACT_IDS, IDENTITY, profileChannels } from "@/lib/profile";
 import {
   breadcrumbSchema,
   personSchema,
@@ -21,7 +21,24 @@ describe("personSchema", () => {
   });
 
   it("links out to every social profile as sameAs", () => {
-    expect(person.sameAs).toEqual(IDENTITY.socials.map((s) => s.url));
+    expect(person.sameAs).toEqual(profileChannels().map((c) => c.url));
+  });
+
+  /**
+   * Kênh liên hệ theo nhánh, phát ra dưới dạng có cấu trúc. `ContactPoint`
+   * KHÔNG phải node `Organization` — ràng buộc ẩn danh vẫn nguyên vẹn.
+   */
+  it("publishes one contact point per facet", () => {
+    const points = person.contactPoint as { contactType: string; email: string }[];
+    expect(points.map((p) => p.contactType)).toEqual(FACETS.map((f) => FACET_CONTACT_TYPE[f]));
+    for (const point of points) {
+      expect(point.email).toMatch(/^mailto:/);
+    }
+  });
+
+  it("keeps every contact point in step with the contact module", () => {
+    const points = person.contactPoint as { email: string }[];
+    expect(points).toHaveLength(FACETS.filter((f) => FACET_CONTACT_IDS[f].length > 0).length);
   });
 
   it("lists areas of expertise from the skills data", () => {
@@ -60,6 +77,7 @@ describe("personSchema", () => {
         "url",
         "image",
         "sameAs",
+        "contactPoint",
         "knowsAbout",
         "knowsLanguage",
         "address",
