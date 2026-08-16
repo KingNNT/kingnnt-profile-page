@@ -56,10 +56,11 @@ describe("SiteHeader", () => {
   });
 
   it("keeps the nickname as one unbroken string beside the mark", () => {
-    // The K is accented with `::first-letter`, so the nickname must stay a
-    // single text node. Splitting it into `<span>K</span>ingNNT` — or dropping
-    // the K to let the logo stand in for it — changes what a crawler and an
-    // answer engine read the brand as, and neither is visible in a screenshot.
+    // The mark sitting next to the wordmark invites two edits that both break
+    // the brand string: splitting it into `<span>K</span>ingNNT` to style the
+    // K, or dropping the K entirely to let the logo stand in for it. Either
+    // changes what a crawler and an answer engine read the name as, and
+    // neither shows up in a screenshot.
     mockPathname = "/about";
     render(<SiteHeader />);
     const identity = screen.getByRole("link", { name: "KingNNT" });
