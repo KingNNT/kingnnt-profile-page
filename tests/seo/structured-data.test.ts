@@ -110,14 +110,14 @@ describe("profilePageSchema", () => {
 });
 
 describe("breadcrumbSchema", () => {
-  const crumbs = breadcrumbSchema(LocaleSupport.EN, "skills", (route) =>
-    route.path === "" ? "Home" : "Skills",
+  const crumbs = breadcrumbSchema(LocaleSupport.EN, "dev/skills", (route) =>
+    route.path === "" ? "Home" : route.path === "dev" ? "Dev" : "Skills",
   ) as { itemListElement: { position: number; name: string; item: string }[] };
 
   it("orders the trail from the root", () => {
-    expect(crumbs.itemListElement.map((c) => c.position)).toEqual([1, 2]);
+    expect(crumbs.itemListElement.map((c) => c.position)).toEqual([1, 2, 3]);
     expect(crumbs.itemListElement[0].name).toBe("Home");
-    expect(crumbs.itemListElement[1].item).toBe(`${SITE_URL}/en/skills`);
+    expect(crumbs.itemListElement[2].item).toBe(`${SITE_URL}/en/dev/skills`);
   });
 });
 

@@ -1,18 +1,18 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
+import { Timeline, type TimelineItem } from "@/components/timeline";
 import { formatPeriod } from "@/lib/format";
 import { pageMetadata } from "@/lib/metadata";
-import { earlierProjects, featuredProjects, type Project } from "@/lib/profile";
+import { EXPERIENCE } from "@/lib/profile";
 import { dynamicMessageKey } from "@/lib/utils";
 
-const PATH = "projects";
+const PATH = "dev/experience";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "projects" });
+  const t = await getTranslations({ locale, namespace: "devExperience" });
 
   return pageMetadata({
     locale,
@@ -22,21 +22,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 }
 
-export default async function ProjectsPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function ExperiencePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "projects" });
+  const t = await getTranslations({ locale, namespace: "devExperience" });
 
-  const card = (project: Project) => (
-    <ProjectCard
-      key={project.id}
-      project={project}
-      // Dự án chưa public không có tên để hiển thị; nhãn đã dịch thay vào chỗ đó.
-      title={project.name ?? t("undisclosed")}
-      description={t(dynamicMessageKey(`entries.${project.id}`))}
-      period={formatPeriod(project.from, project.to, t("now"))}
-    />
-  );
+  const items: TimelineItem[] = EXPERIENCE.map((entry) => ({
+    id: entry.id,
+    period: formatPeriod(entry.from, entry.to, t("now")),
+    role: entry.role,
+    summary: t(dynamicMessageKey(`entries.${entry.id}`)),
+    meta: [
+      ...entry.domains,
+      ...entry.markets,
+      ...(entry.teamSize ? [`team ${entry.teamSize}+`] : []),
+    ],
+    ongoing: entry.to === null,
+  }));
 
   return (
     <main>
@@ -52,14 +54,9 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
           {t("note")}
         </p>
       </Section>
-      <Section id="selected" index={1} label={t("selectedLabel")}>
+      <Section id="roles" index={1} label={t("rolesLabel")}>
         <Reveal>
-          <div>{featuredProjects().map(card)}</div>
-        </Reveal>
-      </Section>
-      <Section id="earlier" index={2} label={t("earlierLabel")}>
-        <Reveal>
-          <div>{earlierProjects().map(card)}</div>
+          <Timeline items={items} />
         </Reveal>
       </Section>
     </main>

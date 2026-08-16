@@ -41,22 +41,39 @@ export function routeLastModified(route: RouteDef): string {
  */
 export const ROUTES: readonly RouteDef[] = [
   { path: HOME_PATH, key: "home", priority: 1, changeFrequency: "monthly" },
+  {
+    path: "dev",
+    key: "dev",
+    parent: HOME_PATH,
+    facet: "dev",
+    priority: 0.9,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "dev/experience",
+    key: "devExperience",
+    parent: "dev",
+    facet: "dev",
+    priority: 0.8,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "dev/skills",
+    key: "devSkills",
+    parent: "dev",
+    facet: "dev",
+    priority: 0.8,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "dev/projects",
+    key: "devProjects",
+    parent: "dev",
+    facet: "dev",
+    priority: 0.8,
+    changeFrequency: "monthly",
+  },
   { path: "about", key: "about", parent: HOME_PATH, priority: 0.9, changeFrequency: "monthly" },
-  {
-    path: "experience",
-    key: "experience",
-    parent: HOME_PATH,
-    priority: 0.9,
-    changeFrequency: "monthly",
-  },
-  { path: "skills", key: "skills", parent: HOME_PATH, priority: 0.8, changeFrequency: "monthly" },
-  {
-    path: "projects",
-    key: "projects",
-    parent: HOME_PATH,
-    priority: 0.9,
-    changeFrequency: "monthly",
-  },
 ];
 
 export function findRoute(path: string): RouteDef | undefined {

@@ -20,7 +20,7 @@ describe("skills page wiring", () => {
   });
 
   it.each(Object.entries(CATALOGS))("%s has a label for every skill group", (_locale, catalog) => {
-    const groups = (catalog as typeof en).skills.groups;
+    const groups = (catalog as typeof en).devSkills.groups;
     for (const group of SKILL_GROUPS) {
       const label = (groups as Record<string, string>)[group.id];
       expect(label, `missing skills.groups.${group.id}`).toBeTruthy();
@@ -41,7 +41,7 @@ describe("skills page wiring", () => {
   it.each(
     Object.entries(CATALOGS),
   )("%s has a term and a detail for every practice area", (_locale, catalog) => {
-    const practice = (catalog as typeof en).skills.practice;
+    const practice = (catalog as typeof en).devSkills.practice;
     for (const area of PRACTICE_AREAS) {
       const entry = (practice as Record<string, { term: string; detail: string }>)[area.id];
       expect(entry, `missing skills.practice.${area.id}`).toBeTruthy();

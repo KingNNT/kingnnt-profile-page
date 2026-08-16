@@ -11,9 +11,9 @@ import {
 } from "@/lib/routes";
 
 describe("route registry", () => {
-  it("registers exactly the five public routes", () => {
+  it("registers exactly the public routes of phase one", () => {
     expect(ROUTES.map((r) => r.path).sort()).toEqual(
-      ["", "about", "experience", "projects", "skills"].sort(),
+      ["", "about", "dev", "dev/experience", "dev/projects", "dev/skills"].sort(),
     );
   });
 
@@ -30,30 +30,31 @@ describe("route registry", () => {
   });
 
   it("lists the primary navigation from the routes parented at home", () => {
-    expect(primaryNavRoutes().map((r) => r.path)).toEqual([
-      "about",
-      "experience",
-      "skills",
-      "projects",
-    ]);
+    expect(primaryNavRoutes().map((r) => r.path)).toEqual(["dev", "about"]);
   });
 
   it("excludes home from the primary navigation", () => {
     expect(primaryNavRoutes().map((r) => r.path)).not.toContain(HOME_PATH);
   });
 
-  /** Chưa có nhánh nào ở bước này — Task 6 mới thêm. Test neo con số ở 0 để
-   * lần thêm đầu tiên là một thay đổi cố ý, nhìn thấy được trong diff. */
-  it("has no facet hub yet", () => {
-    expect(facetHubRoutes()).toEqual([]);
+  it("hangs every dev page under the dev hub", () => {
+    expect(facetRoutes("dev").map((r) => r.path)).toEqual([
+      "dev/experience",
+      "dev/skills",
+      "dev/projects",
+    ]);
   });
 
-  it("returns an empty child list for a facet with no hub", () => {
-    expect(facetRoutes("dev")).toEqual([]);
+  it("registers one hub per facet that has pages", () => {
+    expect(facetHubRoutes().map((r) => r.facet)).toEqual(["dev"]);
   });
 
   it("builds a breadcrumb trail rooted at home", () => {
-    expect(breadcrumbTrail("skills").map((r) => r.path)).toEqual([HOME_PATH, "skills"]);
+    expect(breadcrumbTrail("dev/skills").map((r) => r.path)).toEqual([
+      HOME_PATH,
+      "dev",
+      "dev/skills",
+    ]);
   });
 
   it("returns an empty trail for an unknown path", () => {

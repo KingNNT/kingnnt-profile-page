@@ -1,34 +1,37 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Hero } from "@/app/[locale]/(public)/_components/hero";
 import { NavIndex } from "@/app/[locale]/(public)/_components/nav-index";
+import { ContactBlock } from "@/components/contact-block";
 import { Prose } from "@/components/prose";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
-import { facetHubRoutes, HOME_PATH } from "@/lib/routes";
+import { FACET_CONTACT_IDS } from "@/lib/profile";
+import { facetRoutes } from "@/lib/routes";
 import { dynamicMessageKey } from "@/lib/utils";
+
+const PATH = "dev";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "home" });
+  const t = await getTranslations({ locale, namespace: "dev" });
 
   return pageMetadata({
     locale,
-    path: HOME_PATH,
+    path: PATH,
     title: t("metaTitle"),
     description: t("metaDescription"),
   });
 }
 
-export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function DevPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "home" });
+  const t = await getTranslations({ locale, namespace: "dev" });
   const tNav = await getTranslations({ locale, namespace: "nav" });
-  const tIndex = await getTranslations({ locale, namespace: "home.index" });
+  const tIndex = await getTranslations({ locale, namespace: "dev.index" });
 
-  const indexEntries = facetHubRoutes().map((route) => ({
+  const entries = facetRoutes("dev").map((route) => ({
     path: route.path,
     label: tNav(dynamicMessageKey(route.key)),
     blurb: tIndex(dynamicMessageKey(route.key)),
@@ -38,24 +41,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     <main>
       <PageStructuredData
         locale={locale}
-        path={HOME_PATH}
+        path={PATH}
         title={t("metaTitle")}
         description={t("metaDescription")}
       />
-      <Section className="pt-14">
-        <Hero locale={locale} />
+      <Section className="pt-14 pb-0">
+        <h1 className="text-4xl font-medium tracking-tight sm:text-5xl">{t("title")}</h1>
+        <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-muted-foreground">
+          {t("lead")}
+        </p>
       </Section>
-      <Section id="intro" index={1} label={t("introLabel")}>
+      <Section id="index" index={1} label={t("indexLabel")}>
         <Reveal>
-          <Prose>
-            <p>{t("intro1")}</p>
-            <p>{t("intro2")}</p>
-          </Prose>
+          <NavIndex entries={entries} />
         </Reveal>
       </Section>
-      <Section id="index" index={2} label={t("indexLabel")}>
+      <Section id="contact" index={2} label={t("contactLabel")}>
         <Reveal>
-          <NavIndex entries={indexEntries} />
+          <Prose>
+            <p>{t("contact")}</p>
+          </Prose>
+          <ContactBlock ids={FACET_CONTACT_IDS.dev} className="mt-6" />
         </Reveal>
       </Section>
     </main>

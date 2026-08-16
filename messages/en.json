@@ -5,10 +5,11 @@
   },
   "nav": {
     "home": "Home",
-    "about": "About",
-    "experience": "Experience",
-    "skills": "Skills",
-    "projects": "Projects"
+    "dev": "Dev",
+    "devExperience": "Experience",
+    "devSkills": "Skills",
+    "devProjects": "Projects",
+    "about": "About"
   },
   "notFound": {
     "label": "404",
@@ -25,11 +26,22 @@
     "intro2": "I still write the systems I scope. That is deliberate — an estimate from someone who no longer builds is a guess with a confident tone.",
     "indexLabel": "Index",
     "index": {
-      "about": "The longer version, including the years I spent trading.",
-      "experience": "Six roles, by domain and market rather than by employer.",
-      "skills": "What I use, how well, and when I last used it.",
-      "projects": "Selected work, with links where the product is public."
+      "dev": "Fifteen years building software — roles, skills and selected work."
     }
+  },
+  "dev": {
+    "metaTitle": "Software engineering",
+    "metaDescription": "Roles, skills and selected work — the engineering side of what I do.",
+    "title": "Software engineering",
+    "lead": "Fifteen years of building software, told by domain and market rather than by employer.",
+    "indexLabel": "In this section",
+    "index": {
+      "devExperience": "Six roles, by domain and market rather than by employer.",
+      "devSkills": "What I use, how well, and when I last used it.",
+      "devProjects": "Selected work, with links where the product is public."
+    },
+    "contactLabel": "Work with me",
+    "contact": "The fastest way to reach me about engineering work is email. LinkedIn I read less often, and GitHub is where the code is."
   },
   "about": {
     "metaTitle": "About",
@@ -61,7 +73,7 @@
     "contactLabel": "Get in touch",
     "contact": "The fastest way to reach me is email. I read LinkedIn less often, and GitHub is where the code is."
   },
-  "experience": {
+  "devExperience": {
     "metaTitle": "Experience",
     "metaDescription": "Six years of engineering and consulting, described by domain, market and team size.",
     "title": "Experience",
@@ -77,7 +89,7 @@
       "freelance": "Direct client work, start to finish: understanding the problem, designing the architecture and schema, provisioning cloud infrastructure, building the thing, deploying it, and supporting it afterwards. The longest-running thread here, and the one that taught me pricing and scope."
     }
   },
-  "skills": {
+  "devSkills": {
     "metaTitle": "Skills",
     "metaDescription": "Languages, frameworks, infrastructure and data tools — with proficiency, years of use, and the year each was last used.",
     "title": "Skills",
@@ -125,7 +137,7 @@
       }
     }
   },
-  "projects": {
+  "devProjects": {
     "metaTitle": "Projects",
     "metaDescription": "Selected engineering and architecture work, with links where the product is public.",
     "title": "Projects",

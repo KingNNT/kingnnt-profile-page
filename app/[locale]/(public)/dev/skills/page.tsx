@@ -7,11 +7,11 @@ import { pageMetadata } from "@/lib/metadata";
 import { PRACTICE_AREAS, type Proficiency, SKILL_GROUPS } from "@/lib/profile";
 import { dynamicMessageKey } from "@/lib/utils";
 
-const PATH = "skills";
+const PATH = "dev/skills";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "skills" });
+  const t = await getTranslations({ locale, namespace: "devSkills" });
 
   return pageMetadata({
     locale,
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function SkillsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: "skills" });
+  const t = await getTranslations({ locale, namespace: "devSkills" });
 
   const columns = {
     name: t("columns.name"),

@@ -5,10 +5,11 @@
   },
   "nav": {
     "home": "Trang chủ",
-    "about": "Giới thiệu",
-    "experience": "Kinh nghiệm",
-    "skills": "Kỹ năng",
-    "projects": "Dự án"
+    "dev": "Kỹ thuật",
+    "devExperience": "Kinh nghiệm",
+    "devSkills": "Kỹ năng",
+    "devProjects": "Dự án",
+    "about": "Giới thiệu"
   },
   "notFound": {
     "label": "404",
@@ -25,11 +26,22 @@
     "intro2": "Tôi vẫn tự viết những hệ thống mình vạch ra. Đó là chủ ý — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
     "indexLabel": "Mục lục",
     "index": {
-      "about": "Bản dài hơn, gồm cả những năm tôi giao dịch trên thị trường.",
-      "experience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
-      "skills": "Tôi dùng gì, tới mức nào, và lần gần nhất là khi nào.",
-      "projects": "Các dự án chọn lọc, có link ở những sản phẩm đã public."
+      "dev": "Mười lăm năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc."
     }
+  },
+  "dev": {
+    "metaTitle": "Kỹ thuật phần mềm",
+    "metaDescription": "Vai trò, kỹ năng và các dự án chọn lọc — phần kỹ thuật trong công việc của tôi.",
+    "title": "Kỹ thuật phần mềm",
+    "lead": "Mười lăm năm làm phần mềm, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
+    "indexLabel": "Trong phần này",
+    "index": {
+      "devExperience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
+      "devSkills": "Tôi dùng gì, tới mức nào, và lần gần nhất là khi nào.",
+      "devProjects": "Các dự án chọn lọc, có link ở những sản phẩm đã public."
+    },
+    "contactLabel": "Làm việc cùng tôi",
+    "contact": "Cách nhanh nhất để liên hệ về công việc kỹ thuật là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
   },
   "about": {
     "metaTitle": "Giới thiệu",
@@ -61,7 +73,7 @@
     "contactLabel": "Liên hệ",
     "contact": "Cách nhanh nhất là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
   },
-  "experience": {
+  "devExperience": {
     "metaTitle": "Kinh nghiệm",
     "metaDescription": "Sáu năm làm kỹ thuật và tư vấn, mô tả theo lĩnh vực, thị trường và quy mô đội.",
     "title": "Kinh nghiệm",
@@ -77,7 +89,7 @@
       "freelance": "Làm trực tiếp với khách hàng từ đầu tới cuối: hiểu bài toán, thiết kế kiến trúc và schema, dựng hạ tầng cloud, viết sản phẩm, triển khai, rồi hỗ trợ sau đó. Đây là mạch dài nhất, và là nơi tôi học được cách định giá và khoanh phạm vi."
     }
   },
-  "skills": {
+  "devSkills": {
     "metaTitle": "Kỹ năng",
     "metaDescription": "Ngôn ngữ, framework, hạ tầng và công cụ dữ liệu — kèm mức thành thạo, số năm và năm dùng gần nhất.",
     "title": "Kỹ năng",
@@ -125,7 +137,7 @@
       }
     }
   },
-  "projects": {
+  "devProjects": {
     "metaTitle": "Dự án",
     "metaDescription": "Các dự án kỹ thuật và kiến trúc chọn lọc, có link ở những sản phẩm đã public.",
     "title": "Dự án",
