@@ -9,9 +9,15 @@ describe("SectionLabel", () => {
     expect(screen.getByText("03")).toBeInTheDocument();
   });
 
-  it("uppercases the name for the mono label", () => {
+  it("keeps the accessible name sentence case while styling it uppercase", () => {
+    // The visual all-caps look comes from the `uppercase` Tailwind class on the
+    // wrapping span, not from `.toUpperCase()` on the text node — some screen
+    // readers spell an all-caps text node letter by letter, which would turn
+    // "About" into "A-B-O-U-T" for a labelled landmark's accessible name.
     render(<SectionLabel index={1} name="About" />);
-    expect(screen.getByText("ABOUT")).toBeInTheDocument();
+    const label = screen.getByText("About");
+    expect(label).toBeInTheDocument();
+    expect(label.parentElement?.className).toContain("uppercase");
   });
 });
 

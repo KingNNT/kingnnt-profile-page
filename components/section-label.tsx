@@ -22,7 +22,7 @@ export function SectionLabel({
     >
       <span className="text-primary">{String(index).padStart(2, "0")}</span>
       <span aria-hidden className="h-px w-6 bg-rule" />
-      <span id={id}>{name.toUpperCase()}</span>
+      <span id={id}>{name}</span>
     </span>
   );
 }
