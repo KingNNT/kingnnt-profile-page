@@ -33,7 +33,14 @@ không — vì vậy trường `url` được miễn trừ (trang sản phẩm O
 dưới tên công ty bị cấm, `artinleap.com`) — bù lại nhãn link hiển thị chỉ
 được là tên sản phẩm, hết.
 
-Trong JSON-LD: **không** `worksFor`, `affiliation`, hay node `Organization`.
+In JSON-LD: still no `worksFor` and no `affiliation`. The blanket ban on
+`Organization` nodes was lifted deliberately — credential issuers are emitted
+as `Organization` under `hasCredential`, because a certifying body is a
+third-party anchor for the person entity and this site gave up the usual one by
+refusing to name employers. The test in `tests/seo/structured-data.test.ts` got
+narrower rather than weaker: it walks the whole graph and asserts every
+organisation named anywhere in it is one of the issuers in `credentials.ts`. An
+employer smuggled in under any field name still fails.
 
 ## Commands
 
@@ -122,6 +129,28 @@ Trang chủ nằm ngay tại `/{locale}`, không phải `/{locale}/home`.
 catalog**, không phải khi deploy.
 
 ### SEO
+
+The site cannot lean on employer names, so the person entity is anchored by
+what is left. Four pieces carry that load and are easy to undo by accident:
+
+- `IDENTITY.latinName` — the name without diacritics. It is in `alternateName`
+  **and** in visible copy on `/about` (`about.names`), because matching is on
+  literal strings and schema alone is the weaker of the two signals. It looks
+  like a duplicate of `fullName`; it is not.
+- `EXPERTISE_TOPICS` (`lib/profile/practice.ts`) leads `knowsAbout`, ahead of
+  the tool names. Tool names describe millions of people.
+- `hasCredential` and `award` in `personSchema` — the named issuers and
+  competitions are third-party anchors, standing in for the employers the site
+  will not name.
+- `TITLE_SUFFIX` (`lib/site.ts`), not `SITE_NAME`, ends every non-home title.
+  The brand is "KingNNT" but the search is for the real name, and
+  "About | KingNNT" never contained it.
+
+`/dev/estimating` is the only page that argues rather than lists, and its
+shape is load-bearing: the title is a question, and the claim sits in the first
+paragraph of the first section. That is what an answer engine can attribute a
+quote to — a profile page gives it nothing to cite.
+`tests/pages/estimating.test.tsx` pins both.
 
 `lib/metadata.ts` dựng canonical/hreflang/OG cho từng trang. Canonical đặt ở
 page, không đặt ở layout. `og:image` phải được tham chiếu tường minh: khi một

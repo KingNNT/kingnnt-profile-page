@@ -9,6 +9,7 @@
     "devExperience": "Kinh nghiệm",
     "devSkills": "Kỹ năng",
     "devProjects": "Dự án",
+    "devEstimating": "Ước lượng",
     "trading": "Giao dịch",
     "about": "Giới thiệu",
     "contact": "Liên hệ"
@@ -43,7 +44,8 @@
     "index": {
       "devExperience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
       "devSkills": "Tôi dùng gì, tới mức nào, và lần gần nhất là khi nào.",
-      "devProjects": "Các dự án chọn lọc, có link ở những sản phẩm đã public."
+      "devProjects": "Các dự án chọn lọc, có link ở những sản phẩm đã public.",
+      "devEstimating": "Cách tôi đặt con số cho việc chưa ai từng làm."
     },
     "contactLabel": "Làm việc cùng tôi",
     "contact": "Cách nhanh nhất để liên hệ về công việc kỹ thuật là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code.",
@@ -68,6 +70,7 @@
     "leadLabel": "Hiện tại",
     "lead1": "Tôi là solutions consultant kiêm full-stack engineer, sống ở Hà Nội. Công việc chia đôi khá đều: tìm ra khách hàng thật sự cần gì và cái đó tốn bao nhiêu, rồi tự tay dựng phần đủ để chứng minh câu trả lời đó đúng.",
     "lead2": "Các lĩnh vực đi qua rộng bất thường — xử lý tài liệu bằng AI, ngân hàng, y tế, thương mại điện tử, giáo dục, khách sạn — với các đội ở Việt Nam, Nhật, Malaysia, Úc và EU. Bề rộng đó là con dao hai lưỡi. Nó khiến tôi nhanh chóng nhận ra hình dạng của một lĩnh vực mới, và cũng buộc tôi phải trung thực về chỗ mình thật sự sâu tới đâu. Trang kỹ năng tồn tại là để nói đúng điều đó.",
+    "names": "Về tên: Ninh Ngọc Tuấn, hoặc Ninh Ngoc Tuan ở những nơi dấu không sống sót. Jesse là tên tiếng Anh, KingNNT là handle. Cùng một người — nói rõ ra vì mấy cách viết đó không phải lúc nào cũng tìm được nhau.",
     "pathLabel": "Đường đi",
     "path1": "Tôi bắt đầu làm cho khách hàng từ 2020, khi còn đi học, và chưa bao giờ dừng hẳn. Mạch freelance đó chạy ngầm dưới mọi công việc sau này: đó là nơi tôi học được rằng phần khó hiếm khi là code, mà là thống nhất được code đó rốt cuộc phải làm gì.",
     "path2": "Từ đó: hệ thống cho ngành khách sạn ở thị trường Nhật, rồi vài năm làm offshore trong các đội lớn — video call, đặt chỗ, quản lý trường học — rồi tới một trung tâm AI, nơi công việc chuyển sang trích xuất tài liệu và agent xử lý email cho khách Nhật và EU. Gần đây tôi dẫn phần kiến trúc cho các sản phẩm AI, và ngồi trong chính những buổi pre-sales quyết định chúng có được làm hay không.",
@@ -81,8 +84,14 @@
     },
     "languagesLabel": "Ngôn ngữ",
     "languages": {
-      "english": { "term": "Tiếng Anh", "detail": "Sử dụng thành thạo trong công việc" },
-      "vietnamese": { "term": "Tiếng Việt", "detail": "Bản ngữ" }
+      "english": {
+        "term": "Tiếng Anh",
+        "detail": "Sử dụng thành thạo trong công việc"
+      },
+      "vietnamese": {
+        "term": "Tiếng Việt",
+        "detail": "Bản ngữ"
+      }
     },
     "contactLink": "Liên hệ với tôi →"
   },
@@ -170,6 +179,24 @@
       "restaurant-marketplace": "Sàn kết nối nhà hàng với thực khách cho ngành ẩm thực Nhật — quản lý nhiều nhà cung cấp, thực đơn và lịch trống, đặt bàn và đặt món, SSO qua mạng xã hội, và xử lý thanh toán. Back end Laravel, front end Nuxt, kèm một crawler tự động thu thập dữ liệu thị trường.",
       "school-management": "Hệ thống quản lý trường học cho các cơ sở giáo dục Nhật, bao gồm tuyển sinh, xếp lịch, theo dõi điểm và liên lạc với phụ huynh, phân quyền cho học sinh, giáo viên, quản trị viên và người giám hộ. Laravel và Vue, dùng Redis cache để trụ qua các đợt cao điểm đăng ký."
     }
+  },
+  "devEstimating": {
+    "metaTitle": "Ước lượng việc chưa từng làm thế nào?",
+    "metaDescription": "Hỏi chuyện gì xảy ra khi ước lượng sai, trước khi hỏi khả năng nó đúng là bao nhiêu — cách định cỡ vị thế, mượn từ giao dịch và áp vào việc scope phần mềm.",
+    "title": "Ước lượng việc chưa từng làm thế nào?",
+    "answerLabel": "Câu trả lời ngắn",
+    "answer1": "Hỏi chuyện gì xảy ra khi tôi sai, trước khi hỏi khả năng tôi đúng là bao nhiêu. Chỉ đảo thứ tự hai câu hỏi đó thôi đã giúp một bản ước lượng nhiều hơn mọi framework tôi từng dùng, vì nó chuyển câu hỏi từ mức độ tự tin sang hậu quả.",
+    "answer2": "Một ước lượng là một vị thế, không phải một dự đoán. Nó có kích cỡ, và kích cỡ ấy nên do thứ mà dự án chịu được nếu con số sai quyết định — chứ không phải do lúc viết ra tôi thấy chắc đến đâu.",
+    "originLabel": "Nó đến từ đâu",
+    "origin1": "Nó đến từ giao dịch, không phải từ kỹ thuật. Crypto từ 2020, rồi forex, rồi cổ phiếu — và thứ chuyển được sang không phải một quan điểm về thị trường. Một trader đúng sáu phần mười số lần mà định cỡ tệ thì vẫn lỗ. Một kỹ sư tự tin về ước lượng nhưng sai về rủi ro đuôi thì làm chìm dự án y hệt.",
+    "originLink": "Bản dài của câu chuyện đó →",
+    "practiceLabel": "Nó thay đổi điều gì",
+    "practice1": "Nó đổi mục đích của giai đoạn discovery. Một buổi scoping không tồn tại để ra con số nhanh hơn; nó tồn tại để tìm ra những phần mà sai sẽ đắt, rồi mua thông tin về đúng những phần đó trước khi cam kết bất cứ điều gì. Proof-of-concept là cách rẻ nhất tôi biết để mua thông tin ấy.",
+    "practice2": "Nó đổi cách tôi xử lý những phần mà sai thì rẻ. Những phần đó nhận một con số nhanh và không nghi thức gì cả. Rải đều công sức ước lượng lên toàn bộ scope là đúng cái lỗi của việc định cỡ mọi vị thế bằng nhau: tiêu nhiều chú ý nhất vào chỗ nó thay đổi ít nhất.",
+    "practice3": "Và đôi khi nó bảo chờ. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật đó chuyển gần như trực tiếp sang kiến trúc — hệ thống rẻ nhất là hệ thống bạn đã không xây, vì bạn chờ một tuần và yêu cầu tự bốc hơi.",
+    "limitsLabel": "Nó không phải cái gì",
+    "limits1": "Đây không phải một tuyên bố về độ chính xác. Tôi vẫn ước lượng trượt. Phương pháp này không làm con số đúng lên; nó làm thiệt hại từ một con số sai bị chặn lại — mục tiêu khác, và là mục tiêu với tới được.",
+    "limits2": "Nó cũng không sống sót khi được giao cho một người không còn build nữa. Một ước lượng từ người đã ngừng viết chính hệ thống họ scope là một phỏng đoán với giọng điệu tự tin — đó là lý do tôi vẫn tự viết."
   },
   "contact": {
     "metaTitle": "Liên hệ",
