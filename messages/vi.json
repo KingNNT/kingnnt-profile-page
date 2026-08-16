@@ -42,6 +42,14 @@
     "trading1": "Năm 2020 tôi bắt đầu giao dịch crypto. Giữa 2023 chuyển sang forex, và đầu 2024 thêm chứng khoán. Suốt thời gian đó tôi chạy song song hai trường phái: nắm giữ dài hạn những vị thế mình tin, và swing trading quanh các nhịp ngắn hơn. Tôi sẽ không đưa con số nào lên đây — trang này không phải nội dung tài chính và tôi không bán phương pháp nào cả.",
     "trading2": "Thứ tôi giữ lại không phải một quan điểm thị trường. Đó là thói quen nghĩ bằng khối lượng vị thế thay vì bằng sự chắc chắn. Một trader đúng sáu trên mười lần mà vào lệnh sai cỡ vẫn lỗ; một kỹ sư tự tin về ước lượng nhưng sai về rủi ro đuôi thì làm chìm dự án theo đúng cách đó. Giao dịch dạy tôi hỏi \"nếu tôi sai thì chuyện gì xảy ra\" trước khi hỏi \"khả năng tôi đúng là bao nhiêu\" — và câu hỏi đó thay đổi cách tôi bóc tách công việc nhiều hơn bất kỳ framework nào.",
     "trading3": "Nó cũng dạy tôi ngồi yên. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật không-làm-gì đó chuyển gần như trực tiếp sang kiến trúc: hệ thống rẻ nhất là hệ thống bạn đã không dựng, vì bạn chờ thêm một tuần và yêu cầu đó tự bốc hơi.",
+    "credentialsLabel": "Học vấn & chứng chỉ",
+    "educationLabel": "Học vấn",
+    "certificationsLabel": "Chứng chỉ",
+    "awardsLabel": "Giải thưởng",
+    "awards": {
+      "icpc": "ACM/ICPC khu vực miền Bắc, thí sinh 2018–2021",
+      "informatics-olympiad": "Giải Nhì Olympic Tin học cấp tỉnh"
+    },
     "contactLabel": "Liên hệ",
     "contact": "Cách nhanh nhất là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
   },

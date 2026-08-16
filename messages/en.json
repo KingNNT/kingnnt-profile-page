@@ -42,6 +42,14 @@
     "trading1": "In 2020 I started trading crypto. In mid-2023 I moved into forex, and in early 2024 I added equities. I have run two styles side by side the whole time: holding positions I believe in for the long horizon, and swing trading around the shorter moves. I am not going to publish numbers here — this is not a finance site and I am not selling a method.",
     "trading2": "What I keep from it is not a market opinion. It is a habit of thinking in position sizes instead of certainties. A trader who is right sixty percent of the time and sizes badly still loses; an engineer who is confident about an estimate and wrong about the tail risk sinks a project the same way. Trading taught me to ask what happens when I am wrong before asking how likely it is that I am right — and that question has changed how I scope work far more than any framework has.",
     "trading3": "It also taught me to sit still. Most days the correct action is none, and the discipline of not acting transfers almost directly to architecture: the cheapest system is the one you did not build because you waited a week and the requirement evaporated.",
+    "credentialsLabel": "Education & credentials",
+    "educationLabel": "Education",
+    "certificationsLabel": "Certifications",
+    "awardsLabel": "Awards",
+    "awards": {
+      "icpc": "ACM/ICPC Northern Vietnam regional, competitor 2018–2021",
+      "informatics-olympiad": "Second prize, provincial informatics olympiad"
+    },
     "contactLabel": "Get in touch",
     "contact": "The fastest way to reach me is email. I read LinkedIn less often, and GitHub is where the code is."
   },

@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
-import { IDENTITY } from "@/lib/profile";
+import { AWARDS, CERTIFICATIONS, EDUCATION, IDENTITY } from "@/lib/profile";
 
 const PATH = "about";
 
@@ -61,7 +61,51 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </Prose>
         </Reveal>
       </Section>
-      <Section id="contact" index={4} label={t("contactLabel")}>
+      <Section id="credentials" index={4} label={t("credentialsLabel")}>
+        <Reveal>
+          <dl className="space-y-8 font-mono text-sm">
+            <div>
+              <dt className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                {t("educationLabel")}
+              </dt>
+              <dd className="mt-2">
+                {EDUCATION.degree}, {EDUCATION.field} · {EDUCATION.institution} · {EDUCATION.from}–
+                {EDUCATION.to}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                {t("certificationsLabel")}
+              </dt>
+              <dd className="mt-2">
+                <ul className="space-y-1">
+                  {CERTIFICATIONS.map((cert) => (
+                    <li key={cert.id}>
+                      {cert.name} <span className="text-muted-foreground">· {cert.issuer}</span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                {t("awardsLabel")}
+              </dt>
+              <dd className="mt-2">
+                <ul className="space-y-1">
+                  {AWARDS.map((award) => (
+                    <li key={award.id}>
+                      {t(`awards.${award.id}`)}{" "}
+                      <span className="text-muted-foreground">· {award.year}</span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </Reveal>
+      </Section>
+      <Section id="contact" index={5} label={t("contactLabel")}>
         <Reveal>
           <Prose>
             <p>{t("contact")}</p>
