@@ -60,5 +60,29 @@
       "engineer-hospitality": "Hotel and hot-spring management systems for the Japanese tourism industry, in a team of four to six. PHP and Python back ends, MySQL schema design, and the maintenance rota that came with running them in production.",
       "freelance": "Direct client work, start to finish: understanding the problem, designing the architecture and schema, provisioning cloud infrastructure, building the thing, deploying it, and supporting it afterwards. The longest-running thread here, and the one that taught me pricing and scope."
     }
+  },
+  "skills": {
+    "metaTitle": "Skills",
+    "metaDescription": "Languages, frameworks, infrastructure and data tools — with proficiency, years of use, and the year each was last used.",
+    "title": "Skills",
+    "note": "Every row carries the year I last used the thing. That makes the weak spots visible on purpose: a list where everything is expert and current is a list nobody should believe.",
+    "columns": {
+      "name": "Skill",
+      "proficiency": "Level",
+      "years": "Years",
+      "lastUsed": "Last used"
+    },
+    "levels": {
+      "expert": "Expert",
+      "intermediate": "Intermediate",
+      "basic": "Basic"
+    },
+    "groups": {
+      "languages": "Languages",
+      "frontend": "Front end",
+      "backend": "Back end",
+      "devops": "Infrastructure",
+      "data": "Data & messaging"
+    }
   }
 }

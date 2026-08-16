@@ -60,5 +60,29 @@
       "engineer-hospitality": "Hệ thống quản lý khách sạn và suối nước nóng cho ngành du lịch Nhật, trong đội bốn tới sáu người. Back end PHP và Python, thiết kế schema MySQL, và cả phần trực vận hành đi kèm khi hệ thống chạy thật.",
       "freelance": "Làm trực tiếp với khách hàng từ đầu tới cuối: hiểu bài toán, thiết kế kiến trúc và schema, dựng hạ tầng cloud, viết sản phẩm, triển khai, rồi hỗ trợ sau đó. Đây là mạch dài nhất, và là nơi tôi học được cách định giá và khoanh phạm vi."
     }
+  },
+  "skills": {
+    "metaTitle": "Kỹ năng",
+    "metaDescription": "Ngôn ngữ, framework, hạ tầng và công cụ dữ liệu — kèm mức thành thạo, số năm và năm dùng gần nhất.",
+    "title": "Kỹ năng",
+    "note": "Mỗi dòng đều ghi năm tôi dùng thứ đó gần nhất. Điều đó cố ý phơi ra những chỗ yếu: một danh sách mà cái gì cũng expert và cũng mới thì không đáng tin.",
+    "columns": {
+      "name": "Kỹ năng",
+      "proficiency": "Mức",
+      "years": "Số năm",
+      "lastUsed": "Dùng gần nhất"
+    },
+    "levels": {
+      "expert": "Thành thạo",
+      "intermediate": "Khá",
+      "basic": "Cơ bản"
+    },
+    "groups": {
+      "languages": "Ngôn ngữ",
+      "frontend": "Front end",
+      "backend": "Back end",
+      "devops": "Hạ tầng",
+      "data": "Dữ liệu & messaging"
+    }
   }
 }
