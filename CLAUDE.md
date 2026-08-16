@@ -22,13 +22,16 @@ cấp chứng chỉ (Electric Power University, Anthropic, Coursera, LandingAI) 
 tên thẳng ở `lib/profile/credentials.ts` — chúng không tuyển và không phải
 khách hàng, nên không rơi vào ràng buộc trên.
 
-`tests/lib/anonymity.test.ts` giữ denylist và quét `lib/profile/**` cùng
-`messages/**`, mỗi cây được khẳng định non-empty riêng (một cây rỗng không
-được phép âm thầm kéo test xanh theo). Có thêm hai test khẳng định chính bộ
-dò hoạt động: một chuỗi có tên cấm ngoài trường `url` phải bị bắt, một chuỗi
-chỉ có tên cấm bên trong `url` thì không. Trường `url` được miễn trừ vì trang
-sản phẩm Orkestrators nằm dưới tên công ty bị cấm (`artinleap.com`) — bù lại
-nhãn link hiển thị chỉ được là tên sản phẩm hoặc hostname rút gọn.
+`tests/lib/anonymity.test.ts` giữ denylist và quét `components/**`, `app/**`,
+`lib/**` (bỏ trùng `lib/profile/**`) cùng `messages/**`, mỗi cây được khẳng
+định non-empty riêng (một cây rỗng không được phép âm thầm kéo test xanh
+theo). Có thêm hai test khẳng định chính bộ dò hoạt động: một chuỗi có tên
+cấm ngoài trường `url` phải bị bắt, một chuỗi chỉ có tên cấm bên trong `url`
+thì không. Ràng buộc áp lên các khẳng định văn xuôi về nơi làm việc; địa chỉ
+công khai của một sản phẩm được miễn trừ ở mọi cách serialize, có markup hay
+không — vì vậy trường `url` được miễn trừ (trang sản phẩm Orkestrators nằm
+dưới tên công ty bị cấm, `artinleap.com`) — bù lại nhãn link hiển thị chỉ
+được là tên sản phẩm, hết.
 
 Trong JSON-LD: **không** `worksFor`, `affiliation`, hay node `Organization`.
 

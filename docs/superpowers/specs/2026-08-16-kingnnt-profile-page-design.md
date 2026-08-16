@@ -418,7 +418,7 @@ Vitest + jsdom + Testing Library, cấu hình `vitest.config.mts` và
 | File | Khẳng định |
 | --- | --- |
 | `tests/lib/profile.test.ts` | `id` duy nhất trong từng collection; `from` ≤ `to`; **cho phép** nhiều mục `to: null` và các khoảng chồng nhau; mọi `url` là absolute HTTPS hợp lệ; `lastUsed` ≥ năm bắt đầu tương ứng |
-| `tests/lib/anonymity.test.ts` | Quét toàn bộ `lib/profile/**` và `messages/**` với denylist; không được xuất hiện |
+| `tests/lib/anonymity.test.ts` | Quét toàn bộ `lib/profile/**`, `messages/**`, `components/**`, `app/**` và phần còn lại của `lib/**` với denylist; không được xuất hiện |
 | `tests/messages/parity.test.ts` | `en.json` và `vi.json` trùng khít cấu trúc key; mọi `id` trong `lib/profile` có bản dịch ở **cả hai**; không có key nội dung mồ côi |
 | `tests/components/*.test.tsx` | timeline (mục đang diễn ra, khoảng chồng nhau), skill-table (hiển thị đủ cả mục `basic`), project-card (`name: null`), language-switcher, section-label |
 | `tests/pages/*.test.tsx` | Mỗi route render đủ các mục bắt buộc |
@@ -445,11 +445,13 @@ Quy tắc so khớp:
 
 - Không phân biệt hoa thường, so theo **ranh giới từ** — token ngắn như `TMC`
   hay `SHB` mà so kiểu substring sẽ bắt nhầm những từ vô can.
-- Quét `messages/**` toàn bộ, và `lib/profile/**` **trừ giá trị của trường
-  `url`**. Trang sản phẩm Orkestrators nằm dưới `artinleap.com`, nên chính URL
-  hợp lệ sẽ chứa tên công ty bị cấm. Một URL là địa chỉ công khai kiểm chứng
-  được, không phải một lời khẳng định về nơi làm việc — ràng buộc áp lên chữ
-  hiển thị, không áp lên đích của link. Đổi lại, `project-card.tsx` **phải**
+- Quét `messages/**`, `lib/profile/**`, `components/**`, `app/**` và phần còn
+  lại của `lib/**` toàn bộ, **trừ giá trị của trường `url`**. Trang sản phẩm
+  Orkestrators nằm dưới `artinleap.com`, nên chính URL hợp lệ sẽ chứa tên công
+  ty bị cấm. Ràng buộc áp lên các khẳng định văn xuôi về nơi làm việc; địa chỉ
+  công khai của một sản phẩm được miễn trừ ở mọi cách serialize, có markup hay
+  không — kể cả trong `llms.txt`, nơi đích của link chính là chữ hiển thị.
+  Đổi lại, `project-card.tsx` **phải**
   hiển thị nhãn link đúng bằng tên sản phẩm; `tests/components/project-card.test.tsx`
   khẳng định điều đó bằng so khớp chính xác.
 

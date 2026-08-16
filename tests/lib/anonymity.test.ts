@@ -44,9 +44,11 @@ function walk(dir: string): string[] {
 
 /**
  * Bỏ giá trị của trường `url`. Trang sản phẩm Orkestrators nằm dưới
- * `artinleap.com`, nên URL hợp lệ tất yếu chứa một tên bị cấm. Một URL là địa
- * chỉ công khai kiểm chứng được, không phải lời khẳng định về nơi làm việc —
- * ràng buộc áp lên chữ hiển thị, không áp lên đích của link.
+ * `artinleap.com`, nên URL hợp lệ tất yếu chứa một tên bị cấm. Ràng buộc áp
+ * lên các khẳng định văn xuôi về nơi làm việc; địa chỉ công khai của một sản
+ * phẩm được miễn trừ ở mọi cách serialize, có markup hay không — một chuỗi
+ * thuần văn bản trong `llms.txt` mà đích của link chính là chữ hiển thị vẫn
+ * nằm trong diện miễn trừ này y như một `href` trong markup.
  */
 function stripUrls(source: string): string {
   return source
@@ -60,19 +62,31 @@ function occurrences(haystack: string, needle: string): boolean {
   return new RegExp(`(^|[^\\p{L}\\p{N}])${escaped}([^\\p{L}\\p{N}]|$)`, "iu").test(haystack);
 }
 
-const PROFILE_FILES = walk(join(ROOT, "lib", "profile"));
-const MESSAGE_FILES = walk(join(ROOT, "messages"));
-const FILES = [...PROFILE_FILES, ...MESSAGE_FILES];
+/**
+ * `components/**` và `app/**` render vào HTML crawler đọc được; `lib/**` bao
+ * gồm `lib/llms.ts` và `lib/structured-data.ts`, cả hai đều phát ra văn bản
+ * cho answer engine. Mọi tên bị cấm dán nhầm vào bất kỳ chỗ nào trong số này
+ * cũng nghiêm trọng như dán vào `lib/profile` hay `messages`.
+ */
+const ROOTS: Record<string, string[]> = {
+  "lib/profile": walk(join(ROOT, "lib", "profile")),
+  messages: walk(join(ROOT, "messages")),
+  components: walk(join(ROOT, "components")),
+  app: walk(join(ROOT, "app")),
+  // `lib/profile` nằm bên trong `lib` — dedupe để không quét hai lần.
+  lib: walk(join(ROOT, "lib")).filter((file) => !file.startsWith(join(ROOT, "lib", "profile"))),
+};
+const FILES = [...new Set(Object.values(ROOTS).flat())];
 
 describe("anonymity", () => {
   /**
-   * Bảo vệ riêng từng cây, không phải tổng. Nếu `lib/profile` từng không đóng
-   * góp file nào, `messages/*.json` một mình vẫn giữ tổng > 0 và guard cũ sẽ
-   * xanh trong khi tầng dữ liệu không được quét chút nào.
+   * Bảo vệ riêng từng cây, không phải tổng. Nếu một cây từng không đóng góp
+   * file nào, các cây còn lại vẫn giữ tổng > 0 và guard cũ sẽ xanh trong khi
+   * cây đó không được quét chút nào — một đường dẫn gõ sai sẽ không thể âm
+   * thầm quét trống mà vẫn báo xanh.
    */
-  it("scans both protected trees", () => {
-    expect(PROFILE_FILES.length).toBeGreaterThan(0);
-    expect(MESSAGE_FILES.length).toBeGreaterThan(0);
+  it.each(Object.entries(ROOTS))("scans the %s tree", (_label, files) => {
+    expect(files.length).toBeGreaterThan(0);
   });
 
   it.each(FILES)("%s carries no denylisted name", (file) => {
