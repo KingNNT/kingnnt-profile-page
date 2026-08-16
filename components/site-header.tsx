@@ -11,11 +11,20 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const t = useTranslations("nav");
   const pathname = usePathname();
+  const homeHref = `/${HOME_PATH}`;
+  const homeCurrent = pathname === homeHref;
 
   return (
     <header className="sticky top-0 z-40 border-b border-rule bg-background/80 backdrop-blur">
       <div className="mx-auto flex w-full max-w-5xl items-center gap-6 px-6 py-4">
-        <Link href={`/${HOME_PATH}`} className="font-mono text-sm tracking-tight">
+        <Link
+          href={homeHref}
+          aria-current={homeCurrent ? "page" : undefined}
+          className={cn(
+            "font-mono text-sm tracking-tight transition-colors",
+            homeCurrent ? "text-primary" : undefined,
+          )}
+        >
           {IDENTITY.nickname}
         </Link>
         <nav className="flex flex-1 items-center gap-5 overflow-x-auto">
