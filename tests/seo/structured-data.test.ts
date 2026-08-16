@@ -40,6 +40,34 @@ describe("personSchema", () => {
     expect(serialised).not.toContain("Organization");
   });
 
+  /**
+   * Allowlist, không phải denylist: một denylist chỉ chặn được những rò rỉ mà
+   * ai đó đã lường trước (`worksFor`, `affiliation`, chuỗi `Organization`). Một
+   * trường mới như `employer` hay `worksAt` với `@type` không chứa "Organization"
+   * sẽ lọt qua denylist ở trên mà không ai hay. Khoá tập key lại: bất kỳ trường
+   * nào thêm vào sau này đều phải được cố ý thêm vào danh sách dưới đây, tại
+   * đúng chỗ review sẽ nhìn thấy nó.
+   */
+  it("carries exactly the intended properties and no employer of any kind", () => {
+    expect(Object.keys(person).sort()).toEqual(
+      [
+        "@type",
+        "@id",
+        "name",
+        "alternateName",
+        "jobTitle",
+        "email",
+        "url",
+        "image",
+        "sameAs",
+        "knowsAbout",
+        "knowsLanguage",
+        "address",
+        "alumniOf",
+      ].sort(),
+    );
+  });
+
   it("omits the phone number", () => {
     expect(person).not.toHaveProperty("telephone");
   });
