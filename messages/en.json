@@ -22,10 +22,10 @@
   "home": {
     "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
     "metaDescription": "Solutions consultant and full-stack engineer in Hà Nội. Six years across AI, banking, e-commerce, healthcare and education.",
-    "tagline": "I sit between the business conversation and the architecture diagram — scoping what should be built, then building enough of it to prove the scope was right.",
+    "tagline": "Software I build for other people, markets I trade with my own money. Different tools; the same refusal to trust a guess I haven't tested.",
     "introLabel": "Intro",
-    "intro1": "Six years of full-stack work across AI, banking, e-commerce, healthcare, education and hospitality, for clients in Vietnam, Japan, Malaysia, Australia and the EU. These days most of my work starts before the code does: discovery sessions, solution architecture, effort estimates, and the proof-of-concept that settles the argument.",
-    "intro2": "I still write the systems I scope. That is deliberate — an estimate from someone who no longer builds is a guess with a confident tone.",
+    "intro1": "The areas are separate enough that each has its own part of this site. Engineering is the paid work: six years of full-stack build across AI, banking, e-commerce, healthcare, education and hospitality, for clients in Vietnam, Japan, Malaysia, Australia and the EU. These days most of it starts before the code does — discovery, solution architecture, estimates, and the proof-of-concept that settles the argument.",
+    "intro2": "Trading is the older habit and the quieter one: crypto from 2020, then forex, then equities. There are no performance figures on this site and there will not be any — the method is the only part worth reading, and the method is what turned out to transfer back into the engineering work.",
     "indexLabel": "Lines of work",
     "index": {
       "dev": "Six years building software — roles, skills and selected work.",
@@ -38,7 +38,7 @@
     "metaTitle": "Software engineering",
     "metaDescription": "Roles, skills and selected work — the engineering side of what I do.",
     "title": "Software engineering",
-    "lead": "Six years of building software, told by domain and market rather than by employer.",
+    "lead": "Six years of building software, told by domain and market rather than by employer. I still write the systems I scope — an estimate from someone who no longer builds is a guess with a confident tone.",
     "indexLabel": "In this section",
     "index": {
       "devExperience": "Six roles, by domain and market rather than by employer.",

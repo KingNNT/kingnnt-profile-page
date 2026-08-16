@@ -22,10 +22,10 @@
   "home": {
     "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
     "metaDescription": "Solutions consultant, full-stack engineer tại Hà Nội. Sáu năm qua AI, ngân hàng, thương mại điện tử, y tế và giáo dục.",
-    "tagline": "Tôi đứng giữa cuộc trò chuyện kinh doanh và bản vẽ kiến trúc — xác định cái gì đáng làm, rồi làm đủ phần của nó để chứng minh là mình xác định đúng.",
+    "tagline": "Phần mềm tôi làm cho người khác, thị trường tôi giao dịch bằng tiền của mình. Công cụ khác nhau, nhưng cùng một thói quen: không tin một phỏng đoán mình chưa kiểm.",
     "introLabel": "Giới thiệu",
-    "intro1": "Sáu năm làm full-stack qua AI, ngân hàng, thương mại điện tử, y tế, giáo dục và khách sạn, cho khách hàng ở Việt Nam, Nhật, Malaysia, Úc và EU. Gần đây phần lớn công việc của tôi bắt đầu trước khi có dòng code nào: buổi discovery, kiến trúc giải pháp, ước lượng công sức, và bản proof-of-concept dùng để kết thúc tranh luận.",
-    "intro2": "Tôi vẫn tự viết những hệ thống mình vạch ra. Đó là chủ ý — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
+    "intro1": "Các mảng đủ tách bạch để mỗi bên có phần riêng trên trang này. Kỹ thuật là phần công việc được trả tiền: sáu năm làm full-stack qua AI, ngân hàng, thương mại điện tử, y tế, giáo dục và khách sạn, cho khách hàng ở Việt Nam, Nhật, Malaysia, Úc và EU. Gần đây phần lớn công việc bắt đầu trước khi có dòng code nào — discovery, kiến trúc giải pháp, ước lượng, và bản proof-of-concept dùng để kết thúc tranh luận.",
+    "intro2": "Giao dịch là thói quen cũ hơn và lặng lẽ hơn: crypto từ 2020, rồi forex, rồi cổ phiếu. Trang này không có con số hiệu suất nào và sẽ không có — thứ đáng đọc chỉ là phương pháp, và chính phương pháp mới là phần quay ngược lại có ích cho công việc kỹ thuật.",
     "indexLabel": "Các mảng công việc",
     "index": {
       "dev": "Sáu năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc.",
@@ -38,7 +38,7 @@
     "metaTitle": "Kỹ thuật phần mềm",
     "metaDescription": "Vai trò, kỹ năng và các dự án chọn lọc — phần kỹ thuật trong công việc của tôi.",
     "title": "Kỹ thuật phần mềm",
-    "lead": "Sáu năm làm phần mềm, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
+    "lead": "Sáu năm làm phần mềm, kể theo lĩnh vực và thị trường thay vì theo nơi làm. Tôi vẫn tự viết những hệ thống mình vạch ra — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
     "indexLabel": "Trong phần này",
     "index": {
       "devExperience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
