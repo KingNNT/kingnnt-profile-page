@@ -1,21 +1,16 @@
 import { SectionLabel } from "@/components/section-label";
 import { cn } from "@/lib/utils";
 
-export function Section({
-  id,
-  className,
-  children,
-  index,
-  label,
-}: {
-  id?: string;
-  className?: string;
-  children: React.ReactNode;
-  index?: number;
-  label?: string;
-}) {
+type SectionProps = { className?: string; children: React.ReactNode } & (
+  | { id: string; index: number; label: string }
+  | { id?: string; index?: never; label?: never }
+);
+
+export function Section({ id, className, children, index, label }: SectionProps) {
   const labelled = index != null && label != null;
-  const headingId = id ? `${id}-label` : undefined;
+  // A labelled section always carries a required `id` (enforced by SectionProps),
+  // so headingId is only ever undefined when the section has no label at all.
+  const headingId = labelled ? `${id}-label` : undefined;
 
   return (
     <section
