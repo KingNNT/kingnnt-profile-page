@@ -4,10 +4,14 @@ export function SectionLabel({
   index,
   name,
   className,
+  id,
 }: {
   index: number;
   name: string;
   className?: string;
+  /** Đặt trên chính span tên, để `Section` trỏ `aria-labelledby` vào đây thay vì
+   * nhân đôi tên section bằng một span sr-only riêng. */
+  id?: string;
 }) {
   return (
     <span
@@ -18,7 +22,7 @@ export function SectionLabel({
     >
       <span className="text-primary">{String(index).padStart(2, "0")}</span>
       <span aria-hidden className="h-px w-6 bg-rule" />
-      <span>{name.toUpperCase()}</span>
+      <span id={id}>{name.toUpperCase()}</span>
     </span>
   );
 }

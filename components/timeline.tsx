@@ -30,7 +30,7 @@ export function Timeline({ items }: { items: readonly TimelineItem[] }) {
           <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
             {item.period}
           </p>
-          <h3 className="mt-2 text-lg font-medium">{item.role}</h3>
+          <h2 className="mt-2 text-lg font-medium">{item.role}</h2>
           <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
             {item.summary}
           </p>

@@ -1,4 +1,5 @@
-import { allSkillNames, IDENTITY } from "@/lib/profile";
+import { routing } from "@/i18n/routing";
+import { allSkillNames, EDUCATION, IDENTITY } from "@/lib/profile";
 import {
   breadcrumbTrail,
   CONTENT_LAST_MODIFIED,
@@ -27,7 +28,7 @@ export function personSchema(locale: string) {
     image: `${SITE_URL}/images/portrait.jpg`,
     sameAs: IDENTITY.socials.map((social) => social.url),
     knowsAbout: allSkillNames(),
-    knowsLanguage: ["en", "vi"],
+    knowsLanguage: routing.locales,
     address: {
       "@type": "PostalAddress",
       addressLocality: IDENTITY.location.city,
@@ -35,7 +36,7 @@ export function personSchema(locale: string) {
     },
     alumniOf: {
       "@type": "CollegeOrUniversity",
-      name: "Electric Power University",
+      name: EDUCATION.institution,
     },
   };
 }

@@ -22,10 +22,7 @@ export function Section({ id, className, children, index, label }: SectionProps)
     >
       {labelled ? (
         <div className="mb-8">
-          <SectionLabel index={index} name={label} className="" />
-          <span id={headingId} className="sr-only">
-            {label}
-          </span>
+          <SectionLabel index={index} name={label} id={headingId} />
         </div>
       ) : null}
       {children}
