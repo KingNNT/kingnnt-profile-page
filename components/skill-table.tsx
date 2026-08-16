@@ -19,38 +19,45 @@ export function SkillTable({
   caption: string;
 }) {
   return (
-    <table className="w-full border-collapse text-left font-mono text-sm">
-      <caption className="sr-only">{caption}</caption>
-      <thead>
-        <tr className="border-b border-rule text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-          <th scope="col" className="py-2 font-normal">
-            {columns.name}
-          </th>
-          <th scope="col" className="py-2 font-normal">
-            {columns.proficiency}
-          </th>
-          <th scope="col" className="py-2 text-right font-normal">
-            {columns.years}
-          </th>
-          <th scope="col" className="py-2 text-right font-normal">
-            {columns.lastUsed}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {skills.map((skill) => (
-          <tr key={skill.name} className="border-b border-rule/50 last:border-0">
-            <th scope="row" className="py-2 font-normal text-foreground">
-              {skill.name}
+    // A four-column mono table can still outgrow a 375px viewport (long skill
+    // names, or a locale where the translated column headers run wider). It
+    // must scroll inside its own box, never widen the page.
+    <div className="overflow-x-auto">
+      <table className="w-full border-collapse text-left font-mono text-sm">
+        <caption className="sr-only">{caption}</caption>
+        <thead>
+          <tr className="border-b border-rule text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+            <th scope="col" className="py-2 font-normal">
+              {columns.name}
             </th>
-            <td className={cn("py-2", WEIGHT[skill.proficiency])}>
-              {proficiencyLabels[skill.proficiency]}
-            </td>
-            <td className="py-2 text-right text-muted-foreground tabular-nums">{skill.years}</td>
-            <td className="py-2 text-right text-muted-foreground tabular-nums">{skill.lastUsed}</td>
+            <th scope="col" className="py-2 font-normal">
+              {columns.proficiency}
+            </th>
+            <th scope="col" className="py-2 text-right font-normal">
+              {columns.years}
+            </th>
+            <th scope="col" className="py-2 text-right font-normal">
+              {columns.lastUsed}
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {skills.map((skill) => (
+            <tr key={skill.name} className="border-b border-rule/50 last:border-0">
+              <th scope="row" className="py-2 font-normal text-foreground">
+                {skill.name}
+              </th>
+              <td className={cn("py-2", WEIGHT[skill.proficiency])}>
+                {proficiencyLabels[skill.proficiency]}
+              </td>
+              <td className="py-2 text-right text-muted-foreground tabular-nums">{skill.years}</td>
+              <td className="py-2 text-right text-muted-foreground tabular-nums">
+                {skill.lastUsed}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
