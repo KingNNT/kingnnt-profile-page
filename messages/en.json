@@ -12,5 +12,20 @@
   },
   "footer": {
     "email": "Email"
+  },
+  "home": {
+    "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
+    "metaDescription": "Solutions consultant and full-stack engineer in Hà Nội. Six years across AI, banking, e-commerce, healthcare and education.",
+    "tagline": "I sit between the business conversation and the architecture diagram — scoping what should be built, then building enough of it to prove the scope was right.",
+    "introLabel": "Intro",
+    "intro1": "Six years of full-stack work across AI, banking, e-commerce, healthcare, education and hospitality, for clients in Vietnam, Japan, Malaysia, Australia and the EU. These days most of my work starts before the code does: discovery sessions, solution architecture, effort estimates, and the proof-of-concept that settles the argument.",
+    "intro2": "I still write the systems I scope. That is deliberate — an estimate from someone who no longer builds is a guess with a confident tone.",
+    "indexLabel": "Index",
+    "index": {
+      "about": "The longer version, including the years I spent trading.",
+      "experience": "Six roles, by domain and market rather than by employer.",
+      "skills": "What I use, how well, and when I last used it.",
+      "projects": "Selected work, with links where the product is public."
+    }
   }
 }

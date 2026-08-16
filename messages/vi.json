@@ -12,5 +12,20 @@
   },
   "footer": {
     "email": "Email"
+  },
+  "home": {
+    "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
+    "metaDescription": "Solutions consultant, full-stack engineer tại Hà Nội. Sáu năm qua AI, ngân hàng, thương mại điện tử, y tế và giáo dục.",
+    "tagline": "Tôi đứng giữa cuộc trò chuyện kinh doanh và bản vẽ kiến trúc — xác định cái gì đáng làm, rồi làm đủ phần của nó để chứng minh là mình xác định đúng.",
+    "introLabel": "Giới thiệu",
+    "intro1": "Sáu năm làm full-stack qua AI, ngân hàng, thương mại điện tử, y tế, giáo dục và khách sạn, cho khách hàng ở Việt Nam, Nhật, Malaysia, Úc và EU. Gần đây phần lớn công việc của tôi bắt đầu trước khi có dòng code nào: buổi discovery, kiến trúc giải pháp, ước lượng công sức, và bản proof-of-concept dùng để kết thúc tranh luận.",
+    "intro2": "Tôi vẫn tự viết những hệ thống mình vạch ra. Đó là chủ ý — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
+    "indexLabel": "Mục lục",
+    "index": {
+      "about": "Bản dài hơn, gồm cả những năm tôi giao dịch trên thị trường.",
+      "experience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
+      "skills": "Tôi dùng gì, tới mức nào, và lần gần nhất là khi nào.",
+      "projects": "Các dự án chọn lọc, có link ở những sản phẩm đã public."
+    }
   }
 }
