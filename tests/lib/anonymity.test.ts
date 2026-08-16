@@ -49,7 +49,9 @@ function walk(dir: string): string[] {
  * ràng buộc áp lên chữ hiển thị, không áp lên đích của link.
  */
 function stripUrls(source: string): string {
-  return source.replace(/url:\s*"[^"]*"/g, 'url: ""').replace(/"url":\s*"[^"]*"/g, '"url": ""');
+  return source
+    .replace(/(?<![\p{L}\p{N}_])url:\s*"[^"]*"/gu, 'url: ""')
+    .replace(/"url":\s*"[^"]*"/g, '"url": ""');
 }
 
 function occurrences(haystack: string, needle: string): boolean {
@@ -58,11 +60,19 @@ function occurrences(haystack: string, needle: string): boolean {
   return new RegExp(`(^|[^\\p{L}\\p{N}])${escaped}([^\\p{L}\\p{N}]|$)`, "iu").test(haystack);
 }
 
-const FILES = [...walk(join(ROOT, "lib", "profile")), ...walk(join(ROOT, "messages"))];
+const PROFILE_FILES = walk(join(ROOT, "lib", "profile"));
+const MESSAGE_FILES = walk(join(ROOT, "messages"));
+const FILES = [...PROFILE_FILES, ...MESSAGE_FILES];
 
 describe("anonymity", () => {
-  it("scans a non-empty set of files", () => {
-    expect(FILES.length).toBeGreaterThan(0);
+  /**
+   * Bảo vệ riêng từng cây, không phải tổng. Nếu `lib/profile` từng không đóng
+   * góp file nào, `messages/*.json` một mình vẫn giữ tổng > 0 và guard cũ sẽ
+   * xanh trong khi tầng dữ liệu không được quét chút nào.
+   */
+  it("scans both protected trees", () => {
+    expect(PROFILE_FILES.length).toBeGreaterThan(0);
+    expect(MESSAGE_FILES.length).toBeGreaterThan(0);
   });
 
   it.each(FILES)("%s carries no denylisted name", (file) => {
@@ -70,5 +80,17 @@ describe("anonymity", () => {
     for (const name of DENYLIST) {
       expect(occurrences(content, name), `"${name}" found in ${file}`).toBe(false);
     }
+  });
+
+  it("detects a denylisted name outside a url field", () => {
+    const leaked = 'role: "Engineer at SyncSoft", url: "https://example.com/SyncSoft"';
+    const content = stripUrls(leaked);
+    expect(occurrences(content, "SyncSoft")).toBe(true);
+  });
+
+  it("does not flag a denylisted name that only appears inside a url field", () => {
+    const clean = 'name: "Orkestrators", url: "https://www.artinleap.com/products/orkestrators"';
+    const content = stripUrls(clean);
+    expect(occurrences(content, "ArtinLeap")).toBe(false);
   });
 });
