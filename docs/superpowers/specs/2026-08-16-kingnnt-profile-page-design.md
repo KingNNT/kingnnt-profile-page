@@ -461,8 +461,9 @@ công khai, gỡ nó khỏi denylist là hành động có chủ đích và có 
 
 ## 9. Git và vận hành
 
-- `git init`, nhánh mặc định **`main`**. Reference dùng `develop` vì có CI theo
-  môi trường; trang cá nhân một người thì `main` + nhánh feature là đủ.
+- `git init`, nhánh tích hợp mặc định là **`develop`**, giống reference. PR
+  nhắm vào `develop`; `develop` là nhánh được bảo vệ nên không commit thẳng
+  vào, luôn tách nhánh feature trước.
 - Conventional Commits, commitlint bắt buộc. Nhánh đặt tên theo
   `<type>/<kebab-description>` với type là từ đầy đủ (`feature/`, không phải
   `feat/`).
