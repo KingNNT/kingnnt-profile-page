@@ -17,3 +17,29 @@ export const PRACTICE_AREAS: readonly PracticeArea[] = [
   { id: "design" },
   { id: "delivery" },
 ];
+
+/**
+ * Subject matter for `knowsAbout` in the Person schema, sitting alongside the
+ * tool names from `SKILL_GROUPS`.
+ *
+ * The tool names alone are a poor description of a person: "TypeScript, React,
+ * Docker" is true of millions and tells an answer engine nothing about what
+ * the work is. These say what the work is. Every one of them is already
+ * evidenced in prose on the site — they are a restatement for machines, not a
+ * wider claim than the pages make.
+ *
+ * Deliberately untranslated: `knowsAbout` is matched by machines against a
+ * shared vocabulary, and emitting a Vietnamese variant per locale would split
+ * one topic association into two weaker ones.
+ */
+export const EXPERTISE_TOPICS: readonly string[] = [
+  "Solution architecture",
+  "Presales engineering",
+  "Technical discovery",
+  "Software effort estimation",
+  "Cloud cost optimization",
+  "AI document processing",
+  "Full-stack web development",
+  "System design",
+  "Enterprise system integration",
+];

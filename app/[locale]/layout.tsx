@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
+import { TITLE_SUFFIX } from "@/lib/site";
 import "../globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   // Chỉ default toàn site. Canonical, hreflang và Open Graph theo từng trang do
   // `pageMetadata` đặt — khai báo canonical ở layout sẽ trỏ mọi route về một URL.
   return {
-    title: { default: t("title"), template: "%s | KingNNT" },
+    title: { default: t("title"), template: `%s | ${TITLE_SUFFIX}` },
     description: t("description"),
   };
 }

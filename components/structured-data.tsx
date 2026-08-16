@@ -19,10 +19,19 @@ export async function PageStructuredData({
   description: string;
 }) {
   const t = await getTranslations({ locale, namespace: "nav" });
+  // Award names are prose, so they live in the `about` catalog rather than in
+  // `credentials.ts` — same reason breadcrumb labels come from `nav`.
+  const tAbout = await getTranslations({ locale, namespace: "about" });
 
   const graph = [
     webSiteSchema(locale),
-    profilePageSchema({ locale, path, title, description }),
+    profilePageSchema({
+      locale,
+      path,
+      title,
+      description,
+      awardName: (award) => tAbout(dynamicMessageKey(`awards.${award.id}`)),
+    }),
     breadcrumbSchema(locale, path, (route) => t(dynamicMessageKey(route.key))),
   ];
 

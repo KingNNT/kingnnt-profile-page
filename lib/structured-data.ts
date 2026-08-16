@@ -2,8 +2,13 @@ import { FACET_CONTACT_TYPE, FACETS } from "@/enums";
 import { routing } from "@/i18n/routing";
 import {
   allSkillNames,
+  ALTERNATE_NAMES,
+  type Award,
+  AWARDS,
+  CERTIFICATIONS,
   channelsFor,
   EDUCATION,
+  EXPERTISE_TOPICS,
   FACET_CONTACT_IDS,
   IDENTITY,
   primaryEmail,
@@ -39,25 +44,51 @@ function contactPoints() {
 }
 
 /**
- * Node Person — thực thể chính của trang này với search engine và answer engine.
+ * Named credential issuers. These are the only `Organization` nodes the graph
+ * is allowed to carry.
  *
- * Cố ý KHÔNG có `worksFor`, `affiliation`, hay bất kỳ node `Organization` nào:
- * chủ trang yêu cầu không nhắc tên nơi làm việc, và schema là chỗ ràng buộc đó
- * rò rỉ dễ nhất vì mọi ví dụ Person đều kèm `worksFor`.
+ * The anonymity rule bans employers, clients, and the companies behind the
+ * products — an issuer is none of those, and the same four names are already
+ * printed on `/about`. They earn their place here because a certifying body is
+ * a third-party anchor for the person entity, and this site deliberately gave
+ * up the usual one by refusing to name employers.
  */
-export function personSchema(locale: string) {
+function credentials() {
+  return CERTIFICATIONS.map((certification) => ({
+    "@type": "EducationalOccupationalCredential",
+    name: certification.name,
+    credentialCategory: "certificate",
+    recognizedBy: { "@type": "Organization", name: certification.issuer },
+  }));
+}
+
+/**
+ * Person node — the entity this whole site exists to describe, and the one
+ * thing search engines and answer engines are trying to resolve.
+ *
+ * Still NO `worksFor` and NO `affiliation`: the owner does not name employers,
+ * and schema is where that constraint leaks most easily, because every Person
+ * example on the web carries `worksFor`.
+ *
+ * `awardName` is threaded in rather than read from the data, for the same
+ * reason `breadcrumbSchema` takes `labelFor`: award names are prose and live
+ * in the translated catalogs, not in `credentials.ts`.
+ */
+export function personSchema(locale: string, awardName: (award: Award) => string) {
   return {
     "@type": "Person",
     "@id": `${SITE_URL}/#person`,
     name: IDENTITY.fullName,
-    alternateName: [IDENTITY.englishName, IDENTITY.nickname],
+    alternateName: ALTERNATE_NAMES,
     jobTitle: IDENTITY.jobTitle,
     email: `mailto:${primaryEmail()}`,
     url: pageUrl(locale, ""),
     image: `${SITE_URL}/images/portrait.jpg`,
     sameAs: profileChannels().map((c) => c.url),
     contactPoint: contactPoints(),
-    knowsAbout: allSkillNames(),
+    // Topics first, tool names after: what the work is, then what it is built
+    // with. A consumer truncating the list keeps the more useful half.
+    knowsAbout: [...EXPERTISE_TOPICS, ...allSkillNames()],
     knowsLanguage: routing.locales,
     address: {
       "@type": "PostalAddress",
@@ -68,6 +99,8 @@ export function personSchema(locale: string) {
       "@type": "CollegeOrUniversity",
       name: EDUCATION.institution,
     },
+    hasCredential: credentials(),
+    award: AWARDS.map(awardName),
   };
 }
 
@@ -87,9 +120,17 @@ interface ProfilePageArgs {
   path: string;
   title: string;
   description: string;
+  /** Translated name of an award — see the note on `personSchema`. */
+  awardName: (award: Award) => string;
 }
 
-export function profilePageSchema({ locale, path, title, description }: ProfilePageArgs) {
+export function profilePageSchema({
+  locale,
+  path,
+  title,
+  description,
+  awardName,
+}: ProfilePageArgs) {
   const route = findRoute(path);
 
   return {
@@ -101,7 +142,7 @@ export function profilePageSchema({ locale, path, title, description }: ProfileP
     inLanguage: locale,
     isPartOf: { "@id": `${SITE_URL}/#website` },
     dateModified: route ? routeLastModified(route) : CONTENT_LAST_MODIFIED,
-    mainEntity: personSchema(locale),
+    mainEntity: personSchema(locale, awardName),
   };
 }
 
