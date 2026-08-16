@@ -44,5 +44,21 @@
     "trading3": "It also taught me to sit still. Most days the correct action is none, and the discipline of not acting transfers almost directly to architecture: the cheapest system is the one you did not build because you waited a week and the requirement evaporated.",
     "contactLabel": "Get in touch",
     "contact": "The fastest way to reach me is email. I read LinkedIn less often, and GitHub is where the code is."
+  },
+  "experience": {
+    "metaTitle": "Experience",
+    "metaDescription": "Six years of engineering and consulting, described by domain, market and team size.",
+    "title": "Experience",
+    "note": "Roles are listed by what the work was, not by who I worked for. Two entries run to the present at once — the independent thread has never stopped, and the consulting role overlaps the engineering one.",
+    "rolesLabel": "Roles",
+    "now": "now",
+    "entries": {
+      "consultant": "Translating client requirements into solution proposals, architectures and effort estimates for enterprise engagements. Runs technical discovery and scoping workshops, builds the proof-of-concepts that decide whether a proposal survives, and advises on cloud cost and well-architected trade-offs.",
+      "engineer-current": "Full-stack delivery for international clients: enterprise integration against legacy banking infrastructure, a gamified mental-health learning platform, AI-assisted content tooling, and B2B pharmaceutical distribution. Also the primary technical interviewer and mentor for the team.",
+      "engineer-ai": "AI-integrated systems for Japanese and EU clients — email processing agents and document extraction — built with Python/FastAPI and Next.js, deployed to Azure with Docker and Kubernetes. Authored the Basic and Detail Design documents those clients required.",
+      "engineer-offshore": "Web platforms for Japanese and international clients on teams of fifteen or more: a browser video-calling product, booking systems, and a school management system. Payment gateways, SSO, and the database design underneath them.",
+      "engineer-hospitality": "Hotel and hot-spring management systems for the Japanese tourism industry, in a team of four to six. PHP and Python back ends, MySQL schema design, and the maintenance rota that came with running them in production.",
+      "freelance": "Direct client work, start to finish: understanding the problem, designing the architecture and schema, provisioning cloud infrastructure, building the thing, deploying it, and supporting it afterwards. The longest-running thread here, and the one that taught me pricing and scope."
+    }
   }
 }

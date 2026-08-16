@@ -44,5 +44,21 @@
     "trading3": "Nó cũng dạy tôi ngồi yên. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật không-làm-gì đó chuyển gần như trực tiếp sang kiến trúc: hệ thống rẻ nhất là hệ thống bạn đã không dựng, vì bạn chờ thêm một tuần và yêu cầu đó tự bốc hơi.",
     "contactLabel": "Liên hệ",
     "contact": "Cách nhanh nhất là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
+  },
+  "experience": {
+    "metaTitle": "Kinh nghiệm",
+    "metaDescription": "Sáu năm làm kỹ thuật và tư vấn, mô tả theo lĩnh vực, thị trường và quy mô đội.",
+    "title": "Kinh nghiệm",
+    "note": "Các vai trò được liệt kê theo bản chất công việc, không theo nơi tôi làm. Có hai mục cùng kéo tới hiện tại — mạch làm độc lập chưa bao giờ dừng, và vai trò tư vấn chồng lên vai trò kỹ sư.",
+    "rolesLabel": "Vai trò",
+    "now": "nay",
+    "entries": {
+      "consultant": "Chuyển yêu cầu của khách hàng thành đề xuất giải pháp, kiến trúc và ước lượng công sức cho các hợp đồng doanh nghiệp. Chủ trì buổi discovery và workshop xác định phạm vi, dựng proof-of-concept quyết định một đề xuất có sống được hay không, và tư vấn về chi phí cloud cùng các đánh đổi well-architected.",
+      "engineer-current": "Làm full-stack cho khách hàng quốc tế: tích hợp hệ thống doanh nghiệp với hạ tầng ngân hàng cũ, nền tảng học về sức khoẻ tinh thần theo hướng gamification, công cụ tạo nội dung có AI hỗ trợ, và giải pháp phân phối dược phẩm B2B. Đồng thời là người phỏng vấn kỹ thuật chính và mentor cho đội.",
+      "engineer-ai": "Hệ thống tích hợp AI cho khách Nhật và EU — agent xử lý email và trích xuất tài liệu — dựng bằng Python/FastAPI và Next.js, triển khai lên Azure với Docker và Kubernetes. Viết tài liệu Basic Design và Detail Design theo chuẩn khách hàng yêu cầu.",
+      "engineer-offshore": "Nền tảng web cho khách Nhật và quốc tế trong các đội từ mười lăm người trở lên: sản phẩm gọi video trên trình duyệt, hệ thống đặt chỗ, và hệ thống quản lý trường học. Kèm cổng thanh toán, SSO và phần thiết kế cơ sở dữ liệu bên dưới.",
+      "engineer-hospitality": "Hệ thống quản lý khách sạn và suối nước nóng cho ngành du lịch Nhật, trong đội bốn tới sáu người. Back end PHP và Python, thiết kế schema MySQL, và cả phần trực vận hành đi kèm khi hệ thống chạy thật.",
+      "freelance": "Làm trực tiếp với khách hàng từ đầu tới cuối: hiểu bài toán, thiết kế kiến trúc và schema, dựng hạ tầng cloud, viết sản phẩm, triển khai, rồi hỗ trợ sau đó. Đây là mạch dài nhất, và là nơi tôi học được cách định giá và khoanh phạm vi."
+    }
   }
 }
