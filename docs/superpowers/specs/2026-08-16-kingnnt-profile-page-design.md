@@ -450,9 +450,16 @@ Quy tắc so khớp:
   hợp lệ sẽ chứa tên công ty bị cấm. Một URL là địa chỉ công khai kiểm chứng
   được, không phải một lời khẳng định về nơi làm việc — ràng buộc áp lên chữ
   hiển thị, không áp lên đích của link. Đổi lại, `project-card.tsx` **phải**
-  hiển thị nhãn link bằng tên sản phẩm hoặc hostname rút gọn, không bao giờ
-  bằng đường dẫn đầy đủ; `tests/components/project-card.test.tsx` khẳng định
-  điều đó.
+  hiển thị nhãn link đúng bằng tên sản phẩm; `tests/components/project-card.test.tsx`
+  khẳng định điều đó bằng so khớp chính xác.
+
+  *Sửa trong lúc triển khai:* bản đầu của mục này còn cho phép "hoặc hostname
+  rút gọn" làm nhãn dự phòng. Điều đó đã sai từ khi `Project` trở thành
+  discriminated union — kiểu dữ liệu bảo đảm `url !== null` kéo theo `name` là
+  chuỗi, nên nhánh dự phòng không bảo vệ điều gì, trong khi đầu ra duy nhất của
+  nó cho Orkestrators lại đúng là một tên trong denylist. Một hàm biến *đích*
+  của link thành *chữ hiển thị* phá đúng giả định mà miễn trừ `url` dựa vào.
+  Nhánh đó đã bị xoá.
 
 Test này tồn tại vì "đừng nhắc đến công ty" là loại ràng buộc bị vi phạm lúc
 sửa nội dung vội — dán một đoạn từ CV vào là đủ. Một dòng ghi chú trong
