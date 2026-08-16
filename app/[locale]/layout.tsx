@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Analytics } from "@vercel/analytics/next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
@@ -41,7 +43,13 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <NextIntlClientProvider>{children}</NextIntlClientProvider>
+          <NextIntlClientProvider>
+            <div className="flex min-h-dvh flex-col">
+              <SiteHeader />
+              <div className="flex-1">{children}</div>
+              <SiteFooter locale={locale} />
+            </div>
+          </NextIntlClientProvider>
         </ThemeProvider>
         <Analytics />
       </body>

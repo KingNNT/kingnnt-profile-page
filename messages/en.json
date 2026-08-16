@@ -9,5 +9,8 @@
     "experience": "Experience",
     "skills": "Skills",
     "projects": "Projects"
+  },
+  "footer": {
+    "email": "Email"
   }
 }
