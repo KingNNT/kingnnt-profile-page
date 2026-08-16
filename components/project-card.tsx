@@ -1,11 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/profile";
 
-/** `www.artinleap.com` → `artinleap.com`. Chỉ dùng khi không có tên sản phẩm. */
-function shortHost(url: string): string {
-  return new URL(url).hostname.replace(/^www\./, "");
-}
-
 export function ProjectCard({
   project,
   title,
@@ -24,10 +19,10 @@ export function ProjectCard({
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="group inline-flex items-center gap-1.5 text-lg font-medium hover:text-primary"
+        className="inline-flex items-center gap-1.5 text-lg font-medium hover:text-primary"
       >
-        {/* Nhãn là tên sản phẩm, không phải url — xem test. */}
-        {title || shortHost(project.url)}
+        {/* Nhãn là tên sản phẩm, luôn luôn — không bao giờ url hay hostname. Xem test. */}
+        {title}
         <ArrowUpRight className="h-4 w-4 text-primary" aria-hidden />
       </a>
     ) : (
@@ -39,7 +34,7 @@ export function ProjectCard({
       <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
         {period}
       </p>
-      <h3 className="mt-2">{heading}</h3>
+      <h2 className="mt-2">{heading}</h2>
       <p className="mt-1 font-mono text-xs text-primary">{project.role}</p>
       <p className="mt-3 max-w-[62ch] text-sm leading-relaxed text-muted-foreground">
         {description}

@@ -27,6 +27,18 @@ const UNNAMED: Project = {
   featured: true,
 };
 
+const NAMED_NO_URL: Project = {
+  id: "semikong",
+  from: "2024-06",
+  to: "2024-07",
+  name: "SemiKong",
+  url: null,
+  role: "Team Lead",
+  teamSize: 4,
+  stack: ["Django", "Next.js"],
+  featured: true,
+};
+
 describe("ProjectCard", () => {
   it("links a public product to its site", () => {
     render(
@@ -44,11 +56,13 @@ describe("ProjectCard", () => {
   });
 
   /**
-   * Nhãn link phải là tên sản phẩm hoặc hostname rút gọn, không bao giờ là
-   * đường dẫn đầy đủ — đường dẫn của Orkestrators chứa tên công ty mà trang này
-   * không nêu.
+   * Nhãn link luôn luôn là tên sản phẩm, hết — không bao giờ url, không bao
+   * giờ hostname rút gọn. Đường dẫn của Orkestrators chứa tên công ty mà
+   * trang này không nêu, nên assertion phải khớp đúng bằng, không chỉ loại
+   * trừ đường dẫn: một hostname như `artinleap.com` sẽ vẫn qua được test
+   * "không phải đường dẫn" trong khi vẫn làm lộ tên công ty.
    */
-  it("never prints the full url as the link text", () => {
+  it("prints only the product name as the link text", () => {
     render(
       <ProjectCard
         project={{ ...NAMED, url: "https://www.artinleap.com/products/orkestrators" }}
@@ -57,7 +71,7 @@ describe("ProjectCard", () => {
         period="05.2025 — now"
       />,
     );
-    expect(screen.queryByText(/products\/orkestrators/)).toBeNull();
+    expect(screen.getByRole("link").textContent?.trim()).toBe("Orkestrators");
   });
 
   it("renders an unnamed project without a link", () => {
@@ -71,6 +85,19 @@ describe("ProjectCard", () => {
     );
     expect(screen.queryByRole("link")).toBeNull();
     expect(screen.getByText("Undisclosed client project")).toBeInTheDocument();
+  });
+
+  it("renders a named project with no public site as text, not a link", () => {
+    render(
+      <ProjectCard
+        project={NAMED_NO_URL}
+        title="SemiKong"
+        description="An open-source domain LLM."
+        period="06.2024 — 07.2024"
+      />,
+    );
+    expect(screen.queryByRole("link")).toBeNull();
+    expect(screen.getByText("SemiKong")).toBeInTheDocument();
   });
 
   it("lists the stack", () => {
