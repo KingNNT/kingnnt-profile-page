@@ -73,6 +73,21 @@ export const ROUTES: readonly RouteDef[] = [
     priority: 0.8,
     changeFrequency: "monthly",
   },
+  /**
+   * A different kind of page from the three above: those list facts, this one
+   * makes an argument. It is here because it is the only page on the site that
+   * says something nobody else is saying — which is what an answer engine has
+   * a reason to cite, and a profile page never is. `yearly` is honest: an
+   * argument does not change monthly the way a project list does.
+   */
+  {
+    path: "dev/estimating",
+    key: "devEstimating",
+    parent: "dev",
+    facet: "dev",
+    priority: 0.8,
+    changeFrequency: "yearly",
+  },
   {
     path: "trading",
     key: "trading",

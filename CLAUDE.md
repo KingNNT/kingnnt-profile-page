@@ -33,7 +33,14 @@ không — vì vậy trường `url` được miễn trừ (trang sản phẩm O
 dưới tên công ty bị cấm, `artinleap.com`) — bù lại nhãn link hiển thị chỉ
 được là tên sản phẩm, hết.
 
-Trong JSON-LD: **không** `worksFor`, `affiliation`, hay node `Organization`.
+In JSON-LD: still no `worksFor` and no `affiliation`. The blanket ban on
+`Organization` nodes was lifted deliberately — credential issuers are emitted
+as `Organization` under `hasCredential`, because a certifying body is a
+third-party anchor for the person entity and this site gave up the usual one by
+refusing to name employers. The test in `tests/seo/structured-data.test.ts` got
+narrower rather than weaker: it walks the whole graph and asserts every
+organisation named anywhere in it is one of the issuers in `credentials.ts`. An
+employer smuggled in under any field name still fails.
 
 ## Commands
 
@@ -123,6 +130,28 @@ catalog**, không phải khi deploy.
 
 ### SEO
 
+The site cannot lean on employer names, so the person entity is anchored by
+what is left. Four pieces carry that load and are easy to undo by accident:
+
+- `IDENTITY.latinName` — the name without diacritics. It is in `alternateName`
+  **and** in visible copy on `/about` (`about.names`), because matching is on
+  literal strings and schema alone is the weaker of the two signals. It looks
+  like a duplicate of `fullName`; it is not.
+- `EXPERTISE_TOPICS` (`lib/profile/practice.ts`) leads `knowsAbout`, ahead of
+  the tool names. Tool names describe millions of people.
+- `hasCredential` and `award` in `personSchema` — the named issuers and
+  competitions are third-party anchors, standing in for the employers the site
+  will not name.
+- `TITLE_SUFFIX` (`lib/site.ts`), not `SITE_NAME`, ends every non-home title.
+  The brand is "KingNNT" but the search is for the real name, and
+  "About | KingNNT" never contained it.
+
+`/dev/estimating` is the only page that argues rather than lists, and its
+shape is load-bearing: the title is a question, and the claim sits in the first
+paragraph of the first section. That is what an answer engine can attribute a
+quote to — a profile page gives it nothing to cite.
+`tests/pages/estimating.test.tsx` pins both.
+
 `lib/metadata.ts` dựng canonical/hreflang/OG cho từng trang. Canonical đặt ở
 page, không đặt ở layout. `og:image` phải được tham chiếu tường minh: khi một
 trang khai `openGraph` trong `generateMetadata`, Next ngừng gộp file convention
@@ -163,7 +192,36 @@ nền hover). Bản light dùng accent tối hơn để giữ tương phản —
 ### Ảnh
 
 `assets/portrait.png` là ảnh gốc, cố ý nằm ngoài `public/`. Bản deploy là
-`public/images/portrait.jpg`. Icon trong `app/` sinh từ ảnh gốc bằng `sips`.
+`public/images/portrait.jpg`.
+
+### Logo and icons
+
+`assets/logo-mark.svg` is the vector original of the brand mark (a K inside a
+square frame), kept outside `public/` like the portrait. `components/logo.tsx`
+restates that same geometry as an inline path — svgr is not enabled, so a
+`.svg` cannot be imported directly; `tests/components/logo.test.tsx` keeps the
+two from drifting apart.
+
+The on-page mark uses `currentColor` so it follows both themes. The icons under
+`app/` are the opposite: a hard `#131313` plate with an `#EBEBEB` mark, because
+a browser tab strip offers no colour context at all — a transparent mark
+disappears on half of them. The "KINGNNT" wordmark from the source brand file
+is deliberately **not** in the icons: below 32px it degrades into noise.
+
+Regenerate the icons after editing `assets/logo-mark.svg` (mark fills 80% of
+the canvas):
+
+    sed 's/currentColor/#EBEBEB/' assets/logo-mark.svg > /tmp/mark.svg
+    magick -background none /tmp/mark.svg -resize 154x154 \
+      -background '#131313' -gravity center -extent 192x192 \
+      -colorspace Gray -depth 8 -strip -define png:color-type=0 app/icon.png
+    magick -background none /tmp/mark.svg -resize 410x410 \
+      -background '#131313' -gravity center -extent 512x512 \
+      -colorspace Gray -depth 8 -strip -define png:color-type=0 app/apple-icon.png
+
+Grayscale is deliberate — the logo holds only two greys, and forcing `-depth 8`
+keeps the file at ~1KB instead of the 33KB 16-bit truecolour PNG ImageMagick
+emits by default.
 
 ### Component
 

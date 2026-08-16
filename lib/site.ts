@@ -15,6 +15,16 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? `${PROTOCOL}://king
 
 export const SITE_NAME = IDENTITY.nickname;
 
+/**
+ * What every page title but the homepage's ends with.
+ *
+ * Not `SITE_NAME`: the brand is "KingNNT", but a stranger searching for the
+ * person types the real name, and a title of "About | KingNNT" never contains
+ * it. Only the homepage title carries the full name otherwise, which leaves
+ * the other pages unable to answer the query that matters most.
+ */
+export const TITLE_SUFFIX = `${IDENTITY.fullName} (${IDENTITY.nickname})`;
+
 /** Thẻ BCP-47 cho Open Graph và hreflang. */
 export const OG_LOCALE: Record<string, string> = {
   [LocaleSupport.EN]: "en_US",

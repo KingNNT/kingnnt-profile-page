@@ -21,6 +21,7 @@ describe("route registry", () => {
         "dev/experience",
         "dev/projects",
         "dev/skills",
+        "dev/estimating",
         "trading",
       ].sort(),
     );
@@ -51,6 +52,7 @@ describe("route registry", () => {
       "dev/experience",
       "dev/skills",
       "dev/projects",
+      "dev/estimating",
     ]);
   });
 

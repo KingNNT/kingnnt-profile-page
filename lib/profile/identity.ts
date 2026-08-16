@@ -1,5 +1,13 @@
 export interface Identity {
   fullName: string;
+  /**
+   * `fullName` stripped of diacritics. Not a stylistic variant — it is the
+   * spelling most people actually type, because most keyboards outside Vietnam
+   * cannot produce the accented one. Search matches on literal strings, so a
+   * site that never writes this spelling is invisible to the query that uses
+   * it.
+   */
+  latinName: string;
   englishName: string;
   nickname: string;
   jobTitle: string;
@@ -16,8 +24,25 @@ export interface Identity {
  */
 export const IDENTITY: Identity = {
   fullName: "Ninh Ngọc Tuấn",
+  latinName: "Ninh Ngoc Tuan",
   englishName: "Jesse",
   nickname: "KingNNT",
   jobTitle: "Solutions Consultant",
   location: { city: "Hà Nội", country: "Việt Nam" },
 };
+
+/**
+ * Every string someone might reasonably search for him by, excluding
+ * `fullName` itself — that one is `name` in the schema, and a value repeated
+ * in both fields reads as padding.
+ *
+ * `englishName` appears bare and paired with the family name: "Jesse" alone
+ * resolves to nobody, but colleagues who only ever heard the English name have
+ * nothing else to type. Order runs most to least likely.
+ */
+export const ALTERNATE_NAMES: readonly string[] = [
+  IDENTITY.latinName,
+  `${IDENTITY.englishName} Ninh`,
+  IDENTITY.nickname,
+  IDENTITY.englishName,
+];

@@ -46,6 +46,27 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("link", { name: "Dev" })).not.toHaveAttribute("aria-current");
   });
 
+  it("puts the brand mark in the identity link without renaming it", () => {
+    // The mark is decorative; if it leaked into the accessible name the link
+    // would announce "KingNNT KingNNT" — so assert both halves in one test.
+    mockPathname = "/about";
+    render(<SiteHeader />);
+    const identity = screen.getByRole("link", { name: "KingNNT" });
+    expect(identity.querySelector("svg")).toBeInTheDocument();
+  });
+
+  it("keeps the nickname as one unbroken string beside the mark", () => {
+    // The mark sitting next to the wordmark invites two edits that both break
+    // the brand string: splitting it into `<span>K</span>ingNNT` to style the
+    // K, or dropping the K entirely to let the logo stand in for it. Either
+    // changes what a crawler and an answer engine read the name as, and
+    // neither shows up in a screenshot.
+    mockPathname = "/about";
+    render(<SiteHeader />);
+    const identity = screen.getByRole("link", { name: "KingNNT" });
+    expect(identity.textContent).toBe("KingNNT");
+  });
+
   it("does not mark the identity link as current on a non-home route", () => {
     mockPathname = "/about";
     render(<SiteHeader />);

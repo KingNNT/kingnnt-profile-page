@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { LogoMark } from "@/components/logo";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Link, usePathname } from "@/i18n/navigation";
 import { HOME_PATH, primaryNavRoutes } from "@/lib/routes";
@@ -25,10 +26,13 @@ export function SiteHeader() {
           href={homeHref}
           aria-current={homeCurrent ? "page" : undefined}
           className={cn(
-            "font-mono text-sm tracking-tight transition-colors",
+            "flex items-center gap-2 font-mono text-sm tracking-tight transition-colors",
             homeCurrent ? "text-primary" : undefined,
           )}
         >
+          {/* Decorative: the nickname beside it already names the link, and a
+              second copy of "KingNNT" would just make the link read twice. */}
+          <LogoMark />
           {IDENTITY.nickname}
         </Link>
         <nav className="flex flex-1 items-center gap-5 overflow-x-auto">

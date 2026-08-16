@@ -9,6 +9,7 @@
     "devExperience": "Experience",
     "devSkills": "Skills",
     "devProjects": "Projects",
+    "devEstimating": "Estimating",
     "trading": "Trading",
     "about": "About",
     "contact": "Contact"
@@ -43,7 +44,8 @@
     "index": {
       "devExperience": "Six roles, by domain and market rather than by employer.",
       "devSkills": "What I use, how well, and when I last used it.",
-      "devProjects": "Selected work, with links where the product is public."
+      "devProjects": "Selected work, with links where the product is public.",
+      "devEstimating": "How I put a number on work nobody has done yet."
     },
     "contactLabel": "Work with me",
     "contact": "The fastest way to reach me about engineering work is email. LinkedIn I read less often, and GitHub is where the code is.",
@@ -68,6 +70,7 @@
     "leadLabel": "Now",
     "lead1": "I am a solutions consultant and full-stack engineer, based in Hà Nội. My work splits roughly in half: figuring out what a client actually needs and what it will cost, and then building the part of it that proves the answer was right.",
     "lead2": "The domains have been unusually wide — AI document processing, banking, healthcare, e-commerce, education, hospitality — across teams in Vietnam, Japan, Malaysia, Australia and the EU. Breadth like that is a mixed blessing. It makes me fast at recognising the shape of a new domain, and it means I have to be honest about where my depth actually is. That is what the skills page is for.",
+    "names": "On the name: Ninh Ngọc Tuấn, or Ninh Ngoc Tuan wherever the diacritics do not survive. Jesse is the English one, KingNNT the handle. Same person — worth spelling out, because those versions do not always find each other.",
     "pathLabel": "How I got here",
     "path1": "I started building for clients as a freelancer in 2020, while still at university, and never fully stopped. That thread runs underneath every job since: it is where I learned that the hard part is rarely the code, it is agreeing on what the code is supposed to do.",
     "path2": "From there: hospitality systems for the Japanese market, then several years of offshore delivery on large teams — video calling, booking, school management — then an AI centre, where the work turned into document extraction and email agents for Japanese and EU clients. Lately I lead architecture on AI products and sit in the pre-sales conversations that decide whether they get built at all.",
@@ -81,8 +84,14 @@
     },
     "languagesLabel": "Languages",
     "languages": {
-      "english": { "term": "English", "detail": "Professional working proficiency" },
-      "vietnamese": { "term": "Vietnamese", "detail": "Native" }
+      "english": {
+        "term": "English",
+        "detail": "Professional working proficiency"
+      },
+      "vietnamese": {
+        "term": "Vietnamese",
+        "detail": "Native"
+      }
     },
     "contactLink": "Get in touch →"
   },
@@ -170,6 +179,24 @@
       "restaurant-marketplace": "A restaurant marketplace for the Japanese food service industry connecting venues with diners — multi-tenant vendor management, menus and availability, reservations and ordering, social SSO, and payment processing. Laravel back end, Nuxt front end, plus an automated crawler for market data.",
       "school-management": "A school management system for Japanese educational institutions covering enrolment, scheduling, grade tracking and parent communication, with role-based access for students, teachers, administrators and guardians. Laravel and Vue, with Redis caching to survive the registration-period peaks."
     }
+  },
+  "devEstimating": {
+    "metaTitle": "How do you estimate work you have not done before?",
+    "metaDescription": "Ask what happens when an estimate is wrong before asking how likely it is to be right — position sizing, borrowed from trading and applied to software scoping.",
+    "title": "How do you estimate work you have not done before?",
+    "answerLabel": "The short answer",
+    "answer1": "Ask what happens when I am wrong before asking how likely it is that I am right. Reordering those two questions does more for an estimate than any framework I have used, because it moves the question from confidence to consequence.",
+    "answer2": "An estimate is a position, not a prediction. It has a size, and the size should be set by what the project can survive if the number is wrong — not by how sure I felt when I wrote it down.",
+    "originLabel": "Where it comes from",
+    "origin1": "It came from trading, not from engineering. Crypto from 2020, then forex, then equities — and what transferred was not a market opinion. A trader who is right sixty percent of the time and sizes badly still loses. An engineer who is confident about an estimate and wrong about the tail risk sinks a project the same way.",
+    "originLink": "The longer version of that story →",
+    "practiceLabel": "What it changes",
+    "practice1": "It changes what discovery is for. A scoping conversation does not exist to reach a number faster; it exists to find the parts of the work where being wrong is expensive, and to buy information about exactly those parts before committing to anything. A proof-of-concept is the cheapest way I know to buy it.",
+    "practice2": "It changes what I do with the parts where being wrong is cheap. Those get a fast number and no ceremony. Spreading estimation effort evenly across a scope is the same mistake as sizing every position the same: it spends the most attention where it changes the least.",
+    "practice3": "And sometimes it says wait. Most days the correct action is none, and that discipline transfers almost directly to architecture — the cheapest system is the one you did not build because you waited a week and the requirement evaporated.",
+    "limitsLabel": "What it is not",
+    "limits1": "This is not a claim to accuracy. I miss estimates. The method does not make the number right; it makes the damage from a wrong number bounded, which is a different goal and a reachable one.",
+    "limits2": "It also does not survive being handed to someone who no longer builds. An estimate from someone who has stopped writing the systems they scope is a guess with a confident tone — which is why I still write them."
   },
   "contact": {
     "metaTitle": "Contact",

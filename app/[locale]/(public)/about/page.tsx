@@ -43,6 +43,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           <Prose>
             <p>{t("lead1")}</p>
             <p>{t("lead2")}</p>
+            {/* Carries the undiacriticked spelling in visible copy, not just in
+                `alternateName`. Matching is on literal strings, and schema on
+                its own is a weaker signal than schema plus body text. */}
+            <p>{t("names")}</p>
           </Prose>
         </Reveal>
       </Section>

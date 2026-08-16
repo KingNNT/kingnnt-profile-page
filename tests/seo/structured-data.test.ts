@@ -1,6 +1,14 @@
 import { describe, expect, it } from "vitest";
 import { FACETS, FACET_CONTACT_TYPE, LocaleSupport } from "@/enums";
-import { FACET_CONTACT_IDS, IDENTITY, profileChannels } from "@/lib/profile";
+import {
+  ALTERNATE_NAMES,
+  type Award,
+  AWARDS,
+  CERTIFICATIONS,
+  FACET_CONTACT_IDS,
+  IDENTITY,
+  profileChannels,
+} from "@/lib/profile";
 import {
   breadcrumbSchema,
   personSchema,
@@ -9,15 +17,27 @@ import {
 } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
 
+const awardName = (award: Award) => `Award ${award.id}`;
+
 describe("personSchema", () => {
-  const person = personSchema(LocaleSupport.EN) as Record<string, unknown>;
+  const person = personSchema(LocaleSupport.EN, awardName) as Record<string, unknown>;
 
   it("is a Person", () => {
     expect(person["@type"]).toBe("Person");
   });
 
-  it("carries both alternate names people search for", () => {
-    expect(person.alternateName).toEqual([IDENTITY.englishName, IDENTITY.nickname]);
+  it("carries every alternate name people search for", () => {
+    expect(person.alternateName).toEqual(ALTERNATE_NAMES);
+  });
+
+  /**
+   * The spelling without diacritics is the one most keyboards outside Vietnam
+   * can produce, so it is the one most searches use. It is also the easiest to
+   * lose in a refactor, because it looks like a duplicate of `name`.
+   */
+  it("carries the name without diacritics", () => {
+    expect(person.alternateName).toContain(IDENTITY.latinName);
+    expect(IDENTITY.latinName).not.toBe(IDENTITY.fullName);
   });
 
   it("links out to every social profile as sameAs", () => {
@@ -47,14 +67,57 @@ describe("personSchema", () => {
   });
 
   /**
-   * Ràng buộc ẩn danh, đóng đinh ở đúng chỗ dễ rò rỉ nhất: `worksFor` là trường
-   * mà mọi ví dụ Person schema trên mạng đều có.
+   * Tool names describe millions of people; the subject-matter topics are what
+   * make the entity specific. Assert both halves are present, and that the
+   * topics come first — a consumer that truncates the list should keep the
+   * half that carries meaning.
    */
-  it("declares no employer of any kind", () => {
-    const serialised = JSON.stringify(person);
+  it("leads knowsAbout with subject matter, not tool names", () => {
+    const topics = person.knowsAbout as string[];
+    expect(topics).toContain("Solution architecture");
+    expect(topics.indexOf("Solution architecture")).toBeLessThan(topics.indexOf("TypeScript"));
+  });
+
+  it("claims every certification, with its issuer", () => {
+    const held = person.hasCredential as { name: string; recognizedBy: { name: string } }[];
+    expect(held.map((c) => c.name)).toEqual(CERTIFICATIONS.map((c) => c.name));
+    expect(held.map((c) => c.recognizedBy.name)).toEqual(CERTIFICATIONS.map((c) => c.issuer));
+  });
+
+  it("claims every award, using the translated name", () => {
+    expect(person.award).toEqual(AWARDS.map(awardName));
+  });
+
+  /**
+   * The anonymity rule, pinned where it leaks most easily: `worksFor` is the
+   * field every Person schema example on the web carries.
+   *
+   * This used to ban the string "Organization" outright. It no longer can —
+   * credential issuers are emitted as `Organization` nodes on purpose, because
+   * a certifying body is a third-party anchor for the person entity and this
+   * site gave up the usual one by refusing to name employers. So the check got
+   * narrower and stricter instead: every organisation named anywhere in the
+   * graph must be one of the issuers. An employer smuggled in under any field
+   * name fails this, which the old string ban would also have caught, and so
+   * does an issuer that is not in `credentials.ts`, which it would not.
+   */
+  it("names no organisation other than a credential issuer", () => {
     expect(person).not.toHaveProperty("worksFor");
     expect(person).not.toHaveProperty("affiliation");
-    expect(serialised).not.toContain("Organization");
+
+    const named = new Set<string>();
+    const visit = (node: unknown) => {
+      if (Array.isArray(node)) return node.forEach(visit);
+      if (node === null || typeof node !== "object") return;
+      const record = node as Record<string, unknown>;
+      if (record["@type"] === "Organization" && typeof record.name === "string") {
+        named.add(record.name);
+      }
+      Object.values(record).forEach(visit);
+    };
+    visit(person);
+
+    expect([...named].sort()).toEqual([...new Set(CERTIFICATIONS.map((c) => c.issuer))].sort());
   });
 
   /**
@@ -82,6 +145,8 @@ describe("personSchema", () => {
         "knowsLanguage",
         "address",
         "alumniOf",
+        "hasCredential",
+        "award",
       ].sort(),
     );
   });
@@ -97,6 +162,7 @@ describe("profilePageSchema", () => {
     path: "about",
     title: "About",
     description: "The long version.",
+    awardName,
   }) as Record<string, unknown>;
 
   it("is a ProfilePage about the person", () => {
