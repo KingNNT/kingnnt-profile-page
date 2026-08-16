@@ -57,4 +57,18 @@ describe("portraitDataUrl", () => {
 
     await expect(portraitDataUrl()).resolves.toBeNull();
   });
+
+  it("returns null when the body is correctly labelled but not a JPEG", async () => {
+    const notAJpeg = new Uint8Array([0x00, 0x01, 0x02, 0x03]).buffer;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        headers: new Headers({ "content-type": "image/jpeg" }),
+        arrayBuffer: vi.fn().mockResolvedValue(notAJpeg),
+      }),
+    );
+
+    await expect(portraitDataUrl()).resolves.toBeNull();
+  });
 });

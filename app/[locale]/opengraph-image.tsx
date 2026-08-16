@@ -10,9 +10,13 @@ export const alt = `${IDENTITY.fullName} — ${IDENTITY.jobTitle}`;
  * Ảnh chân dung được nạp qua URL công khai của chính site chứ không đọc từ đĩa:
  * đọc file bằng `fs` trong route này phụ thuộc vào việc bundler có trace được
  * đường dẫn hay không, và nó im lặng hỏng trên Vercel trong khi build cục bộ
- * vẫn xanh. Nếu fetch hỏng — lỗi mạng, status không phải 2xx, hoặc một phản
- * hồi 200 mà không phải ảnh (trang lỗi HTML từ CDN chẳng hạn) — hàm trả về
- * `null` và card vẫn ra, chỉ là bản thuần chữ.
+ * vẫn xanh. Card lùi về bản thuần chữ khi: fetch lỗi mạng, status không phải
+ * 2xx, phản hồi 200 nhưng content-type không phải ảnh, hoặc bytes không mở
+ * đầu bằng magic number của JPEG. Một body vượt qua cả ba kiểm tra này nhưng
+ * vẫn không giải mã được bên trong Satori thì KHÔNG bắt được nữa — `ImageResponse`
+ * render trong callback `start` của một `ReadableStream`, sau khi response đã
+ * commit 200, nên lỗi đó làm hỏng response stream chứ không ném ra để try/catch
+ * ở đây hay ở route bắt được.
  */
 export async function portraitDataUrl(): Promise<string | null> {
   try {
@@ -20,8 +24,11 @@ export async function portraitDataUrl(): Promise<string | null> {
     if (!response.ok) return null;
     const type = response.headers.get("content-type");
     if (!type?.startsWith("image/")) return null;
-    const buffer = Buffer.from(await response.arrayBuffer());
-    return `data:image/jpeg;base64,${buffer.toString("base64")}`;
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    // Magic number của JPEG — điểm cuối cùng còn chặn được kiểu lỗi mô tả ở
+    // docstring phía trên, trước khi data URL được dựng.
+    if (bytes[0] !== 0xff || bytes[1] !== 0xd8 || bytes[2] !== 0xff) return null;
+    return `data:image/jpeg;base64,${Buffer.from(bytes).toString("base64")}`;
   } catch {
     return null;
   }
@@ -73,14 +80,5 @@ function card(portrait: string | null) {
 
 export default async function OpengraphImage() {
   const portrait = await portraitDataUrl();
-
-  // Ảnh nhúng vào có thể tải về thành công nhưng không giải mã được (bytes
-  // hỏng, định dạng lạ) — Satori chỉ ném lỗi ở bước render, không phải ở bước
-  // fetch. Bọc constructor để lỗi đó rơi về đúng lời hứa trong docstring trên:
-  // card thuần chữ, không phải HTTP 500.
-  try {
-    return new ImageResponse(card(portrait), size);
-  } catch {
-    return new ImageResponse(card(null), size);
-  }
+  return new ImageResponse(card(portrait), size);
 }
