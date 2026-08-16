@@ -9,7 +9,8 @@
     "devExperience": "Kinh nghiệm",
     "devSkills": "Kỹ năng",
     "devProjects": "Dự án",
-    "about": "Giới thiệu"
+    "about": "Giới thiệu",
+    "contact": "Liên hệ"
   },
   "notFound": {
     "label": "404",
@@ -69,9 +70,7 @@
     "languages": {
       "english": { "term": "Tiếng Anh", "detail": "Sử dụng thành thạo trong công việc" },
       "vietnamese": { "term": "Tiếng Việt", "detail": "Bản ngữ" }
-    },
-    "contactLabel": "Liên hệ",
-    "contact": "Cách nhanh nhất là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
+    }
   },
   "devExperience": {
     "metaTitle": "Kinh nghiệm",
@@ -156,6 +155,18 @@
       "livecall": "Nền tảng gọi video doanh nghiệp chạy trên trình duyệt: gọi, chia sẻ màn hình, ghi hình và hội thoại nhiều bên trên Twilio, kèm co-browsing, gói thuê bao Stripe và trạng thái thời gian thực qua WebSocket. Front end Vue 3 với TypeScript, phía sau là Django, trong đội từ mười lăm người trở lên.",
       "restaurant-marketplace": "Sàn kết nối nhà hàng với thực khách cho ngành ẩm thực Nhật — quản lý nhiều nhà cung cấp, thực đơn và lịch trống, đặt bàn và đặt món, SSO qua mạng xã hội, và xử lý thanh toán. Back end Laravel, front end Nuxt, kèm một crawler tự động thu thập dữ liệu thị trường.",
       "school-management": "Hệ thống quản lý trường học cho các cơ sở giáo dục Nhật, bao gồm tuyển sinh, xếp lịch, theo dõi điểm và liên lạc với phụ huynh, phân quyền cho học sinh, giáo viên, quản trị viên và người giám hộ. Laravel và Vue, dùng Redis cache để trụ qua các đợt cao điểm đăng ký."
+    }
+  },
+  "contact": {
+    "metaTitle": "Liên hệ",
+    "metaDescription": "Mọi cách liên hệ với tôi, nhóm theo việc bạn muốn trao đổi.",
+    "title": "Liên hệ",
+    "lead": "Mỗi mảng công việc có một hộp thư riêng để tin nhắn rơi đúng chỗ. Địa chỉ chung thì lúc nào cũng dùng được.",
+    "groups": {
+      "general": "Chung",
+      "dev": "Kỹ thuật phần mềm",
+      "trading": "Giao dịch",
+      "creator": "Nội dung"
     }
   }
 }

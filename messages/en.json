@@ -9,7 +9,8 @@
     "devExperience": "Experience",
     "devSkills": "Skills",
     "devProjects": "Projects",
-    "about": "About"
+    "about": "About",
+    "contact": "Contact"
   },
   "notFound": {
     "label": "404",
@@ -69,9 +70,7 @@
     "languages": {
       "english": { "term": "English", "detail": "Professional working proficiency" },
       "vietnamese": { "term": "Vietnamese", "detail": "Native" }
-    },
-    "contactLabel": "Get in touch",
-    "contact": "The fastest way to reach me is email. I read LinkedIn less often, and GitHub is where the code is."
+    }
   },
   "devExperience": {
     "metaTitle": "Experience",
@@ -156,6 +155,18 @@
       "livecall": "A browser-based enterprise video calling platform: calling, screen sharing, recording and multi-party conferencing on Twilio, with co-browsing, Stripe subscriptions and WebSocket presence. Vue 3 and TypeScript on the front end, Django behind it, on a team of fifteen or more.",
       "restaurant-marketplace": "A restaurant marketplace for the Japanese food service industry connecting venues with diners — multi-tenant vendor management, menus and availability, reservations and ordering, social SSO, and payment processing. Laravel back end, Nuxt front end, plus an automated crawler for market data.",
       "school-management": "A school management system for Japanese educational institutions covering enrolment, scheduling, grade tracking and parent communication, with role-based access for students, teachers, administrators and guardians. Laravel and Vue, with Redis caching to survive the registration-period peaks."
+    }
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Every way to reach me, grouped by what you want to talk about.",
+    "title": "Contact",
+    "lead": "Different parts of my work have different inboxes, so a message lands where it belongs. The general address always works.",
+    "groups": {
+      "general": "General",
+      "dev": "Software engineering",
+      "trading": "Trading",
+      "creator": "Content"
     }
   }
 }

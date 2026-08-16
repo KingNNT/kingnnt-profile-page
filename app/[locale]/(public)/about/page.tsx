@@ -1,12 +1,10 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ContactBlock } from "@/components/contact-block";
 import { Prose } from "@/components/prose";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
 import { AWARDS, CERTIFICATIONS, EDUCATION, SPOKEN_LANGUAGES } from "@/lib/profile";
-import { GENERAL_CONTACT_IDS } from "@/lib/profile/contact";
 import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "about";
@@ -123,14 +121,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               </dd>
             </div>
           </dl>
-        </Reveal>
-      </Section>
-      <Section id="contact" index={5} label={t("contactLabel")}>
-        <Reveal>
-          <Prose>
-            <p>{t("contact")}</p>
-          </Prose>
-          <ContactBlock ids={GENERAL_CONTACT_IDS} className="mt-6" />
         </Reveal>
       </Section>
     </main>

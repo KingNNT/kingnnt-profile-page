@@ -13,7 +13,7 @@ import {
 describe("route registry", () => {
   it("registers exactly the public routes of phase one", () => {
     expect(ROUTES.map((r) => r.path).sort()).toEqual(
-      ["", "about", "dev", "dev/experience", "dev/projects", "dev/skills"].sort(),
+      ["", "about", "contact", "dev", "dev/experience", "dev/projects", "dev/skills"].sort(),
     );
   });
 
@@ -30,7 +30,7 @@ describe("route registry", () => {
   });
 
   it("lists the primary navigation from the routes parented at home", () => {
-    expect(primaryNavRoutes().map((r) => r.path)).toEqual(["dev", "about"]);
+    expect(primaryNavRoutes().map((r) => r.path)).toEqual(["dev", "about", "contact"]);
   });
 
   it("excludes home from the primary navigation", () => {

@@ -74,6 +74,7 @@ export const ROUTES: readonly RouteDef[] = [
     changeFrequency: "monthly",
   },
   { path: "about", key: "about", parent: HOME_PATH, priority: 0.9, changeFrequency: "monthly" },
+  { path: "contact", key: "contact", parent: HOME_PATH, priority: 0.8, changeFrequency: "yearly" },
 ];
 
 export function findRoute(path: string): RouteDef | undefined {
