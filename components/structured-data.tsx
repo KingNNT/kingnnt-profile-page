@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { breadcrumbSchema, profilePageSchema, webSiteSchema } from "@/lib/structured-data";
+import { dynamicMessageKey } from "@/lib/utils";
 
 /**
  * Server component. Gộp mọi node vào một graph `@context` duy nhất thay vì
@@ -22,7 +23,7 @@ export async function PageStructuredData({
   const graph = [
     webSiteSchema(locale),
     profilePageSchema({ locale, path, title, description }),
-    breadcrumbSchema(locale, path, (route) => t(route.key)),
+    breadcrumbSchema(locale, path, (route) => t(dynamicMessageKey(route.key))),
   ];
 
   return (

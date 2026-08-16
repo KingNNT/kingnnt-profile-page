@@ -6,6 +6,7 @@ import { PageStructuredData } from "@/components/structured-data";
 import { formatPeriod } from "@/lib/format";
 import { pageMetadata } from "@/lib/metadata";
 import { earlierProjects, featuredProjects, type Project } from "@/lib/profile";
+import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "projects";
 
@@ -32,7 +33,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ local
       project={project}
       // Dự án chưa public không có tên để hiển thị; nhãn đã dịch thay vào chỗ đó.
       title={project.name ?? t("undisclosed")}
-      description={t(`entries.${project.id}`)}
+      description={t(dynamicMessageKey(`entries.${project.id}`))}
       period={formatPeriod(project.from, project.to, t("now"))}
     />
   );

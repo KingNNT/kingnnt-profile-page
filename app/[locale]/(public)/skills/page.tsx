@@ -5,6 +5,7 @@ import { SkillTable } from "@/components/skill-table";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
 import { type Proficiency, SKILL_GROUPS } from "@/lib/profile";
+import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "skills";
 
@@ -52,13 +53,18 @@ export default async function SkillsPage({ params }: { params: Promise<{ locale:
         </p>
       </Section>
       {SKILL_GROUPS.map((group, i) => (
-        <Section key={group.id} id={group.id} index={i + 1} label={t(`groups.${group.id}`)}>
+        <Section
+          key={group.id}
+          id={group.id}
+          index={i + 1}
+          label={t(dynamicMessageKey(`groups.${group.id}`))}
+        >
           <Reveal>
             <SkillTable
               skills={group.skills}
               columns={columns}
               proficiencyLabels={proficiencyLabels}
-              caption={t(`groups.${group.id}`)}
+              caption={t(dynamicMessageKey(`groups.${group.id}`))}
             />
           </Reveal>
         </Section>

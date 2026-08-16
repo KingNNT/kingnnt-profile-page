@@ -5,8 +5,12 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Link, usePathname } from "@/i18n/navigation";
 import { HOME_PATH, navRoutes } from "@/lib/routes";
-import { IDENTITY } from "@/lib/profile";
-import { cn } from "@/lib/utils";
+// Import directly from the leaf module, not the `@/lib/profile` barrel: the
+// barrel also re-exports experience, projects, skills, credentials and
+// trading, which would pull all of that into this client component's bundle
+// for a header that only needs `IDENTITY`.
+import { IDENTITY } from "@/lib/profile/identity";
+import { cn, dynamicMessageKey } from "@/lib/utils";
 
 export function SiteHeader() {
   const t = useTranslations("nav");
@@ -41,7 +45,7 @@ export function SiteHeader() {
                   current ? "text-primary" : "text-muted-foreground hover:text-foreground",
                 )}
               >
-                {t(route.key)}
+                {t(dynamicMessageKey(route.key))}
               </Link>
             );
           })}

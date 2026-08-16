@@ -7,6 +7,7 @@ import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
 import { HOME_PATH, navRoutes } from "@/lib/routes";
+import { dynamicMessageKey } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -29,8 +30,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const indexEntries = navRoutes().map((route) => ({
     path: route.path,
-    label: tNav(route.key),
-    blurb: tIndex(route.key),
+    label: tNav(dynamicMessageKey(route.key)),
+    blurb: tIndex(dynamicMessageKey(route.key)),
   }));
 
   return (

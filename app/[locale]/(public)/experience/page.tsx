@@ -6,6 +6,7 @@ import { Timeline, type TimelineItem } from "@/components/timeline";
 import { formatPeriod } from "@/lib/format";
 import { pageMetadata } from "@/lib/metadata";
 import { EXPERIENCE } from "@/lib/profile";
+import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "experience";
 
@@ -30,7 +31,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ loc
     id: entry.id,
     period: formatPeriod(entry.from, entry.to, t("now")),
     role: entry.role,
-    summary: t(`entries.${entry.id}`),
+    summary: t(dynamicMessageKey(`entries.${entry.id}`)),
     meta: [
       ...entry.domains,
       ...entry.markets,

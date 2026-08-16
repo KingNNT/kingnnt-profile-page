@@ -5,6 +5,7 @@ import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
 import { AWARDS, CERTIFICATIONS, EDUCATION, IDENTITY } from "@/lib/profile";
+import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "about";
 
@@ -95,7 +96,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                 <ul className="space-y-1">
                   {AWARDS.map((award) => (
                     <li key={award.id}>
-                      {t(`awards.${award.id}`)}{" "}
+                      {t(dynamicMessageKey(`awards.${award.id}`))}{" "}
                       <span className="text-muted-foreground">· {award.year}</span>
                     </li>
                   ))}
