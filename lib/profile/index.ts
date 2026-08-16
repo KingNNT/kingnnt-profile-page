@@ -1,3 +1,4 @@
+export * from "./contact";
 export * from "./credentials";
 export * from "./experience";
 export * from "./identity";

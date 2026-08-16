@@ -5,13 +5,13 @@
   },
   "nav": {
     "home": "Trang chủ",
+    "dev": "Kỹ thuật",
+    "devExperience": "Kinh nghiệm",
+    "devSkills": "Kỹ năng",
+    "devProjects": "Dự án",
+    "trading": "Giao dịch",
     "about": "Giới thiệu",
-    "experience": "Kinh nghiệm",
-    "skills": "Kỹ năng",
-    "projects": "Dự án"
-  },
-  "footer": {
-    "email": "Email"
+    "contact": "Liên hệ"
   },
   "notFound": {
     "label": "404",
@@ -22,21 +22,48 @@
   "home": {
     "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
     "metaDescription": "Solutions consultant, full-stack engineer tại Hà Nội. Sáu năm qua AI, ngân hàng, thương mại điện tử, y tế và giáo dục.",
-    "tagline": "Tôi đứng giữa cuộc trò chuyện kinh doanh và bản vẽ kiến trúc — xác định cái gì đáng làm, rồi làm đủ phần của nó để chứng minh là mình xác định đúng.",
+    "tagline": "Phần mềm tôi làm cho người khác, thị trường tôi giao dịch bằng tiền của mình. Công cụ khác nhau, nhưng cùng một thói quen: không tin một phỏng đoán mình chưa kiểm.",
     "introLabel": "Giới thiệu",
-    "intro1": "Sáu năm làm full-stack qua AI, ngân hàng, thương mại điện tử, y tế, giáo dục và khách sạn, cho khách hàng ở Việt Nam, Nhật, Malaysia, Úc và EU. Gần đây phần lớn công việc của tôi bắt đầu trước khi có dòng code nào: buổi discovery, kiến trúc giải pháp, ước lượng công sức, và bản proof-of-concept dùng để kết thúc tranh luận.",
-    "intro2": "Tôi vẫn tự viết những hệ thống mình vạch ra. Đó là chủ ý — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
-    "indexLabel": "Mục lục",
+    "intro1": "Các mảng đủ tách bạch để mỗi bên có phần riêng trên trang này. Kỹ thuật là phần công việc được trả tiền: sáu năm làm full-stack qua AI, ngân hàng, thương mại điện tử, y tế, giáo dục và khách sạn, cho khách hàng ở Việt Nam, Nhật, Malaysia, Úc và EU. Gần đây phần lớn công việc bắt đầu trước khi có dòng code nào — discovery, kiến trúc giải pháp, ước lượng, và bản proof-of-concept dùng để kết thúc tranh luận.",
+    "intro2": "Giao dịch là thói quen cũ hơn và lặng lẽ hơn: crypto từ 2020, rồi forex, rồi cổ phiếu. Trang này không có con số hiệu suất nào và sẽ không có — thứ đáng đọc chỉ là phương pháp, và chính phương pháp mới là phần quay ngược lại có ích cho công việc kỹ thuật.",
+    "indexLabel": "Các mảng công việc",
     "index": {
-      "about": "Bản dài hơn, gồm cả những năm tôi giao dịch trên thị trường.",
-      "experience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
-      "skills": "Tôi dùng gì, tới mức nào, và lần gần nhất là khi nào.",
-      "projects": "Các dự án chọn lọc, có link ở những sản phẩm đã public."
-    }
+      "dev": "Sáu năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc.",
+      "trading": "Sáu năm qua crypto, forex và chứng khoán — phương pháp, không phải hiệu suất."
+    },
+    "contactLabel": "Liên hệ",
+    "contact": "Địa chỉ này đến được tôi dù là chuyện gì. Mỗi mảng còn có hộp thư riêng — xem trang liên hệ."
+  },
+  "dev": {
+    "metaTitle": "Kỹ thuật phần mềm",
+    "metaDescription": "Vai trò, kỹ năng và các dự án chọn lọc — phần kỹ thuật trong công việc của tôi.",
+    "title": "Kỹ thuật phần mềm",
+    "lead": "Sáu năm làm phần mềm, kể theo lĩnh vực và thị trường thay vì theo nơi làm. Tôi vẫn tự viết những hệ thống mình vạch ra — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
+    "indexLabel": "Trong phần này",
+    "index": {
+      "devExperience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
+      "devSkills": "Tôi dùng gì, tới mức nào, và lần gần nhất là khi nào.",
+      "devProjects": "Các dự án chọn lọc, có link ở những sản phẩm đã public."
+    },
+    "contactLabel": "Làm việc cùng tôi",
+    "contact": "Cách nhanh nhất để liên hệ về công việc kỹ thuật là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code.",
+    "allChannels": "Tất cả kênh liên hệ →"
+  },
+  "trading": {
+    "metaTitle": "Giao dịch",
+    "metaDescription": "Sáu năm qua crypto, forex và chứng khoán — phương pháp, không phải hiệu suất.",
+    "title": "Giao dịch",
+    "leadLabel": "Bắt đầu thế nào",
+    "lead1": "Năm 2020 tôi bắt đầu giao dịch crypto. Giữa 2023 chuyển sang forex, và đầu 2024 thêm chứng khoán. Suốt thời gian đó tôi chạy song song hai trường phái: nắm giữ dài hạn những vị thế mình tin, và swing trading quanh các nhịp ngắn hơn. Tôi sẽ không đưa con số nào lên đây — trang này không phải nội dung tài chính và tôi không bán phương pháp nào cả.",
+    "lead2": "Thứ tôi giữ lại không phải một quan điểm thị trường. Đó là thói quen nghĩ bằng khối lượng vị thế thay vì bằng sự chắc chắn. Một trader đúng sáu trên mười lần mà vào lệnh sai cỡ vẫn lỗ; một kỹ sư tự tin về ước lượng nhưng sai về rủi ro đuôi thì làm chìm dự án theo đúng cách đó. Giao dịch dạy tôi hỏi \"nếu tôi sai thì chuyện gì xảy ra\" trước khi hỏi \"khả năng tôi đúng là bao nhiêu\" — và câu hỏi đó thay đổi cách tôi bóc tách công việc nhiều hơn bất kỳ framework nào.",
+    "lead3": "Nó cũng dạy tôi ngồi yên. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật không-làm-gì đó chuyển gần như trực tiếp sang kiến trúc: hệ thống rẻ nhất là hệ thống bạn đã không dựng, vì bạn chờ thêm một tuần và yêu cầu đó tự bốc hơi.",
+    "contactLabel": "Trao đổi về giao dịch",
+    "contact": "Mọi câu chuyện về thị trường, phương pháp hay quản trị rủi ro gửi về địa chỉ này.",
+    "allChannels": "Tất cả kênh liên hệ →"
   },
   "about": {
     "metaTitle": "Giới thiệu",
-    "metaDescription": "Kỹ sư, rồi trader, rồi cả hai — và cách hai nửa đó soi sáng lẫn nhau.",
+    "metaDescription": "Bản dài hơn: tôi đã đi tới đây thế nào, và những bằng cấp phía sau.",
     "title": "Giới thiệu",
     "leadLabel": "Hiện tại",
     "lead1": "Tôi là solutions consultant kiêm full-stack engineer, sống ở Hà Nội. Công việc chia đôi khá đều: tìm ra khách hàng thật sự cần gì và cái đó tốn bao nhiêu, rồi tự tay dựng phần đủ để chứng minh câu trả lời đó đúng.",
@@ -44,10 +71,6 @@
     "pathLabel": "Đường đi",
     "path1": "Tôi bắt đầu làm cho khách hàng từ 2020, khi còn đi học, và chưa bao giờ dừng hẳn. Mạch freelance đó chạy ngầm dưới mọi công việc sau này: đó là nơi tôi học được rằng phần khó hiếm khi là code, mà là thống nhất được code đó rốt cuộc phải làm gì.",
     "path2": "Từ đó: hệ thống cho ngành khách sạn ở thị trường Nhật, rồi vài năm làm offshore trong các đội lớn — video call, đặt chỗ, quản lý trường học — rồi tới một trung tâm AI, nơi công việc chuyển sang trích xuất tài liệu và agent xử lý email cho khách Nhật và EU. Gần đây tôi dẫn phần kiến trúc cho các sản phẩm AI, và ngồi trong chính những buổi pre-sales quyết định chúng có được làm hay không.",
-    "tradingLabel": "Nửa còn lại",
-    "trading1": "Năm 2020 tôi bắt đầu giao dịch crypto. Giữa 2023 chuyển sang forex, và đầu 2024 thêm chứng khoán. Suốt thời gian đó tôi chạy song song hai trường phái: nắm giữ dài hạn những vị thế mình tin, và swing trading quanh các nhịp ngắn hơn. Tôi sẽ không đưa con số nào lên đây — trang này không phải nội dung tài chính và tôi không bán phương pháp nào cả.",
-    "trading2": "Thứ tôi giữ lại không phải một quan điểm thị trường. Đó là thói quen nghĩ bằng khối lượng vị thế thay vì bằng sự chắc chắn. Một trader đúng sáu trên mười lần mà vào lệnh sai cỡ vẫn lỗ; một kỹ sư tự tin về ước lượng nhưng sai về rủi ro đuôi thì làm chìm dự án theo đúng cách đó. Giao dịch dạy tôi hỏi \"nếu tôi sai thì chuyện gì xảy ra\" trước khi hỏi \"khả năng tôi đúng là bao nhiêu\" — và câu hỏi đó thay đổi cách tôi bóc tách công việc nhiều hơn bất kỳ framework nào.",
-    "trading3": "Nó cũng dạy tôi ngồi yên. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật không-làm-gì đó chuyển gần như trực tiếp sang kiến trúc: hệ thống rẻ nhất là hệ thống bạn đã không dựng, vì bạn chờ thêm một tuần và yêu cầu đó tự bốc hơi.",
     "credentialsLabel": "Học vấn & chứng chỉ",
     "educationLabel": "Học vấn",
     "certificationsLabel": "Chứng chỉ",
@@ -61,10 +84,9 @@
       "english": { "term": "Tiếng Anh", "detail": "Sử dụng thành thạo trong công việc" },
       "vietnamese": { "term": "Tiếng Việt", "detail": "Bản ngữ" }
     },
-    "contactLabel": "Liên hệ",
-    "contact": "Cách nhanh nhất là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
+    "contactLink": "Liên hệ với tôi →"
   },
-  "experience": {
+  "devExperience": {
     "metaTitle": "Kinh nghiệm",
     "metaDescription": "Sáu năm làm kỹ thuật và tư vấn, mô tả theo lĩnh vực, thị trường và quy mô đội.",
     "title": "Kinh nghiệm",
@@ -80,7 +102,7 @@
       "freelance": "Làm trực tiếp với khách hàng từ đầu tới cuối: hiểu bài toán, thiết kế kiến trúc và schema, dựng hạ tầng cloud, viết sản phẩm, triển khai, rồi hỗ trợ sau đó. Đây là mạch dài nhất, và là nơi tôi học được cách định giá và khoanh phạm vi."
     }
   },
-  "skills": {
+  "devSkills": {
     "metaTitle": "Kỹ năng",
     "metaDescription": "Ngôn ngữ, framework, hạ tầng và công cụ dữ liệu — kèm mức thành thạo, số năm và năm dùng gần nhất.",
     "title": "Kỹ năng",
@@ -128,7 +150,7 @@
       }
     }
   },
-  "projects": {
+  "devProjects": {
     "metaTitle": "Dự án",
     "metaDescription": "Các dự án kỹ thuật và kiến trúc chọn lọc, có link ở những sản phẩm đã public.",
     "title": "Dự án",
@@ -147,6 +169,18 @@
       "livecall": "Nền tảng gọi video doanh nghiệp chạy trên trình duyệt: gọi, chia sẻ màn hình, ghi hình và hội thoại nhiều bên trên Twilio, kèm co-browsing, gói thuê bao Stripe và trạng thái thời gian thực qua WebSocket. Front end Vue 3 với TypeScript, phía sau là Django, trong đội từ mười lăm người trở lên.",
       "restaurant-marketplace": "Sàn kết nối nhà hàng với thực khách cho ngành ẩm thực Nhật — quản lý nhiều nhà cung cấp, thực đơn và lịch trống, đặt bàn và đặt món, SSO qua mạng xã hội, và xử lý thanh toán. Back end Laravel, front end Nuxt, kèm một crawler tự động thu thập dữ liệu thị trường.",
       "school-management": "Hệ thống quản lý trường học cho các cơ sở giáo dục Nhật, bao gồm tuyển sinh, xếp lịch, theo dõi điểm và liên lạc với phụ huynh, phân quyền cho học sinh, giáo viên, quản trị viên và người giám hộ. Laravel và Vue, dùng Redis cache để trụ qua các đợt cao điểm đăng ký."
+    }
+  },
+  "contact": {
+    "metaTitle": "Liên hệ",
+    "metaDescription": "Mọi cách liên hệ với tôi, nhóm theo việc bạn muốn trao đổi.",
+    "title": "Liên hệ",
+    "lead": "Mỗi mảng công việc có một hộp thư riêng để tin nhắn rơi đúng chỗ. Địa chỉ chung thì lúc nào cũng dùng được.",
+    "groups": {
+      "general": "Chung",
+      "dev": "Kỹ thuật phần mềm",
+      "trading": "Giao dịch",
+      "creator": "Nội dung"
     }
   }
 }

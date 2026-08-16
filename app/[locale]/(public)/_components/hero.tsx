@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
+import { ContactBlock } from "@/components/contact-block";
 import { Portrait } from "@/components/portrait";
 import { IDENTITY } from "@/lib/profile";
+import { GENERAL_CONTACT_IDS } from "@/lib/profile/contact";
 
 export async function Hero({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: "home" });
@@ -18,25 +20,7 @@ export async function Hero({ locale }: { locale: string }) {
         <p className="mt-6 max-w-[52ch] text-lg leading-relaxed text-muted-foreground">
           {t("tagline")}
         </p>
-        <div className="mt-8 flex flex-wrap items-center gap-4 font-mono text-xs">
-          <a
-            className="border-b border-primary pb-0.5 text-primary"
-            href={`mailto:${IDENTITY.email}`}
-          >
-            {IDENTITY.email}
-          </a>
-          {IDENTITY.socials.map((social) => (
-            <a
-              key={social.id}
-              className="text-muted-foreground transition-colors hover:text-foreground"
-              href={social.url}
-              rel="me noreferrer"
-              target="_blank"
-            >
-              {social.label}
-            </a>
-          ))}
-        </div>
+        <ContactBlock ids={GENERAL_CONTACT_IDS} variant="inline" className="mt-8" />
       </div>
       <Portrait priority className="mx-auto max-w-[18rem] md:mx-0" />
     </div>

@@ -1,9 +1,27 @@
-import { EXPERIENCE, featuredProjects, IDENTITY, SKILL_GROUPS } from "@/lib/profile";
+import { FACET_LABEL_EN, FACETS } from "@/enums";
+import {
+  channelsFor,
+  type ContactChannelId,
+  EXPERIENCE,
+  FACET_CONTACT_IDS,
+  featuredProjects,
+  GENERAL_CONTACT_IDS,
+  IDENTITY,
+  SKILL_GROUPS,
+  TRADING,
+} from "@/lib/profile";
 import { ROUTES } from "@/lib/routes";
 import { pageUrl } from "@/lib/site";
 
 function period(from: string, to: string | null): string {
   return `${from} — ${to ?? "present"}`;
+}
+
+function contactLine(label: string, ids: readonly ContactChannelId[]): string {
+  const rendered = channelsFor(ids).map((channel) =>
+    channel.kind === "email" ? channel.address : `${channel.label}: ${channel.url}`,
+  );
+  return `- ${label}: ${rendered.join(", ")}`;
 }
 
 /**
@@ -21,7 +39,9 @@ export function buildLlmsTxt(locale: string): string {
     "",
     ...ROUTES.map((route) => `- [${route.key}](${pageUrl(locale, route.path)})`),
     "",
-    "## Roles",
+    "## Software engineering",
+    "",
+    "### Roles",
     "",
     ...EXPERIENCE.map(
       (entry) =>
@@ -29,7 +49,7 @@ export function buildLlmsTxt(locale: string): string {
         `${entry.domains.join(", ")}; markets: ${entry.markets.join(", ")}`,
     ),
     "",
-    "## Selected work",
+    "### Selected work",
     "",
     ...featuredProjects().map((project) => {
       const label = project.name ?? "Undisclosed client project";
@@ -37,7 +57,7 @@ export function buildLlmsTxt(locale: string): string {
       return `- ${label}${link} — ${project.role}; ${project.stack.join(", ")}`;
     }),
     "",
-    "## Skills",
+    "### Skills",
     "",
     ...SKILL_GROUPS.map(
       (group) =>
@@ -46,10 +66,16 @@ export function buildLlmsTxt(locale: string): string {
           .join("; ")}`,
     ),
     "",
+    "## Trading",
+    "",
+    ...TRADING.map((milestone) => `- ${milestone.market} since ${milestone.year}`),
+    "",
     "## Contact",
     "",
-    `- Email: ${IDENTITY.email}`,
-    ...IDENTITY.socials.map((social) => `- ${social.label}: ${social.url}`),
+    contactLine("General", GENERAL_CONTACT_IDS),
+    ...FACETS.filter((facet) => FACET_CONTACT_IDS[facet].length > 0).map((facet) =>
+      contactLine(FACET_LABEL_EN[facet], FACET_CONTACT_IDS[facet]),
+    ),
     "",
   ];
 

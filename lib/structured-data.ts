@@ -1,5 +1,14 @@
+import { FACET_CONTACT_TYPE, FACETS } from "@/enums";
 import { routing } from "@/i18n/routing";
-import { allSkillNames, EDUCATION, IDENTITY } from "@/lib/profile";
+import {
+  allSkillNames,
+  channelsFor,
+  EDUCATION,
+  FACET_CONTACT_IDS,
+  IDENTITY,
+  primaryEmail,
+  profileChannels,
+} from "@/lib/profile";
 import {
   breadcrumbTrail,
   CONTENT_LAST_MODIFIED,
@@ -8,6 +17,26 @@ import {
   routeLastModified,
 } from "@/lib/routes";
 import { pageUrl, SITE_NAME, SITE_URL } from "@/lib/site";
+
+/**
+ * Một ContactPoint cho mỗi nhánh, sinh thẳng từ `FACET_CONTACT_IDS` nên không
+ * thể lệch với trang `/contact`. Nhánh nào không có email thì không có điểm
+ * liên hệ — không bịa ra một cái rỗng.
+ */
+function contactPoints() {
+  return FACETS.flatMap((facet) => {
+    const email = channelsFor(FACET_CONTACT_IDS[facet]).find((c) => c.kind === "email");
+    return email !== undefined && email.kind === "email"
+      ? [
+          {
+            "@type": "ContactPoint",
+            contactType: FACET_CONTACT_TYPE[facet],
+            email: `mailto:${email.address}`,
+          },
+        ]
+      : [];
+  });
+}
 
 /**
  * Node Person — thực thể chính của trang này với search engine và answer engine.
@@ -23,10 +52,11 @@ export function personSchema(locale: string) {
     name: IDENTITY.fullName,
     alternateName: [IDENTITY.englishName, IDENTITY.nickname],
     jobTitle: IDENTITY.jobTitle,
-    email: `mailto:${IDENTITY.email}`,
+    email: `mailto:${primaryEmail()}`,
     url: pageUrl(locale, ""),
     image: `${SITE_URL}/images/portrait.jpg`,
-    sameAs: IDENTITY.socials.map((social) => social.url),
+    sameAs: profileChannels().map((c) => c.url),
+    contactPoint: contactPoints(),
     knowsAbout: allSkillNames(),
     knowsLanguage: routing.locales,
     address: {

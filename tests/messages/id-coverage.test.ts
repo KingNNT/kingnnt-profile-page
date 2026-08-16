@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { FACETS } from "@/enums";
 import { routing } from "@/i18n/routing";
 import {
   AWARDS,
@@ -8,7 +9,7 @@ import {
   SKILL_GROUPS,
   SPOKEN_LANGUAGES,
 } from "@/lib/profile";
-import { navRoutes, ROUTES } from "@/lib/routes";
+import { facetHubRoutes, facetRoutes, ROUTES } from "@/lib/routes";
 import en from "@/messages/en.json";
 import vi from "@/messages/vi.json";
 
@@ -75,35 +76,35 @@ describe("data id <-> catalog key coverage", () => {
     );
   });
 
-  it("covers every experience entry id in experience.entries, both directions", () => {
+  it("covers every experience entry id in devExperience.entries, both directions", () => {
     assertIdsMatchCatalog(
       "EXPERIENCE",
       EXPERIENCE.map((entry) => entry.id),
-      ["experience", "entries"],
+      ["devExperience", "entries"],
     );
   });
 
-  it("covers every project id in projects.entries, both directions", () => {
+  it("covers every project id in devProjects.entries, both directions", () => {
     assertIdsMatchCatalog(
       "PROJECTS",
       PROJECTS.map((project) => project.id),
-      ["projects", "entries"],
+      ["devProjects", "entries"],
     );
   });
 
-  it("covers every skill group id in skills.groups, both directions", () => {
+  it("covers every skill group id in devSkills.groups, both directions", () => {
     assertIdsMatchCatalog(
       "SKILL_GROUPS",
       SKILL_GROUPS.map((group) => group.id),
-      ["skills", "groups"],
+      ["devSkills", "groups"],
     );
   });
 
-  it("covers every practice area id in skills.practice, both directions", () => {
+  it("covers every practice area id in devSkills.practice, both directions", () => {
     assertIdsMatchCatalog(
       "PRACTICE_AREAS",
       PRACTICE_AREAS.map((area) => area.id),
-      ["skills", "practice"],
+      ["devSkills", "practice"],
     );
   });
 
@@ -117,7 +118,7 @@ describe("data id <-> catalog key coverage", () => {
 
   /**
    * `ROUTES` bao gồm trang chủ (`key: "home"`), nên namespace `nav` có đúng
-   * bấy nhiêu key — không so với `navRoutes()`.
+   * bấy nhiêu key — không so với `primaryNavRoutes()`.
    */
   it("covers every route key in nav, both directions", () => {
     assertIdsMatchCatalog(
@@ -128,14 +129,38 @@ describe("data id <-> catalog key coverage", () => {
   });
 
   /**
-   * `navRoutes()` cố ý bỏ trang chủ, nên `home.index` có ít hơn `nav` đúng
-   * một key — so với nguồn đúng của nó thay vì ép hai namespace phải khớp.
+   * Trang hub liệt kê các nhánh, không liệt kê mọi mục trên thanh điều hướng:
+   * `about` và `contact` có mặt ở header nhưng không phải một lối vào theo
+   * mảng. Neo vào `facetHubRoutes()` cũng có nghĩa là một nhánh chưa dựng
+   * không đòi bản dịch cho một lối vào không tồn tại.
    */
-  it("covers every non-home route key in home.index, both directions", () => {
+  it("covers every facet hub key in home.index, both directions", () => {
     assertIdsMatchCatalog(
-      "navRoutes()",
-      navRoutes().map((route) => route.key),
+      "facetHubRoutes()",
+      facetHubRoutes().map((route) => route.key),
       ["home", "index"],
     );
+  });
+
+  /**
+   * `app/[locale]/(public)/dev/page.tsx` dựng key bằng
+   * `tIndex(dynamicMessageKey(route.key))` trên `facetRoutes("dev")` — cũng là
+   * template-literal key `tsc` không kiểm được, nên cần neo riêng.
+   */
+  it("covers every dev child route key in dev.index, both directions", () => {
+    assertIdsMatchCatalog(
+      'facetRoutes("dev")',
+      facetRoutes("dev").map((route) => route.key),
+      ["dev", "index"],
+    );
+  });
+
+  /**
+   * `app/[locale]/(public)/contact/page.tsx` dựng key bằng
+   * `tGroups(dynamicMessageKey(facet))` trên `FACETS`, cộng key literal
+   * `general` — cùng lý do: lệch chỉ lộ ra ở HTML dưới dạng key thô.
+   */
+  it("covers every contact group key in contact.groups, both directions", () => {
+    assertIdsMatchCatalog("contact groups", ["general", ...FACETS], ["contact", "groups"]);
   });
 });

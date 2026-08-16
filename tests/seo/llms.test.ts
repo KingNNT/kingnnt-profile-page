@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { LocaleSupport } from "@/enums";
+import { FACET_LABEL_EN, FACETS, LocaleSupport } from "@/enums";
 import { buildLlmsTxt } from "@/lib/llms";
-import { featuredProjects, IDENTITY, PROJECTS } from "@/lib/profile";
+import { featuredProjects, IDENTITY, primaryEmail, PROJECTS } from "@/lib/profile";
 import { ROUTES } from "@/lib/routes";
 import { pageUrl } from "@/lib/site";
 
@@ -43,6 +43,27 @@ describe("llms.txt", () => {
       if (project.name === null && project.url) {
         expect(text, project.id).not.toContain(project.url);
       }
+    }
+  });
+
+  it("publishes the general email", () => {
+    expect(buildLlmsTxt(LocaleSupport.EN)).toContain(primaryEmail());
+  });
+
+  it("groups contact channels by facet", () => {
+    const txt = buildLlmsTxt(LocaleSupport.EN);
+    expect(txt).toContain("- General:");
+    for (const facet of FACETS) {
+      expect(txt, facet).toContain(`- ${FACET_LABEL_EN[facet]}:`);
+    }
+  });
+
+  it("gives every facet contact line at least one channel", () => {
+    const txt = buildLlmsTxt(LocaleSupport.EN);
+    for (const facet of FACETS) {
+      const line = txt.split("\n").find((l) => l.startsWith(`- ${FACET_LABEL_EN[facet]}:`));
+      expect(line, facet).toBeDefined();
+      expect(line?.split(":").slice(1).join(":").trim().length, facet).toBeGreaterThan(0);
     }
   });
 });

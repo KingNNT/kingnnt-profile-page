@@ -34,7 +34,7 @@ describe("projects page wiring", () => {
   it.each(
     Object.entries(CATALOGS),
   )("%s has a description for every project", (_locale, catalog) => {
-    const entries = (catalog as typeof en).projects.entries;
+    const entries = (catalog as typeof en).devProjects.entries;
     for (const project of PROJECTS) {
       const description = (entries as Record<string, string>)[project.id];
       expect(description, `missing projects.entries.${project.id}`).toBeTruthy();

@@ -1,17 +1,28 @@
 import { describe, expect, it } from "vitest";
 import {
   breadcrumbTrail,
+  facetHubRoutes,
+  facetRoutes,
   findRoute,
   HOME_PATH,
-  navRoutes,
+  primaryNavRoutes,
   ROUTES,
   routeLastModified,
 } from "@/lib/routes";
 
 describe("route registry", () => {
-  it("registers exactly the five public routes", () => {
+  it("registers exactly the public routes of phase one", () => {
     expect(ROUTES.map((r) => r.path).sort()).toEqual(
-      ["", "about", "experience", "projects", "skills"].sort(),
+      [
+        "",
+        "about",
+        "contact",
+        "dev",
+        "dev/experience",
+        "dev/projects",
+        "dev/skills",
+        "trading",
+      ].sort(),
     );
   });
 
@@ -27,12 +38,32 @@ describe("route registry", () => {
     expect(home?.priority).toBe(1);
   });
 
-  it("excludes home from the navigation list", () => {
-    expect(navRoutes().map((r) => r.path)).toEqual(["about", "experience", "skills", "projects"]);
+  it("lists the primary navigation from the routes parented at home", () => {
+    expect(primaryNavRoutes().map((r) => r.path)).toEqual(["dev", "trading", "about", "contact"]);
+  });
+
+  it("excludes home from the primary navigation", () => {
+    expect(primaryNavRoutes().map((r) => r.path)).not.toContain(HOME_PATH);
+  });
+
+  it("hangs every dev page under the dev hub", () => {
+    expect(facetRoutes("dev").map((r) => r.path)).toEqual([
+      "dev/experience",
+      "dev/skills",
+      "dev/projects",
+    ]);
+  });
+
+  it("registers one hub per facet that has pages", () => {
+    expect(facetHubRoutes().map((r) => r.facet)).toEqual(["dev", "trading"]);
   });
 
   it("builds a breadcrumb trail rooted at home", () => {
-    expect(breadcrumbTrail("skills").map((r) => r.path)).toEqual([HOME_PATH, "skills"]);
+    expect(breadcrumbTrail("dev/skills").map((r) => r.path)).toEqual([
+      HOME_PATH,
+      "dev",
+      "dev/skills",
+    ]);
   });
 
   it("returns an empty trail for an unknown path", () => {

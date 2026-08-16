@@ -24,7 +24,7 @@ describe("experience page wiring", () => {
   it.each(
     Object.entries(CATALOGS),
   )("%s has a summary for every experience entry", (_locale, catalog) => {
-    const entries = (catalog as typeof en).experience.entries;
+    const entries = (catalog as typeof en).devExperience.entries;
     for (const item of EXPERIENCE) {
       const summary = (entries as Record<string, string>)[item.id];
       expect(summary, `missing experience.entries.${item.id}`).toBeTruthy();

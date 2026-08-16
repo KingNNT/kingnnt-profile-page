@@ -73,6 +73,10 @@ const ROOTS: Record<string, string[]> = {
   messages: walk(join(ROOT, "messages")),
   components: walk(join(ROOT, "components")),
   app: walk(join(ROOT, "app")),
+  // `FACET_LABEL_EN` phát ra `llms.txt`, `FACET_CONTACT_TYPE` phát ra
+  // `contactType` trong JSON-LD — cả hai giờ là văn bản crawler đọc được, nên
+  // `enums/` không còn là cây an toàn để bỏ ngoài scan.
+  enums: walk(join(ROOT, "enums")),
   // `lib/profile` nằm bên trong `lib` — dedupe để không quét hai lần. So theo
   // ranh giới thư mục (`+ sep`), không phải path-prefix suông: một thư mục anh
   // em tên `lib/profile-legacy` có cùng tiền tố chuỗi với `lib/profile` nhưng

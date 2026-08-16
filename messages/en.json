@@ -5,13 +5,13 @@
   },
   "nav": {
     "home": "Home",
+    "dev": "Dev",
+    "devExperience": "Experience",
+    "devSkills": "Skills",
+    "devProjects": "Projects",
+    "trading": "Trading",
     "about": "About",
-    "experience": "Experience",
-    "skills": "Skills",
-    "projects": "Projects"
-  },
-  "footer": {
-    "email": "Email"
+    "contact": "Contact"
   },
   "notFound": {
     "label": "404",
@@ -22,21 +22,48 @@
   "home": {
     "metaTitle": "Ninh Ngọc Tuấn — Solutions Consultant",
     "metaDescription": "Solutions consultant and full-stack engineer in Hà Nội. Six years across AI, banking, e-commerce, healthcare and education.",
-    "tagline": "I sit between the business conversation and the architecture diagram — scoping what should be built, then building enough of it to prove the scope was right.",
+    "tagline": "Software I build for other people, markets I trade with my own money. Different tools; the same refusal to trust a guess I haven't tested.",
     "introLabel": "Intro",
-    "intro1": "Six years of full-stack work across AI, banking, e-commerce, healthcare, education and hospitality, for clients in Vietnam, Japan, Malaysia, Australia and the EU. These days most of my work starts before the code does: discovery sessions, solution architecture, effort estimates, and the proof-of-concept that settles the argument.",
-    "intro2": "I still write the systems I scope. That is deliberate — an estimate from someone who no longer builds is a guess with a confident tone.",
-    "indexLabel": "Index",
+    "intro1": "The areas are separate enough that each has its own part of this site. Engineering is the paid work: six years of full-stack build across AI, banking, e-commerce, healthcare, education and hospitality, for clients in Vietnam, Japan, Malaysia, Australia and the EU. These days most of it starts before the code does — discovery, solution architecture, estimates, and the proof-of-concept that settles the argument.",
+    "intro2": "Trading is the older habit and the quieter one: crypto from 2020, then forex, then equities. There are no performance figures on this site and there will not be any — the method is the only part worth reading, and the method is what turned out to transfer back into the engineering work.",
+    "indexLabel": "Lines of work",
     "index": {
-      "about": "The longer version, including the years I spent trading.",
-      "experience": "Six roles, by domain and market rather than by employer.",
-      "skills": "What I use, how well, and when I last used it.",
-      "projects": "Selected work, with links where the product is public."
-    }
+      "dev": "Six years building software — roles, skills and selected work.",
+      "trading": "Six years across crypto, forex and equities — method, not performance."
+    },
+    "contactLabel": "Reach me",
+    "contact": "This address reaches me whatever the subject. Each line of work also has its own — see the contact page."
+  },
+  "dev": {
+    "metaTitle": "Software engineering",
+    "metaDescription": "Roles, skills and selected work — the engineering side of what I do.",
+    "title": "Software engineering",
+    "lead": "Six years of building software, told by domain and market rather than by employer. I still write the systems I scope — an estimate from someone who no longer builds is a guess with a confident tone.",
+    "indexLabel": "In this section",
+    "index": {
+      "devExperience": "Six roles, by domain and market rather than by employer.",
+      "devSkills": "What I use, how well, and when I last used it.",
+      "devProjects": "Selected work, with links where the product is public."
+    },
+    "contactLabel": "Work with me",
+    "contact": "The fastest way to reach me about engineering work is email. LinkedIn I read less often, and GitHub is where the code is.",
+    "allChannels": "All contact channels →"
+  },
+  "trading": {
+    "metaTitle": "Trading",
+    "metaDescription": "Six years across crypto, forex and equities — method, not performance.",
+    "title": "Trading",
+    "leadLabel": "How it started",
+    "lead1": "In 2020 I started trading crypto. In mid-2023 I moved into forex, and in early 2024 I added equities. I have run two styles side by side the whole time: holding positions I believe in for the long horizon, and swing trading around the shorter moves. I am not going to publish numbers here — this is not a finance site and I am not selling a method.",
+    "lead2": "What I keep from it is not a market opinion. It is a habit of thinking in position sizes instead of certainties. A trader who is right sixty percent of the time and sizes badly still loses; an engineer who is confident about an estimate and wrong about the tail risk sinks a project the same way. Trading taught me to ask what happens when I am wrong before asking how likely it is that I am right — and that question has changed how I scope work far more than any framework has.",
+    "lead3": "It also taught me to sit still. Most days the correct action is none, and the discipline of not acting transfers almost directly to architecture: the cheapest system is the one you did not build because you waited a week and the requirement evaporated.",
+    "contactLabel": "Talk trading",
+    "contact": "Anything about markets, method or risk goes to this address.",
+    "allChannels": "All contact channels →"
   },
   "about": {
     "metaTitle": "About",
-    "metaDescription": "Engineer, then trader, then both — how the two halves ended up informing each other.",
+    "metaDescription": "The longer version: how I got here, and the credentials behind it.",
     "title": "About",
     "leadLabel": "Now",
     "lead1": "I am a solutions consultant and full-stack engineer, based in Hà Nội. My work splits roughly in half: figuring out what a client actually needs and what it will cost, and then building the part of it that proves the answer was right.",
@@ -44,10 +71,6 @@
     "pathLabel": "How I got here",
     "path1": "I started building for clients as a freelancer in 2020, while still at university, and never fully stopped. That thread runs underneath every job since: it is where I learned that the hard part is rarely the code, it is agreeing on what the code is supposed to do.",
     "path2": "From there: hospitality systems for the Japanese market, then several years of offshore delivery on large teams — video calling, booking, school management — then an AI centre, where the work turned into document extraction and email agents for Japanese and EU clients. Lately I lead architecture on AI products and sit in the pre-sales conversations that decide whether they get built at all.",
-    "tradingLabel": "The other half",
-    "trading1": "In 2020 I started trading crypto. In mid-2023 I moved into forex, and in early 2024 I added equities. I have run two styles side by side the whole time: holding positions I believe in for the long horizon, and swing trading around the shorter moves. I am not going to publish numbers here — this is not a finance site and I am not selling a method.",
-    "trading2": "What I keep from it is not a market opinion. It is a habit of thinking in position sizes instead of certainties. A trader who is right sixty percent of the time and sizes badly still loses; an engineer who is confident about an estimate and wrong about the tail risk sinks a project the same way. Trading taught me to ask what happens when I am wrong before asking how likely it is that I am right — and that question has changed how I scope work far more than any framework has.",
-    "trading3": "It also taught me to sit still. Most days the correct action is none, and the discipline of not acting transfers almost directly to architecture: the cheapest system is the one you did not build because you waited a week and the requirement evaporated.",
     "credentialsLabel": "Education & credentials",
     "educationLabel": "Education",
     "certificationsLabel": "Certifications",
@@ -61,10 +84,9 @@
       "english": { "term": "English", "detail": "Professional working proficiency" },
       "vietnamese": { "term": "Vietnamese", "detail": "Native" }
     },
-    "contactLabel": "Get in touch",
-    "contact": "The fastest way to reach me is email. I read LinkedIn less often, and GitHub is where the code is."
+    "contactLink": "Get in touch →"
   },
-  "experience": {
+  "devExperience": {
     "metaTitle": "Experience",
     "metaDescription": "Six years of engineering and consulting, described by domain, market and team size.",
     "title": "Experience",
@@ -80,7 +102,7 @@
       "freelance": "Direct client work, start to finish: understanding the problem, designing the architecture and schema, provisioning cloud infrastructure, building the thing, deploying it, and supporting it afterwards. The longest-running thread here, and the one that taught me pricing and scope."
     }
   },
-  "skills": {
+  "devSkills": {
     "metaTitle": "Skills",
     "metaDescription": "Languages, frameworks, infrastructure and data tools — with proficiency, years of use, and the year each was last used.",
     "title": "Skills",
@@ -128,7 +150,7 @@
       }
     }
   },
-  "projects": {
+  "devProjects": {
     "metaTitle": "Projects",
     "metaDescription": "Selected engineering and architecture work, with links where the product is public.",
     "title": "Projects",
@@ -147,6 +169,18 @@
       "livecall": "A browser-based enterprise video calling platform: calling, screen sharing, recording and multi-party conferencing on Twilio, with co-browsing, Stripe subscriptions and WebSocket presence. Vue 3 and TypeScript on the front end, Django behind it, on a team of fifteen or more.",
       "restaurant-marketplace": "A restaurant marketplace for the Japanese food service industry connecting venues with diners — multi-tenant vendor management, menus and availability, reservations and ordering, social SSO, and payment processing. Laravel back end, Nuxt front end, plus an automated crawler for market data.",
       "school-management": "A school management system for Japanese educational institutions covering enrolment, scheduling, grade tracking and parent communication, with role-based access for students, teachers, administrators and guardians. Laravel and Vue, with Redis caching to survive the registration-period peaks."
+    }
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Every way to reach me, grouped by what you want to talk about.",
+    "title": "Contact",
+    "lead": "Different parts of my work have different inboxes, so a message lands where it belongs. The general address always works.",
+    "groups": {
+      "general": "General",
+      "dev": "Software engineering",
+      "trading": "Trading",
+      "creator": "Content"
     }
   }
 }

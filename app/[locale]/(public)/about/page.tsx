@@ -3,8 +3,9 @@ import { Prose } from "@/components/prose";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
+import { Link } from "@/i18n/navigation";
 import { pageMetadata } from "@/lib/metadata";
-import { AWARDS, CERTIFICATIONS, EDUCATION, IDENTITY, SPOKEN_LANGUAGES } from "@/lib/profile";
+import { AWARDS, CERTIFICATIONS, EDUCATION, SPOKEN_LANGUAGES } from "@/lib/profile";
 import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "about";
@@ -53,16 +54,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </Prose>
         </Reveal>
       </Section>
-      <Section id="trading" index={3} label={t("tradingLabel")}>
-        <Reveal>
-          <Prose>
-            <p>{t("trading1")}</p>
-            <p>{t("trading2")}</p>
-            <p>{t("trading3")}</p>
-          </Prose>
-        </Reveal>
-      </Section>
-      <Section id="credentials" index={4} label={t("credentialsLabel")}>
+      <Section id="credentials" index={3} label={t("credentialsLabel")}>
         <Reveal>
           <dl className="space-y-8 font-mono text-sm">
             <div>
@@ -123,18 +115,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </dl>
         </Reveal>
       </Section>
-      <Section id="contact" index={5} label={t("contactLabel")}>
-        <Reveal>
-          <Prose>
-            <p>{t("contact")}</p>
-          </Prose>
-          <a
-            className="mt-6 inline-block border-b border-primary pb-0.5 font-mono text-sm text-primary"
-            href={`mailto:${IDENTITY.email}`}
-          >
-            {IDENTITY.email}
-          </a>
-        </Reveal>
+      <Section id="contact">
+        <Link
+          className="inline-block border-b border-primary pb-0.5 font-mono text-sm text-primary"
+          href="/contact"
+        >
+          {t("contactLink")}
+        </Link>
       </Section>
     </main>
   );

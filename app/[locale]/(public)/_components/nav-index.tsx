@@ -7,7 +7,7 @@ export interface NavIndexEntry {
 }
 
 /**
- * Bốn lối vào, đánh số. Thay cho một dãy nút CTA — trang này không bán gì, nó
+ * Các lối vào, đánh số. Thay cho một dãy nút CTA — trang này không bán gì, nó
  * mời đọc tiếp, và một mục lục nói đúng điều đó.
  *
  * Thuần trình bày: nhận nội dung đã dịch qua props thay vì tự gọi
