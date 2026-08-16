@@ -9,6 +9,7 @@
     "devExperience": "Kinh nghiệm",
     "devSkills": "Kỹ năng",
     "devProjects": "Dự án",
+    "trading": "Giao dịch",
     "about": "Giới thiệu",
     "contact": "Liên hệ"
   },
@@ -27,7 +28,8 @@
     "intro2": "Tôi vẫn tự viết những hệ thống mình vạch ra. Đó là chủ ý — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
     "indexLabel": "Mục lục",
     "index": {
-      "dev": "Mười lăm năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc."
+      "dev": "Mười lăm năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc.",
+      "trading": "Sáu năm qua crypto, forex và chứng khoán — phương pháp, không phải hiệu suất."
     }
   },
   "dev": {
@@ -44,6 +46,17 @@
     "contactLabel": "Làm việc cùng tôi",
     "contact": "Cách nhanh nhất để liên hệ về công việc kỹ thuật là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
   },
+  "trading": {
+    "metaTitle": "Giao dịch",
+    "metaDescription": "Sáu năm qua crypto, forex và chứng khoán — phương pháp, không phải hiệu suất.",
+    "title": "Giao dịch",
+    "leadLabel": "Bắt đầu thế nào",
+    "lead1": "Năm 2020 tôi bắt đầu giao dịch crypto. Giữa 2023 chuyển sang forex, và đầu 2024 thêm chứng khoán. Suốt thời gian đó tôi chạy song song hai trường phái: nắm giữ dài hạn những vị thế mình tin, và swing trading quanh các nhịp ngắn hơn. Tôi sẽ không đưa con số nào lên đây — trang này không phải nội dung tài chính và tôi không bán phương pháp nào cả.",
+    "lead2": "Thứ tôi giữ lại không phải một quan điểm thị trường. Đó là thói quen nghĩ bằng khối lượng vị thế thay vì bằng sự chắc chắn. Một trader đúng sáu trên mười lần mà vào lệnh sai cỡ vẫn lỗ; một kỹ sư tự tin về ước lượng nhưng sai về rủi ro đuôi thì làm chìm dự án theo đúng cách đó. Giao dịch dạy tôi hỏi \"nếu tôi sai thì chuyện gì xảy ra\" trước khi hỏi \"khả năng tôi đúng là bao nhiêu\" — và câu hỏi đó thay đổi cách tôi bóc tách công việc nhiều hơn bất kỳ framework nào.",
+    "lead3": "Nó cũng dạy tôi ngồi yên. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật không-làm-gì đó chuyển gần như trực tiếp sang kiến trúc: hệ thống rẻ nhất là hệ thống bạn đã không dựng, vì bạn chờ thêm một tuần và yêu cầu đó tự bốc hơi.",
+    "contactLabel": "Trao đổi về giao dịch",
+    "contact": "Mọi câu chuyện về thị trường, phương pháp hay quản trị rủi ro gửi về địa chỉ này."
+  },
   "about": {
     "metaTitle": "Giới thiệu",
     "metaDescription": "Kỹ sư, rồi trader, rồi cả hai — và cách hai nửa đó soi sáng lẫn nhau.",
@@ -54,10 +67,6 @@
     "pathLabel": "Đường đi",
     "path1": "Tôi bắt đầu làm cho khách hàng từ 2020, khi còn đi học, và chưa bao giờ dừng hẳn. Mạch freelance đó chạy ngầm dưới mọi công việc sau này: đó là nơi tôi học được rằng phần khó hiếm khi là code, mà là thống nhất được code đó rốt cuộc phải làm gì.",
     "path2": "Từ đó: hệ thống cho ngành khách sạn ở thị trường Nhật, rồi vài năm làm offshore trong các đội lớn — video call, đặt chỗ, quản lý trường học — rồi tới một trung tâm AI, nơi công việc chuyển sang trích xuất tài liệu và agent xử lý email cho khách Nhật và EU. Gần đây tôi dẫn phần kiến trúc cho các sản phẩm AI, và ngồi trong chính những buổi pre-sales quyết định chúng có được làm hay không.",
-    "tradingLabel": "Nửa còn lại",
-    "trading1": "Năm 2020 tôi bắt đầu giao dịch crypto. Giữa 2023 chuyển sang forex, và đầu 2024 thêm chứng khoán. Suốt thời gian đó tôi chạy song song hai trường phái: nắm giữ dài hạn những vị thế mình tin, và swing trading quanh các nhịp ngắn hơn. Tôi sẽ không đưa con số nào lên đây — trang này không phải nội dung tài chính và tôi không bán phương pháp nào cả.",
-    "trading2": "Thứ tôi giữ lại không phải một quan điểm thị trường. Đó là thói quen nghĩ bằng khối lượng vị thế thay vì bằng sự chắc chắn. Một trader đúng sáu trên mười lần mà vào lệnh sai cỡ vẫn lỗ; một kỹ sư tự tin về ước lượng nhưng sai về rủi ro đuôi thì làm chìm dự án theo đúng cách đó. Giao dịch dạy tôi hỏi \"nếu tôi sai thì chuyện gì xảy ra\" trước khi hỏi \"khả năng tôi đúng là bao nhiêu\" — và câu hỏi đó thay đổi cách tôi bóc tách công việc nhiều hơn bất kỳ framework nào.",
-    "trading3": "Nó cũng dạy tôi ngồi yên. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật không-làm-gì đó chuyển gần như trực tiếp sang kiến trúc: hệ thống rẻ nhất là hệ thống bạn đã không dựng, vì bạn chờ thêm một tuần và yêu cầu đó tự bốc hơi.",
     "credentialsLabel": "Học vấn & chứng chỉ",
     "educationLabel": "Học vấn",
     "certificationsLabel": "Chứng chỉ",

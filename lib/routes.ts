@@ -73,6 +73,14 @@ export const ROUTES: readonly RouteDef[] = [
     priority: 0.8,
     changeFrequency: "monthly",
   },
+  {
+    path: "trading",
+    key: "trading",
+    parent: HOME_PATH,
+    facet: "trading",
+    priority: 0.9,
+    changeFrequency: "monthly",
+  },
   { path: "about", key: "about", parent: HOME_PATH, priority: 0.9, changeFrequency: "monthly" },
   { path: "contact", key: "contact", parent: HOME_PATH, priority: 0.8, changeFrequency: "yearly" },
 ];

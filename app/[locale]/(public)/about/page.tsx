@@ -53,16 +53,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </Prose>
         </Reveal>
       </Section>
-      <Section id="trading" index={3} label={t("tradingLabel")}>
-        <Reveal>
-          <Prose>
-            <p>{t("trading1")}</p>
-            <p>{t("trading2")}</p>
-            <p>{t("trading3")}</p>
-          </Prose>
-        </Reveal>
-      </Section>
-      <Section id="credentials" index={4} label={t("credentialsLabel")}>
+      <Section id="credentials" index={3} label={t("credentialsLabel")}>
         <Reveal>
           <dl className="space-y-8 font-mono text-sm">
             <div>

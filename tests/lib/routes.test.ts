@@ -13,7 +13,16 @@ import {
 describe("route registry", () => {
   it("registers exactly the public routes of phase one", () => {
     expect(ROUTES.map((r) => r.path).sort()).toEqual(
-      ["", "about", "contact", "dev", "dev/experience", "dev/projects", "dev/skills"].sort(),
+      [
+        "",
+        "about",
+        "contact",
+        "dev",
+        "dev/experience",
+        "dev/projects",
+        "dev/skills",
+        "trading",
+      ].sort(),
     );
   });
 
@@ -30,7 +39,7 @@ describe("route registry", () => {
   });
 
   it("lists the primary navigation from the routes parented at home", () => {
-    expect(primaryNavRoutes().map((r) => r.path)).toEqual(["dev", "about", "contact"]);
+    expect(primaryNavRoutes().map((r) => r.path)).toEqual(["dev", "trading", "about", "contact"]);
   });
 
   it("excludes home from the primary navigation", () => {
@@ -46,7 +55,7 @@ describe("route registry", () => {
   });
 
   it("registers one hub per facet that has pages", () => {
-    expect(facetHubRoutes().map((r) => r.facet)).toEqual(["dev"]);
+    expect(facetHubRoutes().map((r) => r.facet)).toEqual(["dev", "trading"]);
   });
 
   it("builds a breadcrumb trail rooted at home", () => {

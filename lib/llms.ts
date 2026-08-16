@@ -8,6 +8,7 @@ import {
   GENERAL_CONTACT_IDS,
   IDENTITY,
   SKILL_GROUPS,
+  TRADING,
 } from "@/lib/profile";
 import { ROUTES } from "@/lib/routes";
 import { pageUrl } from "@/lib/site";
@@ -64,6 +65,10 @@ export function buildLlmsTxt(locale: string): string {
           .map((skill) => `${skill.name} (${skill.proficiency}, last used ${skill.lastUsed})`)
           .join("; ")}`,
     ),
+    "",
+    "## Trading",
+    "",
+    ...TRADING.map((milestone) => `- ${milestone.market} since ${milestone.year}`),
     "",
     "## Contact",
     "",
