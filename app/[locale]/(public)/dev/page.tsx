@@ -5,6 +5,7 @@ import { Prose } from "@/components/prose";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
+import { Link } from "@/i18n/navigation";
 import { pageMetadata } from "@/lib/metadata";
 import { FACET_CONTACT_IDS } from "@/lib/profile";
 import { facetRoutes } from "@/lib/routes";
@@ -62,6 +63,12 @@ export default async function DevPage({ params }: { params: Promise<{ locale: st
             <p>{t("contact")}</p>
           </Prose>
           <ContactBlock ids={FACET_CONTACT_IDS.dev} className="mt-6" />
+          <Link
+            className="mt-6 inline-block font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+            href="/contact"
+          >
+            {t("allChannels")}
+          </Link>
         </Reveal>
       </Section>
     </main>

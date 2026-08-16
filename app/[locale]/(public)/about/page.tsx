@@ -3,6 +3,7 @@ import { Prose } from "@/components/prose";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
+import { Link } from "@/i18n/navigation";
 import { pageMetadata } from "@/lib/metadata";
 import { AWARDS, CERTIFICATIONS, EDUCATION, SPOKEN_LANGUAGES } from "@/lib/profile";
 import { dynamicMessageKey } from "@/lib/utils";
@@ -113,6 +114,14 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             </div>
           </dl>
         </Reveal>
+      </Section>
+      <Section id="contact">
+        <Link
+          className="inline-block border-b border-primary pb-0.5 font-mono text-sm text-primary"
+          href="/contact"
+        >
+          {t("contactLink")}
+        </Link>
       </Section>
     </main>
   );

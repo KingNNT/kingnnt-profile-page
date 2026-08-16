@@ -28,7 +28,7 @@
     "intro2": "Tôi vẫn tự viết những hệ thống mình vạch ra. Đó là chủ ý — một bản ước lượng từ người đã ngừng viết code chỉ là phỏng đoán được nói bằng giọng chắc chắn.",
     "indexLabel": "Các mảng công việc",
     "index": {
-      "dev": "Mười lăm năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc.",
+      "dev": "Sáu năm làm phần mềm — vai trò, kỹ năng và dự án chọn lọc.",
       "trading": "Sáu năm qua crypto, forex và chứng khoán — phương pháp, không phải hiệu suất."
     },
     "contactLabel": "Liên hệ",
@@ -38,7 +38,7 @@
     "metaTitle": "Kỹ thuật phần mềm",
     "metaDescription": "Vai trò, kỹ năng và các dự án chọn lọc — phần kỹ thuật trong công việc của tôi.",
     "title": "Kỹ thuật phần mềm",
-    "lead": "Mười lăm năm làm phần mềm, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
+    "lead": "Sáu năm làm phần mềm, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
     "indexLabel": "Trong phần này",
     "index": {
       "devExperience": "Sáu vai trò, kể theo lĩnh vực và thị trường thay vì theo nơi làm.",
@@ -46,7 +46,8 @@
       "devProjects": "Các dự án chọn lọc, có link ở những sản phẩm đã public."
     },
     "contactLabel": "Làm việc cùng tôi",
-    "contact": "Cách nhanh nhất để liên hệ về công việc kỹ thuật là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
+    "contact": "Cách nhanh nhất để liên hệ về công việc kỹ thuật là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code.",
+    "allChannels": "Tất cả kênh liên hệ →"
   },
   "trading": {
     "metaTitle": "Giao dịch",
@@ -57,11 +58,12 @@
     "lead2": "Thứ tôi giữ lại không phải một quan điểm thị trường. Đó là thói quen nghĩ bằng khối lượng vị thế thay vì bằng sự chắc chắn. Một trader đúng sáu trên mười lần mà vào lệnh sai cỡ vẫn lỗ; một kỹ sư tự tin về ước lượng nhưng sai về rủi ro đuôi thì làm chìm dự án theo đúng cách đó. Giao dịch dạy tôi hỏi \"nếu tôi sai thì chuyện gì xảy ra\" trước khi hỏi \"khả năng tôi đúng là bao nhiêu\" — và câu hỏi đó thay đổi cách tôi bóc tách công việc nhiều hơn bất kỳ framework nào.",
     "lead3": "Nó cũng dạy tôi ngồi yên. Phần lớn các ngày, hành động đúng là không hành động, và kỷ luật không-làm-gì đó chuyển gần như trực tiếp sang kiến trúc: hệ thống rẻ nhất là hệ thống bạn đã không dựng, vì bạn chờ thêm một tuần và yêu cầu đó tự bốc hơi.",
     "contactLabel": "Trao đổi về giao dịch",
-    "contact": "Mọi câu chuyện về thị trường, phương pháp hay quản trị rủi ro gửi về địa chỉ này."
+    "contact": "Mọi câu chuyện về thị trường, phương pháp hay quản trị rủi ro gửi về địa chỉ này.",
+    "allChannels": "Tất cả kênh liên hệ →"
   },
   "about": {
     "metaTitle": "Giới thiệu",
-    "metaDescription": "Kỹ sư, rồi trader, rồi cả hai — và cách hai nửa đó soi sáng lẫn nhau.",
+    "metaDescription": "Bản dài hơn: tôi đã đi tới đây thế nào, và những bằng cấp phía sau.",
     "title": "Giới thiệu",
     "leadLabel": "Hiện tại",
     "lead1": "Tôi là solutions consultant kiêm full-stack engineer, sống ở Hà Nội. Công việc chia đôi khá đều: tìm ra khách hàng thật sự cần gì và cái đó tốn bao nhiêu, rồi tự tay dựng phần đủ để chứng minh câu trả lời đó đúng.",
@@ -81,7 +83,8 @@
     "languages": {
       "english": { "term": "Tiếng Anh", "detail": "Sử dụng thành thạo trong công việc" },
       "vietnamese": { "term": "Tiếng Việt", "detail": "Bản ngữ" }
-    }
+    },
+    "contactLink": "Liên hệ với tôi →"
   },
   "devExperience": {
     "metaTitle": "Kinh nghiệm",

@@ -28,7 +28,7 @@
     "intro2": "I still write the systems I scope. That is deliberate — an estimate from someone who no longer builds is a guess with a confident tone.",
     "indexLabel": "Lines of work",
     "index": {
-      "dev": "Fifteen years building software — roles, skills and selected work.",
+      "dev": "Six years building software — roles, skills and selected work.",
       "trading": "Six years across crypto, forex and equities — method, not performance."
     },
     "contactLabel": "Reach me",
@@ -38,7 +38,7 @@
     "metaTitle": "Software engineering",
     "metaDescription": "Roles, skills and selected work — the engineering side of what I do.",
     "title": "Software engineering",
-    "lead": "Fifteen years of building software, told by domain and market rather than by employer.",
+    "lead": "Six years of building software, told by domain and market rather than by employer.",
     "indexLabel": "In this section",
     "index": {
       "devExperience": "Six roles, by domain and market rather than by employer.",
@@ -46,7 +46,8 @@
       "devProjects": "Selected work, with links where the product is public."
     },
     "contactLabel": "Work with me",
-    "contact": "The fastest way to reach me about engineering work is email. LinkedIn I read less often, and GitHub is where the code is."
+    "contact": "The fastest way to reach me about engineering work is email. LinkedIn I read less often, and GitHub is where the code is.",
+    "allChannels": "All contact channels →"
   },
   "trading": {
     "metaTitle": "Trading",
@@ -57,11 +58,12 @@
     "lead2": "What I keep from it is not a market opinion. It is a habit of thinking in position sizes instead of certainties. A trader who is right sixty percent of the time and sizes badly still loses; an engineer who is confident about an estimate and wrong about the tail risk sinks a project the same way. Trading taught me to ask what happens when I am wrong before asking how likely it is that I am right — and that question has changed how I scope work far more than any framework has.",
     "lead3": "It also taught me to sit still. Most days the correct action is none, and the discipline of not acting transfers almost directly to architecture: the cheapest system is the one you did not build because you waited a week and the requirement evaporated.",
     "contactLabel": "Talk trading",
-    "contact": "Anything about markets, method or risk goes to this address."
+    "contact": "Anything about markets, method or risk goes to this address.",
+    "allChannels": "All contact channels →"
   },
   "about": {
     "metaTitle": "About",
-    "metaDescription": "Engineer, then trader, then both — how the two halves ended up informing each other.",
+    "metaDescription": "The longer version: how I got here, and the credentials behind it.",
     "title": "About",
     "leadLabel": "Now",
     "lead1": "I am a solutions consultant and full-stack engineer, based in Hà Nội. My work splits roughly in half: figuring out what a client actually needs and what it will cost, and then building the part of it that proves the answer was right.",
@@ -81,7 +83,8 @@
     "languages": {
       "english": { "term": "English", "detail": "Professional working proficiency" },
       "vietnamese": { "term": "Vietnamese", "detail": "Native" }
-    }
+    },
+    "contactLink": "Get in touch →"
   },
   "devExperience": {
     "metaTitle": "Experience",
