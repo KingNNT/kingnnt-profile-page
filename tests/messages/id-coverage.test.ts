@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { FACETS } from "@/enums";
 import { routing } from "@/i18n/routing";
 import {
   AWARDS,
@@ -8,7 +9,7 @@ import {
   SKILL_GROUPS,
   SPOKEN_LANGUAGES,
 } from "@/lib/profile";
-import { facetHubRoutes, ROUTES } from "@/lib/routes";
+import { facetHubRoutes, facetRoutes, ROUTES } from "@/lib/routes";
 import en from "@/messages/en.json";
 import vi from "@/messages/vi.json";
 
@@ -139,5 +140,27 @@ describe("data id <-> catalog key coverage", () => {
       facetHubRoutes().map((route) => route.key),
       ["home", "index"],
     );
+  });
+
+  /**
+   * `app/[locale]/(public)/dev/page.tsx` dựng key bằng
+   * `tIndex(dynamicMessageKey(route.key))` trên `facetRoutes("dev")` — cũng là
+   * template-literal key `tsc` không kiểm được, nên cần neo riêng.
+   */
+  it("covers every dev child route key in dev.index, both directions", () => {
+    assertIdsMatchCatalog(
+      'facetRoutes("dev")',
+      facetRoutes("dev").map((route) => route.key),
+      ["dev", "index"],
+    );
+  });
+
+  /**
+   * `app/[locale]/(public)/contact/page.tsx` dựng key bằng
+   * `tGroups(dynamicMessageKey(facet))` trên `FACETS`, cộng key literal
+   * `general` — cùng lý do: lệch chỉ lộ ra ở HTML dưới dạng key thô.
+   */
+  it("covers every contact group key in contact.groups, both directions", () => {
+    assertIdsMatchCatalog("contact groups", ["general", ...FACETS], ["contact", "groups"]);
   });
 });
