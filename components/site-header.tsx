@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Link, usePathname } from "@/i18n/navigation";
-import { HOME_PATH, navRoutes } from "@/lib/routes";
+import { HOME_PATH, primaryNavRoutes } from "@/lib/routes";
 // Import directly from the leaf module, not the `@/lib/profile` barrel: the
 // barrel also re-exports experience, projects, skills, credentials and
 // trading, which would pull all of that into this client component's bundle
@@ -32,7 +32,7 @@ export function SiteHeader() {
           {IDENTITY.nickname}
         </Link>
         <nav className="flex flex-1 items-center gap-5 overflow-x-auto">
-          {navRoutes().map((route) => {
+          {primaryNavRoutes().map((route) => {
             const href = `/${route.path}`;
             const current = pathname === href;
             return (

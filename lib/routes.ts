@@ -1,3 +1,5 @@
+import type { Facet } from "@/enums";
+
 export type ChangeFrequency = "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly";
 
 export interface RouteDef {
@@ -10,6 +12,8 @@ export interface RouteDef {
   priority: number;
   changeFrequency: ChangeFrequency;
   lastModified?: string;
+  /** Nhánh chứa route. `undefined` = route chung: hub, about, contact. */
+  facet?: Facet;
 }
 
 /**
@@ -59,9 +63,24 @@ export function findRoute(path: string): RouteDef | undefined {
   return ROUTES.find((route) => route.path === path);
 }
 
-/** Mọi route trừ trang chủ, theo đúng thứ tự hiển thị trên thanh điều hướng. */
-export function navRoutes(): RouteDef[] {
-  return ROUTES.filter((route) => route.path !== HOME_PATH);
+/**
+ * Thanh điều hướng tầng một: mọi route treo thẳng dưới trang chủ. Cây phân cấp
+ * suy ra từ `parent` sẵn có, không khai thêm một trường thứ hai để hai nguồn
+ * có cơ hội lệch nhau.
+ */
+export function primaryNavRoutes(): RouteDef[] {
+  return ROUTES.filter((route) => route.parent === HOME_PATH);
+}
+
+/** Trang chủ của từng nhánh — thứ trang hub liệt kê làm lối vào. */
+export function facetHubRoutes(): RouteDef[] {
+  return primaryNavRoutes().filter((route) => route.facet !== undefined);
+}
+
+/** Các trang con của một nhánh, theo đúng thứ tự trong registry. Rỗng nếu nhánh chưa có hub. */
+export function facetRoutes(facet: Facet): RouteDef[] {
+  const hub = facetHubRoutes().find((route) => route.facet === facet);
+  return hub === undefined ? [] : ROUTES.filter((route) => route.parent === hub.path);
 }
 
 /** Breadcrumb từ gốc tới chính route đó. Rỗng nếu path không phải một route. */

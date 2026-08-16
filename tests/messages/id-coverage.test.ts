@@ -8,7 +8,7 @@ import {
   SKILL_GROUPS,
   SPOKEN_LANGUAGES,
 } from "@/lib/profile";
-import { navRoutes, ROUTES } from "@/lib/routes";
+import { primaryNavRoutes, ROUTES } from "@/lib/routes";
 import en from "@/messages/en.json";
 import vi from "@/messages/vi.json";
 
@@ -128,13 +128,13 @@ describe("data id <-> catalog key coverage", () => {
   });
 
   /**
-   * `navRoutes()` cố ý bỏ trang chủ, nên `home.index` có ít hơn `nav` đúng
+   * `primaryNavRoutes()` cố ý bỏ trang chủ, nên `home.index` có ít hơn `nav` đúng
    * một key — so với nguồn đúng của nó thay vì ép hai namespace phải khớp.
    */
   it("covers every non-home route key in home.index, both directions", () => {
     assertIdsMatchCatalog(
-      "navRoutes()",
-      navRoutes().map((route) => route.key),
+      "primaryNavRoutes()",
+      primaryNavRoutes().map((route) => route.key),
       ["home", "index"],
     );
   });

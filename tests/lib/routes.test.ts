@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   breadcrumbTrail,
+  facetHubRoutes,
+  facetRoutes,
   findRoute,
   HOME_PATH,
-  navRoutes,
+  primaryNavRoutes,
   ROUTES,
   routeLastModified,
 } from "@/lib/routes";
@@ -27,8 +29,27 @@ describe("route registry", () => {
     expect(home?.priority).toBe(1);
   });
 
-  it("excludes home from the navigation list", () => {
-    expect(navRoutes().map((r) => r.path)).toEqual(["about", "experience", "skills", "projects"]);
+  it("lists the primary navigation from the routes parented at home", () => {
+    expect(primaryNavRoutes().map((r) => r.path)).toEqual([
+      "about",
+      "experience",
+      "skills",
+      "projects",
+    ]);
+  });
+
+  it("excludes home from the primary navigation", () => {
+    expect(primaryNavRoutes().map((r) => r.path)).not.toContain(HOME_PATH);
+  });
+
+  /** Chưa có nhánh nào ở bước này — Task 6 mới thêm. Test neo con số ở 0 để
+   * lần thêm đầu tiên là một thay đổi cố ý, nhìn thấy được trong diff. */
+  it("has no facet hub yet", () => {
+    expect(facetHubRoutes()).toEqual([]);
+  });
+
+  it("returns an empty child list for a facet with no hub", () => {
+    expect(facetRoutes("dev")).toEqual([]);
   });
 
   it("builds a breadcrumb trail rooted at home", () => {
