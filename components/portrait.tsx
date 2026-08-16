@@ -16,7 +16,7 @@ export function Portrait({
       width={864}
       height={1184}
       priority={priority}
-      sizes="(min-width: 768px) 20rem, 12rem"
+      sizes="18rem"
       className={cn("h-auto w-full rounded-sm object-cover", className)}
     />
   );

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
-import { HOME_PATH } from "@/lib/routes";
+import { HOME_PATH, navRoutes } from "@/lib/routes";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -24,6 +24,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: "home" });
+  const tNav = await getTranslations({ locale, namespace: "nav" });
+  const tIndex = await getTranslations({ locale, namespace: "home.index" });
+
+  const indexEntries = navRoutes().map((route) => ({
+    path: route.path,
+    label: tNav(route.key),
+    blurb: tIndex(route.key),
+  }));
 
   return (
     <main>
@@ -46,7 +54,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </Section>
       <Section id="index" index={2} label={t("indexLabel")}>
         <Reveal>
-          <NavIndex />
+          <NavIndex entries={indexEntries} />
         </Reveal>
       </Section>
     </main>
