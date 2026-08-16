@@ -362,6 +362,7 @@ coverage
 .vercel
 next-env.d.ts
 tsconfig.tsbuildinfo
+.superpowers
 ```
 
 - [ ] **Step 5: Viết test smoke**
@@ -824,11 +825,15 @@ describe("theme tokens", () => {
     expect(light).toContain(`${token}:`);
   });
 
-  it.each(REQUIRED)("defines %s in the dark theme", (token) => {
-    // --radius không đổi giữa hai theme; chỉ cần nó tồn tại ở :root.
-    if (token === "--radius") return;
-    expect(dark).toContain(`${token}:`);
-  });
+  // --radius không đổi giữa hai theme; nó chỉ cần tồn tại ở :root. Lọc ra khỏi
+  // danh sách thay vì return sớm trong thân test — một test chạy mà không assert
+  // gì là một test báo xanh vô nghĩa.
+  it.each(REQUIRED.filter((token) => token !== "--radius"))(
+    "defines %s in the dark theme",
+    (token) => {
+      expect(dark).toContain(`${token}:`);
+    },
+  );
 
   it("uses a darker accent in the light theme so contrast holds on white", () => {
     const lightness = (block: string) => {
@@ -2766,8 +2771,10 @@ describe("Reveal", () => {
 
   it("shows content immediately when the user prefers reduced motion", () => {
     // vitest.setup.ts trả về matchMedia matches: true cho mọi query.
+    // getByText trả về chính div của Reveal (text node không phải element),
+    // nên assert thẳng trên nó — `.parentElement` sẽ là container của RTL.
     render(<Reveal>copy</Reveal>);
-    expect(screen.getByText("copy").parentElement).toHaveClass("opacity-100");
+    expect(screen.getByText("copy")).toHaveClass("opacity-100");
   });
 });
 ```
@@ -2998,6 +3005,9 @@ git commit -m "feat(ui): add section, reveal and prose layout primitives"
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
+// SiteHeader render cả LanguageSwitcher và ModeToggle, nên mock phải phủ luôn
+// `useRouter` và `next-themes` — thiếu một trong hai thì test ném lỗi ở chính
+// component con chứ không phải ở thứ đang được kiểm.
 vi.mock("@/i18n/navigation", () => ({
   Link: ({ href, children, ...rest }: { href: string; children: React.ReactNode }) => (
     <a href={href} {...rest}>
@@ -3005,7 +3015,10 @@ vi.mock("@/i18n/navigation", () => ({
     </a>
   ),
   usePathname: () => "/about",
+  useRouter: () => ({ replace: () => {} }),
 }));
+
+vi.mock("next-themes", () => ({ useTheme: () => ({ setTheme: () => {}, theme: "dark" }) }));
 
 vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) =>
@@ -3823,13 +3836,15 @@ git commit -m "feat(about): add about page with the trading chapter"
 ## Task 12: Timeline và `/experience`
 
 **Files:**
-- Create: `components/timeline.tsx`, `app/[locale]/(public)/experience/page.tsx`
+- Create: `lib/format.ts`, `components/timeline.tsx`, `app/[locale]/(public)/experience/page.tsx`
 - Modify: `messages/en.json`, `messages/vi.json`
-- Test: `tests/components/timeline.test.tsx`
+- Test: `tests/components/timeline.test.tsx`, `tests/lib/format.test.ts`
 
 **Interfaces:**
 - Consumes: `EXPERIENCE` từ `@/lib/profile`.
-- Produces: `<Timeline items />` với `TimelineItem = { id, period, role, summary, meta }` — component không tự đọc `lib/profile`, trang truyền vào dữ liệu đã ghép với bản dịch. Ranh giới này giữ component thuần trình bày và test được mà không cần mock i18n.
+- Produces:
+  - `formatPeriod(from: string, to: string | null, nowLabel: string): string` từ `@/lib/format` — **Task 14 import lại hàm này, không viết lại.**
+  - `<Timeline items />` với `TimelineItem = { id, period, role, summary, meta, ongoing }` — component không tự đọc `lib/profile`, trang truyền vào dữ liệu đã ghép với bản dịch. Ranh giới này giữ component thuần trình bày và test được mà không cần mock i18n.
 
 - [ ] **Step 1: Viết test**
 
@@ -3952,7 +3967,49 @@ export function Timeline({ items }: { items: readonly TimelineItem[] }) {
 }
 ```
 
-- [ ] **Step 4: Viết trang `/experience`**
+- [ ] **Step 4: Viết `lib/format.ts` và test của nó**
+
+Task 14 dùng lại chính hàm này, nên nó nằm ở module dùng chung ngay từ đầu thay vì được chép sang trang thứ hai.
+
+`tests/lib/format.test.ts`:
+
+```ts
+import { describe, expect, it } from "vitest";
+import { formatPeriod } from "@/lib/format";
+
+describe("formatPeriod", () => {
+  it("renders a closed period as month.year on both ends", () => {
+    expect(formatPeriod("2024-04", "2025-10", "now")).toBe("04.2024 — 10.2025");
+  });
+
+  it("substitutes the translated label for an ongoing period", () => {
+    expect(formatPeriod("2026-07", null, "nay")).toBe("07.2026 — nay");
+  });
+
+  it("keeps the leading zero of a single-digit month", () => {
+    expect(formatPeriod("2020-01", "2020-09", "now")).toBe("01.2020 — 09.2020");
+  });
+});
+```
+
+`lib/format.ts`:
+
+```ts
+/**
+ * "2026-07" → "07.2026". Định dạng cố định thay vì `Intl.DateTimeFormat` vì
+ * cột này là mono và phải thẳng hàng ở cả hai locale — tên tháng đã dịch có độ
+ * dài khác nhau sẽ phá cột.
+ */
+export function formatPeriod(from: string, to: string | null, nowLabel: string): string {
+  const fmt = (value: string) => {
+    const [year, month] = value.split("-");
+    return `${month}.${year}`;
+  };
+  return `${fmt(from)} — ${to === null ? nowLabel : fmt(to)}`;
+}
+```
+
+- [ ] **Step 5: Viết trang `/experience`**
 
 `app/[locale]/(public)/experience/page.tsx`:
 
@@ -3962,19 +4019,11 @@ import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { Timeline, type TimelineItem } from "@/components/timeline";
+import { formatPeriod } from "@/lib/format";
 import { pageMetadata } from "@/lib/metadata";
 import { EXPERIENCE } from "@/lib/profile";
 
 const PATH = "experience";
-
-/** "2026-07" → "07.2026". Mono, và không phụ thuộc locale của trình duyệt. */
-function formatPeriod(from: string, to: string | null, nowLabel: string): string {
-  const fmt = (value: string) => {
-    const [year, month] = value.split("-");
-    return `${month}.${year}`;
-  };
-  return `${fmt(from)} — ${to === null ? nowLabel : fmt(to)}`;
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -4026,7 +4075,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ loc
 }
 ```
 
-- [ ] **Step 5: Thêm copy `experience`**
+- [ ] **Step 6: Thêm copy `experience`**
 
 `messages/en.json`:
 
@@ -4070,7 +4119,7 @@ export default async function ExperiencePage({ params }: { params: Promise<{ loc
   }
 ```
 
-- [ ] **Step 6: Chạy test, lint, build**
+- [ ] **Step 7: Chạy test, lint, build**
 
 ```bash
 pnpm test
@@ -4078,7 +4127,7 @@ pnpm lint
 pnpm build
 ```
 
-- [ ] **Step 7: Commit**
+- [ ] **Step 8: Commit**
 
 ```bash
 git add -A
@@ -4387,7 +4436,7 @@ Task duy nhất mà ràng buộc ẩn danh chạm vào UI: một nửa số dự
 - Test: `tests/components/project-card.test.tsx`
 
 **Interfaces:**
-- Consumes: `featuredProjects`, `earlierProjects`, `type Project` từ `@/lib/profile`.
+- Consumes: `featuredProjects`, `earlierProjects`, `type Project` từ `@/lib/profile`; `formatPeriod` từ `@/lib/format` (Task 12) — **import, không viết lại**.
 - Produces: `<ProjectCard project title description period linkLabel? />` — `title` là tên hiển thị đã giải quyết (tên thật hoặc nhãn "dự án không nêu tên" đã dịch).
 
 - [ ] **Step 1: Viết test**
@@ -4559,18 +4608,11 @@ import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
+import { formatPeriod } from "@/lib/format";
 import { pageMetadata } from "@/lib/metadata";
 import { earlierProjects, featuredProjects, type Project } from "@/lib/profile";
 
 const PATH = "projects";
-
-function formatPeriod(from: string, to: string | null, nowLabel: string): string {
-  const fmt = (value: string) => {
-    const [year, month] = value.split("-");
-    return `${month}.${year}`;
-  };
-  return `${fmt(from)} — ${to === null ? nowLabel : fmt(to)}`;
-}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -4734,7 +4776,12 @@ sips -s format png -z 96 96 /tmp/square.png --out app/icon.png
 `tests/seo/og.test.ts`:
 
 ```ts
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+
+// `next/og` là module dành cho runtime của Next và không nạp sạch trong jsdom.
+// Test này chỉ kiểm phần khai báo tĩnh của route, nên stub luôn ImageResponse.
+vi.mock("next/og", () => ({ ImageResponse: class {} }));
+
 import { alt, contentType, size } from "@/app/[locale]/opengraph-image";
 import { IDENTITY } from "@/lib/profile";
 
