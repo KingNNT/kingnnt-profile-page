@@ -10,12 +10,16 @@ export const alt = `${IDENTITY.fullName} — ${IDENTITY.jobTitle}`;
  * Ảnh chân dung được nạp qua URL công khai của chính site chứ không đọc từ đĩa:
  * đọc file bằng `fs` trong route này phụ thuộc vào việc bundler có trace được
  * đường dẫn hay không, và nó im lặng hỏng trên Vercel trong khi build cục bộ
- * vẫn xanh. Nếu fetch hỏng, card vẫn ra — chỉ là bản thuần chữ.
+ * vẫn xanh. Nếu fetch hỏng — lỗi mạng, status không phải 2xx, hoặc một phản
+ * hồi 200 mà không phải ảnh (trang lỗi HTML từ CDN chẳng hạn) — hàm trả về
+ * `null` và card vẫn ra, chỉ là bản thuần chữ.
  */
-async function portraitDataUrl(): Promise<string | null> {
+export async function portraitDataUrl(): Promise<string | null> {
   try {
     const response = await fetch(`${SITE_URL}/images/portrait.jpg`);
     if (!response.ok) return null;
+    const type = response.headers.get("content-type");
+    if (!type?.startsWith("image/")) return null;
     const buffer = Buffer.from(await response.arrayBuffer());
     return `data:image/jpeg;base64,${buffer.toString("base64")}`;
   } catch {
@@ -23,10 +27,14 @@ async function portraitDataUrl(): Promise<string | null> {
   }
 }
 
-export default async function OpengraphImage() {
-  const portrait = await portraitDataUrl();
-
-  return new ImageResponse(
+/**
+ * Màu viết thẳng dạng hex chứ không đọc từ token: `ImageResponse` render bằng
+ * Satori, thứ không hiểu biến CSS — các token thật trong `app/globals.css` là
+ * OKLCH, không có chuỗi chung nào để grep. Đây là bản sao thủ công có chủ đích
+ * của accent; nếu đổi `--primary` trong globals.css thì phải đổi ở đây.
+ */
+function card(portrait: string | null) {
+  return (
     <div
       style={{
         width: "100%",
@@ -59,7 +67,20 @@ export default async function OpengraphImage() {
           alt=""
         />
       ) : null}
-    </div>,
-    size,
+    </div>
   );
+}
+
+export default async function OpengraphImage() {
+  const portrait = await portraitDataUrl();
+
+  // Ảnh nhúng vào có thể tải về thành công nhưng không giải mã được (bytes
+  // hỏng, định dạng lạ) — Satori chỉ ném lỗi ở bước render, không phải ở bước
+  // fetch. Bọc constructor để lỗi đó rơi về đúng lời hứa trong docstring trên:
+  // card thuần chữ, không phải HTTP 500.
+  try {
+    return new ImageResponse(card(portrait), size);
+  } catch {
+    return new ImageResponse(card(null), size);
+  }
 }

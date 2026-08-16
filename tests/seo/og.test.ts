@@ -1,10 +1,10 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 // `next/og` là module dành cho runtime của Next và không nạp sạch trong jsdom.
 // Test này chỉ kiểm phần khai báo tĩnh của route, nên stub luôn ImageResponse.
 vi.mock("next/og", () => ({ ImageResponse: class {} }));
 
-import { alt, contentType, size } from "@/app/[locale]/opengraph-image";
+import { alt, contentType, portraitDataUrl, size } from "@/app/[locale]/opengraph-image";
 import { IDENTITY } from "@/lib/profile";
 
 describe("opengraph image", () => {
@@ -18,5 +18,43 @@ describe("opengraph image", () => {
 
   it("names the person in the alt text", () => {
     expect(alt).toContain(IDENTITY.fullName);
+  });
+});
+
+describe("portraitDataUrl", () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it("returns null when the fetch throws", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("network down")));
+
+    await expect(portraitDataUrl()).resolves.toBeNull();
+  });
+
+  it("returns null on a non-ok status", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: false,
+        headers: new Headers(),
+        arrayBuffer: vi.fn(),
+      }),
+    );
+
+    await expect(portraitDataUrl()).resolves.toBeNull();
+  });
+
+  it("returns null when the response is not image data", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        headers: new Headers({ "content-type": "text/html" }),
+        arrayBuffer: vi.fn(),
+      }),
+    );
+
+    await expect(portraitDataUrl()).resolves.toBeNull();
   });
 });
