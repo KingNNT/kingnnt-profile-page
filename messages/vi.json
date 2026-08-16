@@ -56,6 +56,11 @@
       "icpc": "ACM/ICPC khu vực miền Bắc, thí sinh 2018–2021",
       "informatics-olympiad": "Giải Nhì Olympic Tin học cấp tỉnh"
     },
+    "languagesLabel": "Ngôn ngữ",
+    "languages": {
+      "english": { "term": "Tiếng Anh", "detail": "Sử dụng thành thạo trong công việc" },
+      "vietnamese": { "term": "Tiếng Việt", "detail": "Bản ngữ" }
+    },
     "contactLabel": "Liên hệ",
     "contact": "Cách nhanh nhất là email. LinkedIn tôi đọc thưa hơn, còn GitHub là nơi có code."
   },

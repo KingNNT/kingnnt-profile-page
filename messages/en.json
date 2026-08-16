@@ -56,6 +56,11 @@
       "icpc": "ACM/ICPC Northern Vietnam regional, competitor 2018–2021",
       "informatics-olympiad": "Second prize, provincial informatics olympiad"
     },
+    "languagesLabel": "Languages",
+    "languages": {
+      "english": { "term": "English", "detail": "Professional working proficiency" },
+      "vietnamese": { "term": "Vietnamese", "detail": "Native" }
+    },
     "contactLabel": "Get in touch",
     "contact": "The fastest way to reach me is email. I read LinkedIn less often, and GitHub is where the code is."
   },

@@ -4,7 +4,7 @@ import { Reveal } from "@/components/reveal";
 import { Section } from "@/components/section";
 import { PageStructuredData } from "@/components/structured-data";
 import { pageMetadata } from "@/lib/metadata";
-import { AWARDS, CERTIFICATIONS, EDUCATION, IDENTITY } from "@/lib/profile";
+import { AWARDS, CERTIFICATIONS, EDUCATION, IDENTITY, SPOKEN_LANGUAGES } from "@/lib/profile";
 import { dynamicMessageKey } from "@/lib/utils";
 
 const PATH = "about";
@@ -98,6 +98,23 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                     <li key={award.id}>
                       {t(dynamicMessageKey(`awards.${award.id}`))}{" "}
                       <span className="text-muted-foreground">· {award.year}</span>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                {t("languagesLabel")}
+              </dt>
+              <dd className="mt-2">
+                <ul className="space-y-1">
+                  {SPOKEN_LANGUAGES.map((language) => (
+                    <li key={language.id}>
+                      {t(dynamicMessageKey(`languages.${language.id}.term`))}{" "}
+                      <span className="text-muted-foreground">
+                        · {t(dynamicMessageKey(`languages.${language.id}.detail`))}
+                      </span>
                     </li>
                   ))}
                 </ul>
