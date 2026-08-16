@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { LocaleSupport } from "@/enums";
 import { pageMetadata } from "@/lib/metadata";
 import { languageAlternates, pageUrl, SITE_URL } from "@/lib/site";
@@ -21,6 +21,24 @@ describe("site urls", () => {
       en: `${SITE_URL}/en/about`,
       vi: `${SITE_URL}/vi/about`,
     });
+  });
+
+  it("strips a trailing slash from an overridden origin", async () => {
+    vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://preview.example.com/");
+    vi.resetModules();
+    const { SITE_URL: overridden } = await import("@/lib/site");
+    expect(overridden).toBe("https://preview.example.com");
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
+
+  it("uses the overridden origin for page urls", async () => {
+    vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://preview.example.com/");
+    vi.resetModules();
+    const { pageUrl: overriddenPageUrl } = await import("@/lib/site");
+    expect(overriddenPageUrl("en", "skills")).toBe("https://preview.example.com/en/skills");
+    vi.unstubAllEnvs();
+    vi.resetModules();
   });
 });
 
