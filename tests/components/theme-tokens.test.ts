@@ -38,8 +38,15 @@ function blockOf(selector: string): string {
 function oklchOf(block: string, token: string): [number, number, number] {
   const match = block.match(new RegExp(`${token}:\\s*oklch\\(([^)]+)\\)`));
   if (!match) throw new Error(`${token} is not an oklch() value`);
-  const parts = match[1].trim().split(/\s+/).map(Number);
+  // Drop an optional `/ <alpha>` before splitting on whitespace, so an
+  // alpha-slash value like `oklch(0 0 0 / 0.12)` parses as L C H instead of
+  // risking the alpha token landing in `h` and silently producing NaN.
+  const [colorPart] = match[1].split("/");
+  const parts = colorPart.trim().split(/\s+/).map(Number);
   const [l, c, h] = parts;
+  if (parts.length < 2 || [l, c, h].some((n) => n !== undefined && Number.isNaN(n))) {
+    throw new Error(`${token} has an unparseable oklch() value: "oklch(${match[1]})"`);
+  }
   return [l, c, h ?? 0];
 }
 
