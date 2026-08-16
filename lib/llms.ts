@@ -33,7 +33,7 @@ export function buildLlmsTxt(locale: string): string {
     "",
     ...featuredProjects().map((project) => {
       const label = project.name ?? "Undisclosed client project";
-      const link = project.url ? ` (${project.url})` : "";
+      const link = project.name !== null && project.url ? ` (${project.url})` : "";
       return `- ${label}${link} — ${project.role}; ${project.stack.join(", ")}`;
     }),
     "",

@@ -1,16 +1,21 @@
-export interface Project {
+/**
+ * Bắt cặp `name`/`url` thành một union phân biệt: dự án không public thì không
+ * có tên lẫn không có link, ở ngay tầng kiểu chứ không chỉ trong comment. Trước
+ * đây `{ name: null, url: "..." }` là TypeScript hợp lệ — review đã gắn cờ điều
+ * này khi tầng data được dựng, và một lần llms.ts suýt in lộ `url` cho một dự
+ * án ẩn danh là lúc khoản nợ đó đến hạn.
+ */
+type ProjectIdentity = { name: string; url: string | null } | { name: null; url: null };
+
+export type Project = ProjectIdentity & {
   id: string;
   from: string;
   to: string | null;
-  /** `null` khi sản phẩm chưa public — không có tên để hiển thị. */
-  name: string | null;
-  /** Luôn `null` khi `name` là `null`. */
-  url: string | null;
   role: string;
   teamSize: number | null;
   stack: readonly string[];
   featured: boolean;
-}
+};
 
 /** Mới nhất trước. */
 export const PROJECTS: readonly Project[] = [

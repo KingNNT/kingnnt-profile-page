@@ -34,6 +34,11 @@ describe("robots", () => {
     "PerplexityBot",
     "Perplexity-User",
     "Google-Extended",
+    "Googlebot",
+    "Applebot-Extended",
+    "Applebot",
+    "CCBot",
+    "Bytespider",
   ])("names %s explicitly", (agent) => {
     expect(agents).toContain(agent);
   });

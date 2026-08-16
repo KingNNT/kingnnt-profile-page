@@ -17,7 +17,9 @@ const ANSWER_ENGINE_AGENTS = [
   "PerplexityBot",
   "Perplexity-User",
   "Google-Extended",
+  "Googlebot",
   "Applebot-Extended",
+  "Applebot",
   "CCBot",
   "Bytespider",
 ];
