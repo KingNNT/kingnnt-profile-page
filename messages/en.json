@@ -2,5 +2,12 @@
   "metadata": {
     "title": "Ninh Ngọc Tuấn — Solutions Consultant",
     "description": "Solutions consultant and full-stack engineer. Six years turning business problems into systems that hold up in production."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects"
   }
 }
