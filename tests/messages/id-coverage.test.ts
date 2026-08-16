@@ -117,7 +117,7 @@ describe("data id <-> catalog key coverage", () => {
 
   /**
    * `ROUTES` bao gồm trang chủ (`key: "home"`), nên namespace `nav` có đúng
-   * bấy nhiêu key — không so với `navRoutes()`.
+   * bấy nhiêu key — không so với `primaryNavRoutes()`.
    */
   it("covers every route key in nav, both directions", () => {
     assertIdsMatchCatalog(
