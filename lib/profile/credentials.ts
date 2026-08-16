@@ -1,3 +1,12 @@
+/**
+ * Trường học và đơn vị cấp chứng chỉ được nêu tên thẳng ở đây, khác với
+ * `experience.ts` giấu tên nơi làm việc. Lý do: ràng buộc ẩn danh của trang
+ * chặn tên nhà tuyển dụng, khách hàng, và công ty đứng sau sản phẩm anh từng
+ * làm — Electric Power University, Anthropic, Coursera, LandingAI không rơi
+ * vào nhóm nào trong ba nhóm đó. Một trường học không tuyển anh, một đơn vị
+ * cấp chứng chỉ không phải khách hàng, nên nêu tên chúng không làm lộ ai đã
+ * thuê anh.
+ */
 export interface Education {
   institution: string;
   degree: string;
