@@ -43,9 +43,9 @@ describe("Timeline", () => {
     expect(screen.getByTestId("marker-engineer-ai")).toHaveAttribute("data-ongoing", "false");
   });
 
-  it("lists the meta tags of an entry", () => {
+  it("lists the meta tags of an entry, separated so screen readers pause between them", () => {
     render(<Timeline items={ITEMS} />);
-    expect(screen.getByText("presales")).toBeInTheDocument();
+    expect(screen.getByText("presales · VN")).toBeInTheDocument();
   });
 
   it("renders nothing but an empty list when given no items", () => {

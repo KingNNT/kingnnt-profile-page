@@ -34,11 +34,9 @@ export function Timeline({ items }: { items: readonly TimelineItem[] }) {
           <p className="mt-2 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
             {item.summary}
           </p>
-          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] text-muted-foreground">
-            {item.meta.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
+          <p className="mt-3 font-mono text-[11px] text-muted-foreground">
+            {item.meta.join(" · ")}
+          </p>
         </li>
       ))}
     </ol>
