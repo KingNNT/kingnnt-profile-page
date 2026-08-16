@@ -798,7 +798,10 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
-const css = readFileSync(fileURLToPath(new URL("../../app/globals.css", import.meta.url)), "utf8");
+// Xem ghi chú ở `tests/lib/anonymity.test.ts`: `import.meta.url` phải gán ra
+// biến trước, nếu không Vite biến lần đọc file này thành tham chiếu asset.
+const moduleUrl = import.meta.url;
+const css = readFileSync(fileURLToPath(new URL("../../app/globals.css", moduleUrl)), "utf8");
 
 /** Token mà component dựa vào. Thiếu một cái ở một theme là lỗi im lặng. */
 const REQUIRED = [
@@ -1258,7 +1261,12 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
-const ROOT = fileURLToPath(new URL("../../", import.meta.url));
+// `import.meta.url` phải gán ra biến trước khi dùng: Vite bắt tĩnh đúng mẫu
+// `new URL("...", import.meta.url)` và coi đó là tham chiếu asset của trình
+// duyệt, phân giải theo origin của dev server thay vì theo hệ thống tệp — làm
+// hỏng lần đọc file phía Node trong vitest.
+const moduleUrl = import.meta.url;
+const ROOT = fileURLToPath(new URL("../../", moduleUrl));
 
 /**
  * Tên không bao giờ được xuất hiện trong chữ hiển thị. Gỡ một mục khỏi đây là
