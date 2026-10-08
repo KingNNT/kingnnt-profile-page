@@ -2,13 +2,13 @@ import { LocaleSupport } from "@/enums";
 import { routing } from "@/i18n/routing";
 import { IDENTITY } from "@/lib/profile";
 
-const PROTOCOL = process.env.NEXT_PUBLIC_SITE_PROTOCOL ?? "https";
+const PROTOCOL = process.env.NEXT_PUBLIC_SITE_PROTOCOL || "https";
 
 /**
  * Origin chuẩn. Đặt `NEXT_PUBLIC_SITE_URL` trong môi trường preview của Vercel,
  * nếu không canonical của bản preview sẽ trỏ về production.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? `${PROTOCOL}://kingnnt.org`).replace(
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || `${PROTOCOL}://kingnnt.org`).replace(
   /\/$/,
   "",
 );
