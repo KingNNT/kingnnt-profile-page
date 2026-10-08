@@ -32,6 +32,16 @@ describe("site urls", () => {
     vi.resetModules();
   });
 
+  it("falls back to the production origin when the env vars are set but empty", async () => {
+    vi.stubEnv("NEXT_PUBLIC_SITE_URL", "");
+    vi.stubEnv("NEXT_PUBLIC_SITE_PROTOCOL", "");
+    vi.resetModules();
+    const { SITE_URL: fallback } = await import("@/lib/site");
+    expect(fallback).toBe("https://kingnnt.org");
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
+
   it("uses the overridden origin for page urls", async () => {
     vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://preview.example.com/");
     vi.resetModules();
