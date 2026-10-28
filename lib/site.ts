@@ -15,6 +15,8 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || `${PROTOCOL}://king
 
 export const SITE_NAME = IDENTITY.nickname;
 
+export const GA_MEASUREMENT_ID = "G-CCS254GW67";
+
 /**
  * What every page title but the homepage's ends with.
  *
