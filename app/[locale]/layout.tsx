@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -8,7 +8,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { routing } from "@/i18n/routing";
-import { GA_MEASUREMENT_ID, TITLE_SUFFIX } from "@/lib/site";
+import { GTM_CONTAINER_ID, TITLE_SUFFIX } from "@/lib/site";
 import "../globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -55,7 +55,7 @@ export default async function LocaleLayout({
         </ThemeProvider>
         <Analytics />
       </body>
-      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
+      <GoogleTagManager gtmId={GTM_CONTAINER_ID} />
     </html>
   );
 }
